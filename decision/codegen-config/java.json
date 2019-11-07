@@ -1,0 +1,12 @@
+{
+  "modelPackage": "com.adzerk.sdk.model",
+  "apiPackage": "com.adzerk.sdk.api",
+  "invokerPackage": "com.adzerk.sdk",
+  "groupId": "com.adzerk",
+  "artifactId": "adzerk-sdk",
+  "artifactUrl": "https://github.com/adzerk/adzerk-sdk-java",
+  "developerOrganization": "Adzerk, Inc.",
+  "developerOrganizationUrl": "https://www.adzerk.com",
+  "serializableModel": true,
+  "java8": false
+}

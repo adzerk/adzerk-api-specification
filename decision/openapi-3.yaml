@@ -1,0 +1,280 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Decision API
+  description: Adzerk Decision API
+  version: '2.0'
+servers:
+  - url: '{protocol}://e-{networkId}.adzerk.net'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      networkId:
+        description: Your Adzerk Network Id
+        default: '23'
+tags:
+  - name: decision
+    description: Adzerk Decision API Endpoint
+paths:
+  /api/v2:
+    post:
+      tags:
+        - decision
+      description: Auto generated using Swagger Inspector
+      operationId: getDecisions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+            examples:
+              '0':
+                value: >-
+                  {"placements": [{ "divName": "header", "networkId": 23, "siteId": 667480, "adTypes": [5] }] }
+              '1':
+                value: >-
+                  {"placements": [{ "divName": "header", "networkId": 23, "siteId": 667480, "adTypes": [5] }], "user": { "key": "ABC123" } }
+              '2':
+                value: >-
+                  {"placements": [{ "divName": "header", "networkId": 23, "siteId": 667480, "adTypes": [5], "count": 5 }], "user": { "key": "ABC123" } }
+              '3':
+                value: >-
+                  {"placements": [{ "divName": "header", "networkId": 23, "siteId": 667480, "adTypes": [5], "count": 5 }], "user": { "key": "ABC123" }, "includePricingData": true }
+              '4':
+                value: >-
+                  {"placements": [{ "divName": "header", "networkId": 23, "siteId": 667480, "adTypes": [5], "eventIds": [1, 2], "count": 5}], "user": { "key": "ABC123" }, "includePricingData": true }
+      responses:
+        '400':
+          description: Bad Request
+        '200':
+          description: Successful decision request
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Response'
+components:
+  schemas:
+    Request:
+      type: object
+      properties:
+        placements:
+          description: One or more Placement objects
+          type: array
+          items:
+            $ref: '#/components/schemas/Placement'
+        user:
+          $ref: '#/components/schemas/User'
+        keywords:
+          description: 'Keywords for keyword Targeting. Such as `"keywords": ["foo", "bar", "baz"]`.'
+          type: array
+          items:
+            type: string
+        url:
+          description: The current page URL
+          type: string
+        referrer:
+          description: The referrer URL
+          type: string
+        ip:
+          description: The IP address. Required for [Geo-Targeting](https://dev.adzerk.com/docs/geo-location)
+          type: string
+        blockedCreatives:
+          description: Numeric creative ids to disregard for ad selection
+          type: array
+          items:
+            type: integer
+        isMobile:
+          description: If true, only ads containing a single image will be returned
+          type: boolean
+          default: false
+        includePricingData:
+          description: If true, return pricing data for the decision in the response
+          type: boolean
+          default: false
+        notrack:
+          description: If true, only return ads that are set to honor Do Not Track
+          type: boolean
+          default: false
+        enableBotFiltering:
+          description: If making a client-side request, set to true. Defaults to false to ensure a server isn't seen as a bot. See [here](https://dev.adzerk.com/docs/tracking-overview#section-bot-filtering) for more info
+          type: boolean
+          default: false
+        enableUserDBIP:
+          description: If true, override the IP address of the request with the IP address supplied on the UserKey. If no IP address is found on the UserKey, this will fall back to the IP address on the request. Requires UserDB
+          type: boolean
+        consent:
+          description: Object that sets the data consent preferences. Other consent settings are available in the GDPR settings documentation.
+          type: object
+          properties:
+            gdpr:
+              type: boolean
+        deviceID:
+          description: RTB requests only - sets an Identifier for Advertisers (IFA or IDFA)
+          type: string
+      required:
+        - placements
+    Placement:
+      type: object
+      properties:
+        divName:
+          description: A unique name for the placement defined by you
+          type: string
+        networkId:
+          description: The numeric network id
+          type: integer
+          format: int32
+        siteId:
+          description: The numeric site id
+          type: integer
+          format: int32
+        adTypes:
+          description: One or more integer ad types. More info [here](https://dev.adzerk.com/docs/ad-sizes)
+          type: array
+          items:
+            type: integer
+        zoneIds:
+          description: Zone IDs to use
+          type: array
+          items:
+            type: integer
+        campaignId:
+          description: A numeric campaign id; if specified, only consider ads in that campaign
+          type: integer
+          format: int32
+        flightId:
+          description: A numeric ad (flight-creative map) id; if specified, only serve that ad if possible
+          type: integer
+          format: int32
+        adId:
+          description: A numeric ad (flight-creative map) id; if specified, only serve that ad if possible
+          type: integer
+          format: int32
+        clickUrl:
+          description: The ad's click-through URL
+          type: string
+        properties:
+          description: A map of key/value pairs used for [Custom Targeting](https://dev.adzerk.com/docs/custom-targeting)
+          type: object
+        eventIds:
+          description: An array of numeric event types. Requests tracking URLs for custom events. See here for [Event Tracking IDs](https://dev.adzerk.com/v1.0/docs/custom-event-tracking)
+          type: array
+          items:
+            type: integer
+        overrides:
+          description: An object that overrides values for an advertiser, campaign, flight or ad. Used especially for header bidding
+          type: object
+        contentKeys:
+          description: 'A map of key/value pairs used with [ContentDB](https://dev.adzerk.com/docs/contentdb-1). The format is `"contentKeys": {"schema": "contentKey"}`'
+          type: object
+          additionalProperties:
+            type: integer
+        count:
+          description: (BETA) The number of ads to return per placement. Integer between 1 and 20
+          type: integer
+          format: int32
+        proportionality:
+          description: (BETA) If true, fills ads in a multi-winner placement in proportion to the flight's goals
+          type: boolean
+        ecpmPartition:
+          description: (BETA) The name of the eCPM Partition that should be used to source eCPM data for auctions
+          type: string
+    User:
+      description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
+      type: object
+      properties:
+        key:
+          description: The UserKey used for UserDB Targeting
+          type: string
+    Decision:
+      type: object
+      properties:
+        adId:
+          type: integer
+        creativeId:
+          type: integer
+        flightId:
+          type: integer
+        campaignId:
+          type: integer
+        priorityId:
+          type: integer
+        clickUrl:
+          type: string
+          format: uri
+        contents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+        impressionUrl:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        pricing:
+          $ref: '#/components/schemas/PricingData'
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        url:
+          type: string
+          format: uri
+    Content:
+      type: object
+      properties:
+        type:
+          type: string
+        template:
+          type: string
+        customTemplate:
+          type: string
+        data:
+          $ref: '#/components/schemas/DecisionData'
+        body:
+          type: string
+    DecisionData:
+      type: object
+      properties:
+        imageURL:
+          type: string
+          format: uri
+        title:
+          type: string
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        customData:
+          type: object
+    PricingData:
+      type: object
+      properties:
+        price:
+          type: number
+          format: float
+        clearPrice:
+          type: number
+          format: float
+        revenue:
+          type: number
+          format: float
+        rateType:
+          type: integer
+        eCPM:
+          type: number
+          format: float
+    Response:
+      type: objectp
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        decisions:
+          type: object

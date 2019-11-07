@@ -1,0 +1,5 @@
+{
+  "packageName": "Adzerk.Sdk",
+  "netCoreProjectFile": true,
+  "targetFramework": "netstandard2.0"
+}

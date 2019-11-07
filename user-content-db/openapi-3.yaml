@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Adzerk UserDB and ContentDB API
+  description: Adzerk UserDB and ContentDB API
+  version: '1.0'
+servers:
+  - url: 'https://e-{networkId}.adzerk.net'
+    variables:
+      networkId:
+        description: Your Adzerk Network Id
+        default: '23'
+tags:
+  - name: contentdb
+    description: Adzerk ContentDB
+  - name: userdb
+    description: Adzerk UserDB
+paths:
+  '/udb/{networkId}/set/i.gif':
+    get:
+      tags:
+        - userdb
+      description: Sets the current user's azk cookie to the userKey specified in the query parameter. If this user record exists, existing data on the record will become available. If the user record doesn't exist, it will be created.
+      operationId: setUserCookie
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: properties
+          in: query
+          description: Something
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: object
+        # - name: userKey
+        #   in: query
+        #   description: UserDB ID of the user
+        #   required: true
+        #   schema:
+        #     type: string
+        # - name: properties
+        #   in: query
+        #   description: One or more properties to set
+        #   required: false
+        #   allowReserved: true
+        #   schema:
+        #     type: string
+      responses:
+        200:
+          description: Success
+  '/cdb/{networkId}/custom/{schemaName}/{contentKey}':
+    post:
+      tags:
+        - contentdb
+      description: This lets you create or update a ContentDB Record. POSTing to this endpoint is an "upsert" operation - if a value doesn't exist, it will create a new value. Otherwise, it will override the current value.
+      operationId: createOrUpdateRecord
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: schemaName
+          in: path
+          description: \"Folder\" that contains records, usually grouped around a theme, like `Album`
+          required: true
+          schema:
+            type: string
+        - name: contentKey
+          in: path
+          description: The record you want to tie metadata (the JSON object) to, like `Album 485`.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+    get:
+      tags:
+        - contentdb
+      description: Get an existing ContentDB record
+      operationId: getRecord
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: schemaName
+          in: path
+          description: \"Folder\" that contains records, usually grouped around a theme, like `Album`
+          required: true
+          schema:
+            type: string
+        - name: contentKey
+          in: path
+          description: The record you want to tie metadata (the JSON object) to, like `Album 485`.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The ContentDB record
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+        - contentdb
+      description: Delete an existing ContentDB record
+      operationId: deleteRecord
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: schemaName
+          in: path
+          description: \"Folder\" that contains records, usually grouped around a theme, like `Album`
+          required: true
+          schema:
+            type: string
+        - name: contentKey
+          in: path
+          description: The record you want to tie metadata (the JSON object) to, like `Album 485`.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+components:
+  schemas:
+    SuccessMessage:
+      type: object
+      properties:
+        Code:
+          type: integer
+          format: int32
+        Message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Adzerk-ApiKey
