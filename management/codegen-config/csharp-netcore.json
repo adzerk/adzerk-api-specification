@@ -1,0 +1,9 @@
+{
+  "packageName": "Adzerk.Sdk.Management.Internal",
+  "packageVersion": "1.0.0",
+  "netCoreProjectFile": true,
+  "targetFramework": "netstandard2.0",
+  "nonPublicApi": false,
+  "optionalEmitDefaultValues": false,
+  "optionalProjectFile": false
+}

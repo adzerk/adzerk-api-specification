@@ -31,7 +31,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Advertiser'
+              type: object
       responses:
         200:
           description: Advertiser Created
@@ -72,7 +72,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Advertiser'
+              type: object
       responses:
         200:
           description: Updated Advertiser
@@ -113,10 +113,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                advertiserName:
-                  type: string
+              $ref: './schemas/advertiser.yaml#/schemas/AdvertiserSearch'
       responses:
         200:
           description: Paged list of Advertisers
@@ -158,7 +155,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Campaign'
+              type: object
       responses:
         200:
           description: Campaign Created
@@ -199,7 +196,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Campaign'
+              type: object
       responses:
         200:
           description: Updated Campaign
@@ -240,10 +237,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                campaignName:
-                  type: string
+              $ref: './schemas/campaign.yaml#/schemas/CampaignSearch'
       responses:
         200:
           description: Paged list of Campaigns
@@ -285,7 +279,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Flight'
+              type: object
       responses:
         200:
           description: Flight Created
@@ -326,7 +320,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Flight'
+              type: object
       responses:
         200:
           description: Updated Flight
@@ -428,7 +422,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Creative'
+              type: object
       responses:
         200:
           description: Creative Created
@@ -498,7 +492,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Creative'
+              type: object
       responses:
         200:
           description: Creative Updated
@@ -628,7 +622,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Ad'
+              type: object
       responses:
         200:
           description: The updated Ad
@@ -711,7 +705,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreativeTemplate'
+              type: object
       responses:
         200:
           description: The newly created Creative Template
@@ -776,7 +770,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreativeTemplateUpdate'
+              type: object
       responses:
         200:
           description: The updated Creative Template
@@ -787,784 +781,35 @@ paths:
 components:
   schemas:
     Advertiser:
-      type: object
-      required:
-        - Title
-        - IsActive
-      properties:
-        Title:
-          type: string
-        IsActive:
-          type: boolean
-          default: false
-        PlacementLimit:
-          type: integer
-          format: int32
-          nullable: true
-        FreqCap:
-          type: integer
-          format: int32
-          nullable: true
-        FreqCapDuration:
-          type: integer
-          format: int32
-          nullable: true
-        FreqCapType:
-          type: integer
-          format: int32
-          nullable: true
-        CapType:
-          type: integer
-          format: int32
-          nullable: true
-        DailyCapAmount:
-          type: integer
-          format: int32
-          nullable: true
-        LifetimeCapAmount:
-          type: integer
-          format: int32
-          nullable: true
-        IsDeleted:
-          type: boolean
-          default: false
-        IsFreqCap:
-          type: boolean
-          nullable: true
-        RtbCustomFields:
-          type: string
-          nullable: true
-        PartnerId:
-          type: integer
-          format: int32
-          nullable: true
-        Id:
-          type: integer
+      $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
     AdvertiserList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Advertiser'
+      $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
     TrackingPixel:
-      type: object
-      properties:
-        trackingCode:
-          type: string
+      $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
     Campaign:
-      type: object
-      required:
-        - AdvertiserId
-        - Name
-        - StartDate
-      properties:
-        AdvertiserId:
-          type: integer
-          format: int32
-        Name:
-          type: string
-        StartDate:
-          type: string
-          default: 1/1/2018
-          deprecated: true
-        Flights:
-          type: array
-          items:
-            type: object
-          nullable: true
-        IsActive:
-          type: boolean
-          default: false
-        IsDeleted:
-          type: boolean
-          default: false
-        IsArchived:
-          type: boolean
-          default: false
-        FreqCap:
-          type: integer
-          format: int32
-          nullable: true
-        FreqCapDuration:
-          type: integer
-          format: int32
-          nullable: true
-        FreqCapType:
-          type: integer
-          format: int32
-          nullable: true
-        DontAffectParentFreqCap:
-          type: boolean
-        CapType:
-          type: integer
-          format: int32
-          nullable: true
-        DailyCapAmount:
-          type: integer
-          format: int32
-          nullable: true
-        LifetimeCapAmount:
-          type: integer
-          format: int32
-          nullable: true
-        Id:
-          type: integer
-        CustomFieldsJson:
-          type: string
-          nullable: true
-        EndDate:
-          type: string
-          nullable: true
-          deprecated: true
-        IsFreqCap:
-          type: boolean
-        EndDateISO:
-          type: string
-          nullable: true
-          deprecated: true
-        Price:
-          type: number
-          deprecated: true
-        StartDateISO:
-          type: string
-          nullable: true
-          deprecated: true
+      $ref: './schemas/campaign.yaml#/schemas/Campaign'
     CampaignList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Campaign'
+      $ref: './schemas/campaign.yaml#/schemas/CampaignList'
     Flight:
-      type: object
-      required:
-        - Name
-        - StartDateISO
-        - CampaignId
-        - PriorityId
-        - GoalType
-        - Impressions
-        - IsActive
-      properties:
-        Name:
-          type: string
-        StartDateISO:
-          type: string
-          format: date-time
-        CampaignId:
-          type: integer
-          format: int32
-        PriorityId:
-          type: integer
-          format: int32
-        GoalType:
-          type: integer
-          format: int32
-        Impressions:
-          type: integer
-          format: int32
-        IsActive:
-          type: boolean
-          default: false
-        Id:
-          type: integer
-          format: int32
-        EndDateISO:
-          type: string
-          format: date-time
-          nullable: true
-        NoEndDate:
-          type: boolean
-          default: false
-          nullable: true
-        IsDeleted:
-          type: boolean
-          default: false
-        RateType:
-          type: integer
-          format: int32
-          nullable: true
-        Price:
-          type: number
-          format: float
-          nullable: true
-        CapType:
-          type: integer
-          format: int32
-          nullable: true
-        DailyCapAmount:
-          type: integer
-          format: int32
-          nullable: true
-        LifetimeCapAmount:
-          type: integer
-          format: int32
-          nullable: true
-        Keywords:
-          type: string
-          nullable: true
-        CustomTargeting:
-          type: string
-          nullable: true
-        CustomFieldsJson:
-          type: string
-          nullable: true
-        IsFreqCap:
-          type: boolean
-          nullable: true
-        FreqCap:
-          type: integer
-          format: int32
-        FreqCapDuration:
-          type: integer
-          format: int32
-        FreqCapType:
-          type: integer
-          format: int32
-        DontAffectParentFreqCap:
-          type: boolean
-        IsCompanion:
-          type: boolean
-        IsNoDuplicates:
-          type: boolean
-        DuplicateMode:
-          type: integer
-          format: int32
-          nullable: true
-        DeliveryStatus:
-          type: integer
-          format: int32
-        IsTrackingConversions:
-          type: boolean
-        CanPassback:
-          type: boolean
-          nullable: true
-        PassbackSortOrder:
-          type: integer
-          format: int32
-          nullable: true
-        IsECPMOptimized:
-          type: boolean
-          nullable: true
-        ECPMOptimizePeriod:
-          type: integer
-          format: int32
-          nullable: true
-        ECPMMultiplier:
-          type: number
-          format: float
-          nullable: true
-        FloorECPM:
-          type: number
-          format: float
-          nullable: true
-        CeilingECPM:
-          type: number
-          format: float
-          nullable: true
-        DefaultECPM:
-          type: number
-          format: float
-          nullable: true
-        ECPMBurnInImpressions:
-          type: integer
-          format: int32
-          nullable: true
-        EffectiveCPMOverride:
-          type: number
-          format: float
-          nullable: true
-        DatePartingStartTimeISO:
-          type: string
-          format: date-time
-          nullable: true
-        DatePartingEndTimeISO:
-          type: string
-          format: date-time
-          nullable: true
-        IsSunday:
-          type: boolean
-          default: false
-          nullable: true
-        IsMonday:
-          type: boolean
-          default: false
-          nullable: true
-        IsTuesday:
-          type: boolean
-          default: false
-          nullable: true
-        IsWednesday:
-          type: boolean
-          default: false
-          nullable: true
-        IsThursday:
-          type: boolean
-          default: false
-          nullable: true
-        IsFriday:
-          type: boolean
-          default: false
-          nullable: true
-        IsSaturday:
-          type: boolean
-          default: false
-          nullable: true
-        IsArchived:
-          type: boolean
-          nullable: true
-        BehavioralTargeting:
-          $ref: '#/components/schemas/BehavioralTarget'
-        GeoTargeting:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/GeoTarget'
-        SizeZoneTargeting:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/SiteZoneTarget'
-        RequireStrictLocation:
-          type: boolean
-          default: false
-        CreativeMaps:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/Ad'
-        IsTargetingOptimization:
-          type: boolean
-          nullable: true
-          deprecated: true
-        TargetingOptimizationType:
-          type: integer
-          format: int32
-          nullable: true
-          deprecated: true
-        TargetingOptimizationTargetType:
-          type: integer
-          format: int32
-          nullable: true
-          deprecated: true
-        TargetingOptimizationTarget:
-          type: number
-          format: float
-          nullable: true
-          deprecated: true
-        TargetingOptimizationBurnIn:
-          type: integer
-          format: int32
-          nullable: true
-          deprecated: true
-        TargetingOptimizationCanMiss:
-          type: boolean
-          nullable: true
-          deprecated: true
-    BehavioralTarget:
-      type: object
-      properties:
-        onClick:
-          type: object
-          properties:
-            stopShowingAdsFromFlight:
-              type: boolean
-              default: false
-              nullable: true
-            stopShowingAdsFromAdvertiser:
-              type: boolean
-              default: false
-              nullable: true
-            storeCategoriesFromFlightAsInterest:
-              type: boolean
-              default: false
-              nullable: true
-        onConvert:
-          type: object
-          properties:
-            stopShowingAdsFromFlight:
-              type: boolean
-              default: false
-              nullable: true
-            stopShowingAdsFromAdvertiser:
-              type: boolean
-              default: false
-              nullable: true
-            storeCategoriesFromFlightAsInterest:
-              type: boolean
-              default: false
-              nullable: true
-    GeoTarget:
-      type: object
-      properties:
-        CountryCode:
-          type: string
-        Region:
-          type: string
-        MetroCode:
-          type: integer
-          format: int32
-        IsExcluded:
-          type: boolean
-          nullable: true
-    SiteZoneTarget:
-      type: object
-      properties:
-        SiteId:
-          type: integer
-          format: int32
-        ZoneId:
-          type: integer
-          format: int32
-        IsExcluded:
-          type: boolean
-          nullable: true
+      $ref: './schemas/flight.yaml#/schemas/Flight'
     FlightList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Flight'
+      $ref: './schemas/flight.yaml#/schemas/FlightList'
     Ad:
-      type: object
-      required:
-        - CampaignId
-        - Creative
-        - IsActive
-        - FlightId
-      properties:
-        CampaignId:
-          type: integer
-          format: int32
-          nullable: true
-        Creative:
-          $ref: '#/components/schemas/Creative'
-          nullable: true
-        FlightId:
-          type: integer
-          format: int32
-          nullable: true
-        IsActive:
-          type: boolean
-          default: false
-          nullable: true
-        RtbCustomFields:
-          type: string
-          nullable: true
-        ActiveKeywords:
-          type: array
-          nullable: true
-          items:
-            type: string
-        CustomTargeting:
-          type: string
-          nullable: true
-        DistributionType:
-          type: integer
-          format: int32
-        Percentage:
-          type: integer
-          format: int32
-          nullable: true
-        Impressions:
-          type: integer
-          format: int32
-          nullable: true
-        SiteId:
-          type: integer
-          format: int32
-          nullable: true
-        ZoneId:
-          type: integer
-          format: int32
-          nullable: true
-        IsDeleted:
-          type: boolean
-          default: false
-        Iframe:
-          type: boolean
-          default: false
-        SizeOverride:
-          type: boolean
-          default: false
-        IsStartEndDateOverride:
-          type: boolean
-        StartDateISO:
-          type: string
-          format: date-time
-        EndDateISO:
-          type: string
-          format: date-time
-        IsGoalOverride:
-          type: boolean
-          default: false
-        GoalType:
-          type: integer
-          format: int32
-        Goal:
-          type: integer
-          format: int32
-        IsNetworkAd:
-          type: boolean
-          default: false
-        IsNoTrack:
-          type: boolean
-          default: false
-        DontAffectParentFreqCap:
-          type: boolean
-          default: false
-        FreqCap:
-          type: integer
-          format: int32
-        FreqCapDuration:
-          type: integer
-          format: int32
-        FreqCapType:
-          type: integer
-          format: int32
-    Creative:
-      type: object
-      required:
-        - AdvertiserId
-        - AdTypeId
-        - IsActive
-      properties:
-        AdvertiserId:
-          type: integer
-          format: int32
-        AdTypeId:
-          type: integer
-          format: int32
-        IsActive:
-          type: boolean
-          default: false
-        Id:
-          type: integer
-          format: int32
-        Title:
-          type: string
-          nullable: true
-        ImageName:
-          type: string
-          nullable: true
-        Body:
-          type: string
-          nullable: true
-          default: ""
-        Url:
-          type: string
-          format: uri
-          maxLength: 2000
-          nullable: true
-        Alt:
-          type: string
-          nullable: true
-        IsDeleted:
-          type: boolean
-          default: false
-          nullable: true
-        IsHTMLJS:
-          type: boolean
-          default: false
-          nullable: true
-        ScriptBody:
-          type: string
-          nullable: true
-        Metadata:
-          type: string
-          nullable: true
-        ImageLink:
-          type: string
-          nullable: true
-        SaveEmptyCreative:
-          type: boolean
-          default: false
-          nullable: true
-        IsNoTrack:
-          type: boolean
-          nullable: true
-        IsNetworkAd:
-          type: boolean
-          nullable: true
-        TemplateId:
-          type: integer
-          format: int32
-          nullable: true
-        TemplateValues:
-          type: string
-          nullable: true
-    CreativeList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Creative'
+      $ref: './schemas/ad.yaml#/schemas/Ad'
     AdList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ad'
+      $ref: './schemas/ad.yaml#/schemas/AdList'
     TrackingDetails:
-      type: object
-      properties:
-        Id:
-          type: integer
-          format: int32
-        StaticClickUrl:
-          type: string
-          format: uri
-        ImpressionPixelUrl:
-          type: string
-          format: uri
-    CreativeTemplateField:
-      type: object
-      properties:
-        Name:
-          type: string
-        Variable:
-          type: string
-        Type:
-          type: string
-        Required:
-          type: boolean
-        Description:
-          type: string
-        Hidden:
-          type: boolean
-        Default:
-          type: object
-    CreativeTemplateContents:
-      type: object
-      properties:
-        Type:
-          type: string
-        Body:
-          type: string
+      $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
+    Creative:
+      $ref: './schemas/creative.yaml#/schemas/Creative'
+    CreativeList:
+      $ref: './schemas/creative.yaml#/schemas/CreativeList'
     CreativeTemplate:
-      type: object
-      required:
-        - Name
-        - Description
-      properties:
-        Name:
-          type: string
-        Description:
-          type: string
-        Id:
-          type: integer
-          format: int32
-          nullable: true
-        IsArchived:
-          type: boolean
-        Fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreativeTemplateField'
-        Contents:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreativeTemplateContents'
-    CreativeTemplateUpdateOperation:
-      type: object
-      properties:
-        Path:
-          type: object
-        Op:
-          type: string
-        Value:
-          type: object
+      $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
     CreativeTemplateUpdate:
-      type: object
-      properties:
-        Updates:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreativeTemplateUpdateOperation'
+      $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
     CreativeTemplateList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreativeTemplate'
+      $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

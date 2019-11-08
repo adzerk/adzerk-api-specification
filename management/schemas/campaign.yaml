@@ -1,0 +1,111 @@
+schemas:
+
+  Campaign:
+    type: object
+    required:
+      - AdvertiserId
+      - Name
+      - StartDate
+    properties:
+      AdvertiserId:
+        type: integer
+        format: int32
+      Name:
+        type: string
+      StartDate:
+        type: string
+        default: 1/1/2018
+        deprecated: true
+      Flights:
+        type: array
+        items:
+          type: object
+        nullable: true
+      IsActive:
+        type: boolean
+        default: false
+      IsDeleted:
+        type: boolean
+        default: false
+      IsArchived:
+        type: boolean
+        default: false
+        nullable: true
+      FreqCap:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCapDuration:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCapType:
+        type: integer
+        format: int32
+        nullable: true
+      DontAffectParentFreqCap:
+        type: boolean
+        nullable: true
+      CapType:
+        type: integer
+        format: int32
+        nullable: true
+      DailyCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      LifetimeCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      Id:
+        type: integer
+        nullable: true
+      CustomFieldsJson:
+        type: string
+        nullable: true
+      EndDate:
+        type: string
+        nullable: true
+        deprecated: true
+      IsFreqCap:
+        type: boolean
+        nullable: true
+      EndDateISO:
+        type: string
+        deprecated: true
+        nullable: true
+      Price:
+        type: number
+        deprecated: true
+        nullable: true
+      StartDateISO:
+        type: string
+        nullable: true
+        deprecated: true
+
+  CampaignList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Campaign'
+
+  CampaignSearch:
+    type: object
+    properties:
+      campaignName:
+        type: string

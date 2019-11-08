@@ -1,0 +1,90 @@
+schemas:
+
+  CreativeTemplateField:
+    type: object
+    properties:
+      Name:
+        type: string
+      Variable:
+        type: string
+      Type:
+        type: string
+      Required:
+        type: boolean
+      Description:
+        type: string
+      Hidden:
+        type: boolean
+      Default:
+        type: object
+
+  CreativeTemplateContents:
+    type: object
+    properties:
+      Type:
+        type: string
+      Body:
+        type: string
+
+  CreativeTemplate:
+    type: object
+    required:
+      - Name
+      - Description
+    properties:
+      Name:
+        type: string
+      Description:
+        type: string
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      IsArchived:
+        type: boolean
+      Fields:
+        type: array
+        items:
+          $ref: '#/schemas/CreativeTemplateField'
+      Contents:
+        type: array
+        items:
+          $ref: '#/schemas/CreativeTemplateContents'
+
+  CreativeTemplateUpdateOperation:
+    type: object
+    properties:
+      Path:
+        type: object
+      Op:
+        type: string
+      Value:
+        type: object
+
+  CreativeTemplateUpdate:
+    type: object
+    properties:
+      Updates:
+        type: array
+        items:
+          $ref: '#/schemas/CreativeTemplateUpdateOperation'
+
+  CreativeTemplateList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/CreativeTemplate'
