@@ -1,0 +1,10 @@
+{
+  "gemName": "adzerk_mgmt_sdk",
+  "gemVersion": "1.0.1",
+  "gemLicense": "Apache-2.0",
+  "gemHomepage": "http://adzerk.com",
+  "gemSummary": "Adzerk Management API",
+  "gemDescription": "Ruby library for the Adzerk Management API",
+  "gemAuthor": "Adzerk, Inc.",
+  "gemAuthorEmail": "engineering@adzerk.com"
+}
