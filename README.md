@@ -12,3 +12,9 @@ Ruby Management
 ```sh
 $ openapi-generator generate -g ruby -i management/openapi-3.yaml -o ../swagger-codegen-results/management/ruby --config ./management/codegen-config/ruby.json
 ```
+
+Java Management
+
+```sh
+$ openapi-generator generate -g java -i management/openapi-3.yaml -o ../swagger-codegen-results/management/java --config ./management/codegen-config/java.json
+```
