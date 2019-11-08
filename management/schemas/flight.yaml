@@ -33,6 +33,7 @@ schemas:
       Id:
         type: integer
         format: int32
+        nullable: true
       EndDateISO:
         type: string
         format: date-time
