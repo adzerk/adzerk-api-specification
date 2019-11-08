@@ -1132,7 +1132,7 @@ components:
           type: boolean
           default: false
           nullable: true
-        IsSaturay:
+        IsSaturday:
           type: boolean
           default: false
           nullable: true
