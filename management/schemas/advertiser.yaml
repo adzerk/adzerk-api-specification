@@ -30,6 +30,7 @@ schemas:
       CapType:
         type: integer
         format: int32
+        default: 4
         nullable: true
       DailyCapAmount:
         type: integer
