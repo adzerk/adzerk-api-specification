@@ -1,4 +1,5 @@
 schemas:
+
   Campaign:
     type: object
     required:
@@ -82,6 +83,7 @@ schemas:
         type: string
         nullable: true
         deprecated: true
+
   CampaignList:
     type: object
     properties:
@@ -101,3 +103,9 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/Campaign'
+
+  CampaignSearch:
+    type: object
+    properties:
+      campaignName:
+        type: string

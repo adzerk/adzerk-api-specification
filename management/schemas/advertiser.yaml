@@ -1,4 +1,5 @@
 schemas:
+
   Advertiser:
     type: object
     required:
@@ -54,6 +55,7 @@ schemas:
       Id:
         type: integer
         nullable: true
+
   AdvertiserList:
     type: object
     properties:
@@ -73,8 +75,15 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/Advertiser'
+
   TrackingPixel:
     type: object
     properties:
       trackingCode:
+        type: string
+
+  AdvertiserSearch:
+    type: object
+    properties:
+      advertiserName:
         type: string
