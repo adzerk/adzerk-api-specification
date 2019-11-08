@@ -46,6 +46,23 @@ paths:
       operationId: listAdvertisers
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: Paged list of Advertisers
@@ -170,6 +187,23 @@ paths:
       operationId: listCampaigns
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: Paged list of Campaigns
@@ -294,6 +328,37 @@ paths:
       operationId: listFlights
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: isArchived
+          in: query
+          description: Set to `true` if you only want archived Flights
+          required: false
+          schema:
+            type: boolean
+            nullable: true
+        - name: isActive
+          in: query
+          description: Set to `true` if you only want active Flights
+          required: false
+          schema:
+            type: boolean
+            nullable: true
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: Paged list of Flights
@@ -538,6 +603,22 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: Paged list of Creatives for the Advertiser
@@ -588,6 +669,22 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: A paged list of Ads
@@ -720,6 +817,23 @@ paths:
       operationId: listCreativeTemplates
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: A paged list of Creative Templates
