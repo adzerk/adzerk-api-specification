@@ -80,18 +80,24 @@ schemas:
       FreqCap:
         type: integer
         format: int32
+        nullable: true
       FreqCapDuration:
         type: integer
         format: int32
+        nullable: true
       FreqCapType:
         type: integer
         format: int32
+        nullable: true
       DontAffectParentFreqCap:
         type: boolean
+        nullable: true
       IsCompanion:
         type: boolean
+        nullable: true
       IsNoDuplicates:
         type: boolean
+        nullable: true
       DuplicateMode:
         type: integer
         format: int32
@@ -99,8 +105,10 @@ schemas:
       DeliveryStatus:
         type: integer
         format: int32
+        nullable: true
       IsTrackingConversions:
         type: boolean
+        nullable: true
       CanPassback:
         type: boolean
         nullable: true
@@ -149,31 +157,24 @@ schemas:
         nullable: true
       IsSunday:
         type: boolean
-        default: false
         nullable: true
       IsMonday:
         type: boolean
-        default: false
         nullable: true
       IsTuesday:
         type: boolean
-        default: false
         nullable: true
       IsWednesday:
         type: boolean
-        default: false
         nullable: true
       IsThursday:
         type: boolean
-        default: false
         nullable: true
       IsFriday:
         type: boolean
-        default: false
         nullable: true
       IsSaturday:
         type: boolean
-        default: false
         nullable: true
       IsArchived:
         type: boolean
@@ -192,7 +193,7 @@ schemas:
           $ref: '#/schemas/SiteZoneTarget'
       RequireStrictLocation:
         type: boolean
-        default: false
+        nullable: true
       CreativeMaps:
         type: array
         nullable: true
