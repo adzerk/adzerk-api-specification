@@ -1,0 +1,304 @@
+schemas:
+  Flight:
+    type: object
+    required:
+      - Name
+      - StartDateISO
+      - CampaignId
+      - PriorityId
+      - GoalType
+      - Impressions
+      - IsActive
+    properties:
+      Name:
+        type: string
+      StartDateISO:
+        type: string
+        format: date-time
+      CampaignId:
+        type: integer
+        format: int32
+      PriorityId:
+        type: integer
+        format: int32
+      GoalType:
+        type: integer
+        format: int32
+      Impressions:
+        type: integer
+        format: int32
+      IsActive:
+        type: boolean
+        default: false
+      Id:
+        type: integer
+        format: int32
+      EndDateISO:
+        type: string
+        format: date-time
+        nullable: true
+      NoEndDate:
+        type: boolean
+        default: false
+        nullable: true
+      IsDeleted:
+        type: boolean
+        default: false
+      RateType:
+        type: integer
+        format: int32
+        nullable: true
+      Price:
+        type: number
+        format: float
+        nullable: true
+      CapType:
+        type: integer
+        format: int32
+        nullable: true
+      DailyCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      LifetimeCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      Keywords:
+        type: string
+        nullable: true
+      CustomTargeting:
+        type: string
+        nullable: true
+      CustomFieldsJson:
+        type: string
+        nullable: true
+      IsFreqCap:
+        type: boolean
+        nullable: true
+      FreqCap:
+        type: integer
+        format: int32
+      FreqCapDuration:
+        type: integer
+        format: int32
+      FreqCapType:
+        type: integer
+        format: int32
+      DontAffectParentFreqCap:
+        type: boolean
+      IsCompanion:
+        type: boolean
+      IsNoDuplicates:
+        type: boolean
+      DuplicateMode:
+        type: integer
+        format: int32
+        nullable: true
+      DeliveryStatus:
+        type: integer
+        format: int32
+      IsTrackingConversions:
+        type: boolean
+      CanPassback:
+        type: boolean
+        nullable: true
+      PassbackSortOrder:
+        type: integer
+        format: int32
+        nullable: true
+      IsECPMOptimized:
+        type: boolean
+        nullable: true
+      ECPMOptimizePeriod:
+        type: integer
+        format: int32
+        nullable: true
+      ECPMMultiplier:
+        type: number
+        format: float
+        nullable: true
+      FloorECPM:
+        type: number
+        format: float
+        nullable: true
+      CeilingECPM:
+        type: number
+        format: float
+        nullable: true
+      DefaultECPM:
+        type: number
+        format: float
+        nullable: true
+      ECPMBurnInImpressions:
+        type: integer
+        format: int32
+        nullable: true
+      EffectiveCPMOverride:
+        type: number
+        format: float
+        nullable: true
+      DatePartingStartTimeISO:
+        type: string
+        format: date-time
+        nullable: true
+      DatePartingEndTimeISO:
+        type: string
+        format: date-time
+        nullable: true
+      IsSunday:
+        type: boolean
+        default: false
+        nullable: true
+      IsMonday:
+        type: boolean
+        default: false
+        nullable: true
+      IsTuesday:
+        type: boolean
+        default: false
+        nullable: true
+      IsWednesday:
+        type: boolean
+        default: false
+        nullable: true
+      IsThursday:
+        type: boolean
+        default: false
+        nullable: true
+      IsFriday:
+        type: boolean
+        default: false
+        nullable: true
+      IsSaturay:
+        type: boolean
+        default: false
+        nullable: true
+      IsArchived:
+        type: boolean
+        nullable: true
+      BehavioralTargeting:
+        $ref: '#/schemas/BehavioralTarget'
+      GeoTargeting:
+        type: array
+        nullable: true
+        items:
+          $ref: '#/schemas/GeoTarget'
+      SizeZoneTargeting:
+        type: array
+        nullable: true
+        items:
+          $ref: '#/schemas/SiteZoneTarget'
+      RequireStrictLocation:
+        type: boolean
+        default: false
+      CreativeMaps:
+        type: array
+        nullable: true
+        items:
+          $ref: './ad.yaml#/schemas/Ad'
+      IsTargetingOptimization:
+        type: boolean
+        nullable: true
+        deprecated: true
+      TargetingOptimizationType:
+        type: integer
+        format: int32
+        nullable: true
+        deprecated: true
+      TargetingOptimizationTargetType:
+        type: integer
+        format: int32
+        nullable: true
+        deprecated: true
+      TargetingOptimizationTarget:
+        type: number
+        format: float
+        nullable: true
+        deprecated: true
+      TargetingOptimizationBurnIn:
+        type: integer
+        format: int32
+        nullable: true
+        deprecated: true
+      TargetingOptimizationCanMiss:
+        type: boolean
+        nullable: true
+        deprecated: true
+  BehavioralTarget:
+    type: object
+    properties:
+      onClick:
+        type: object
+        properties:
+          stopShowingAdsFromFlight:
+            type: boolean
+            default: false
+            nullable: true
+          stopShowingAdsFromAdvertiser:
+            type: boolean
+            default: false
+            nullable: true
+          storeCategoriesFromFlightAsInterest:
+            type: boolean
+            default: false
+            nullable: true
+      onConvert:
+        type: object
+        properties:
+          stopShowingAdsFromFlight:
+            type: boolean
+            default: false
+            nullable: true
+          stopShowingAdsFromAdvertiser:
+            type: boolean
+            default: false
+            nullable: true
+          storeCategoriesFromFlightAsInterest:
+            type: boolean
+            default: false
+            nullable: true
+  GeoTarget:
+    type: object
+    properties:
+      CountryCode:
+        type: string
+      Region:
+        type: string
+      MetroCode:
+        type: integer
+        format: int32
+      IsExcluded:
+        type: boolean
+        nullable: true
+  SiteZoneTarget:
+    type: object
+    properties:
+      SiteId:
+        type: integer
+        format: int32
+      ZoneId:
+        type: integer
+        format: int32
+      IsExcluded:
+        type: boolean
+        nullable: true
+  FlightList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Flight'

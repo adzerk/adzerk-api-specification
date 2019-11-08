@@ -1,0 +1,80 @@
+schemas:
+  Advertiser:
+    type: object
+    required:
+      - Title
+      - IsActive
+    properties:
+      Title:
+        type: string
+      IsActive:
+        type: boolean
+        default: false
+      PlacementLimit:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCap:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCapDuration:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCapType:
+        type: integer
+        format: int32
+        nullable: true
+      CapType:
+        type: integer
+        format: int32
+        nullable: true
+      DailyCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      LifetimeCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      IsDeleted:
+        type: boolean
+        default: false
+      IsFreqCap:
+        type: boolean
+        nullable: true
+      RtbCustomFields:
+        type: string
+        nullable: true
+      PartnerId:
+        type: integer
+        format: int32
+        nullable: true
+      Id:
+        type: integer
+        nullable: true
+  AdvertiserList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Advertiser'
+  TrackingPixel:
+    type: object
+    properties:
+      trackingCode:
+        type: string

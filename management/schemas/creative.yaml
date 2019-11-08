@@ -1,92 +1,93 @@
-components:
-  schemas:
-    Creative:
-      type: object
-      required:
-        - AdvertiserId
-        - AdTypeId
-        - IsActive
-      properties:
-        AdvertiserId:
-          type: integer
-          format: int32
-        AdTypeId:
-          type: integer
-          format: int32
-        IsActive:
-          type: boolean
-          default: false
-        Id:
-          type: integer
-          format: int32
-        Title:
-          type: string
-          nullable: true
-        ImageName:
-          type: string
-          nullable: true
-        Body:
-          type: string
-          nullable: true
-          default: ""
-        Url:
-          type: string
-          format: uri
-          maxLength: 2000
-          nullable: true
-        Alt:
-          type: string
-          nullable: true
-        IsDeleted:
-          type: boolean
-          default: false
-          nullable: true
-        IsHTMLJS:
-          type: boolean
-          default: false
-          nullable: true
-        ScriptBody:
-          type: string
-          nullable: true
-        Metadata:
-          type: string
-          nullable: true
-        ImageLink:
-          type: string
-          nullable: true
-        SaveEmptyCreative:
-          type: boolean
-          default: false
-          nullable: true
-        IsNoTrack:
-          type: boolean
-          nullable: true
-        IsNetworkAd:
-          type: boolean
-          nullable: true
-        TemplateId:
-          type: integer
-          format: int32
-          nullable: true
-        TemplateValues:
-          type: string
-          nullable: true
-    CreativeList:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int64
+schemas:
+
+  Creative:
+    type: object
+    required:
+      - AdvertiserId
+      - AdTypeId
+      - IsActive
+    properties:
+      AdvertiserId:
+        type: integer
+        format: int32
+      AdTypeId:
+        type: integer
+        format: int32
+      IsActive:
+        type: boolean
+        default: false
+      Id:
+        type: integer
+        format: int32
+      Title:
+        type: string
+        nullable: true
+      ImageName:
+        type: string
+        nullable: true
+      Body:
+        type: string
+        nullable: true
+        default: ""
+      Url:
+        type: string
+        format: uri
+        maxLength: 2000
+        nullable: true
+      Alt:
+        type: string
+        nullable: true
+      IsDeleted:
+        type: boolean
+        default: false
+        nullable: true
+      IsHTMLJS:
+        type: boolean
+        default: false
+        nullable: true
+      ScriptBody:
+        type: string
+        nullable: true
+      Metadata:
+        type: string
+        nullable: true
+      ImageLink:
+        type: string
+        nullable: true
+      SaveEmptyCreative:
+        type: boolean
+        default: false
+        nullable: true
+      IsNoTrack:
+        type: boolean
+        nullable: true
+      IsNetworkAd:
+        type: boolean
+        nullable: true
+      TemplateId:
+        type: integer
+        format: int32
+        nullable: true
+      TemplateValues:
+        type: string
+        nullable: true
+
+  CreativeList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
         items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Creative'
+          $ref: '#/schemas/Creative'
