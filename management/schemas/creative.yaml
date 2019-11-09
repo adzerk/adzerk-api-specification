@@ -10,12 +10,14 @@ schemas:
       AdvertiserId:
         type: integer
         format: int32
+        nullable: true
       AdTypeId:
         type: integer
         format: int32
+        nullable: true
       IsActive:
         type: boolean
-        default: false
+        nullable: true
       Id:
         type: integer
         format: int32
