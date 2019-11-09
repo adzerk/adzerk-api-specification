@@ -59,48 +59,56 @@ schemas:
         nullable: true
       IsDeleted:
         type: boolean
-        default: false
+        nullable: true
       Iframe:
         type: boolean
-        default: false
+        nullable: true
       SizeOverride:
         type: boolean
-        default: false
+        nullable: true
       IsStartEndDateOverride:
         type: boolean
+        nullable: true
       StartDateISO:
         type: string
         format: date-time
+        nullable: true
       EndDateISO:
         type: string
         format: date-time
+        nullable: true
       IsGoalOverride:
         type: boolean
-        default: false
+        nullable: true
       GoalType:
         type: integer
         format: int32
+        nullable: true
       Goal:
         type: integer
         format: int32
+        nullable: true
       IsNetworkAd:
         type: boolean
-        default: false
+        nullable: true
       IsNoTrack:
         type: boolean
-        default: false
+        nullable: true
       DontAffectParentFreqCap:
         type: boolean
-        default: false
+        nullable: true
       FreqCap:
         type: integer
         format: int32
+        nullable: true
       FreqCapDuration:
         type: integer
         format: int32
+        nullable: true
       FreqCapType:
         type: integer
         format: int32
+        nullable: true
 
   AdList:
     type: object
