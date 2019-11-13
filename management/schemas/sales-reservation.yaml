@@ -296,7 +296,7 @@ schemas:
       SizeZones:
         type: array
         items:
-          $ref: '#/schemas/SiteZone'
+          $ref: './site-zone.yaml#/schemas/SiteZone'
 
   CreateSalesReservationDaypartingRequest:
     type: object
@@ -332,18 +332,6 @@ schemas:
         items:
           type: integer
           format: int32
-
-  SiteZone:
-    type: object
-    properties:
-      IsExcluded:
-        type: boolean
-      SiteId:
-        type: integer
-        format: int32
-      ZoneId:
-        type: integer
-        format: int32
 
   DayPartingSchedule:
     type: object

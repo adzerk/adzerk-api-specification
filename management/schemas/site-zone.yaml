@@ -1,0 +1,16 @@
+schemas:
+  SiteZone:
+    type: object
+    properties:
+      IsExcluded:
+        type: boolean
+      SiteId:
+        type: integer
+        format: int32
+      ZoneId:
+        type: integer
+        format: int32
+      FlightId:
+        type: integer
+        format: int32
+        nullabel: true
