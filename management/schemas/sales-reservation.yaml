@@ -1,0 +1,88 @@
+schemas:
+
+  SalesReservation:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      AdvertiserId:
+        type: integer
+        format: int32
+        nullable: true
+      SalespersonId:
+        type: integer
+        format: int32
+        nullable: true
+      SalesState:
+        type: string
+        nullable: true
+      Name:
+        type: string
+        nullable: true
+      StartDate:
+        type: string
+        format: date
+        nullable: true
+      EndDate:
+        type: string
+        format: date
+        nullable: true
+      Notes:
+        type: string
+        maxLength: 2000
+        nullable: true
+
+  MapSalesReservationToCampaignRequest:
+    type: object
+    required:
+      - CampaignId
+    properties:
+      CampaignId:
+        type: integer
+        format: int32
+
+  TrafficReservation:
+    type: object
+    properties:
+      ReservationItemIds:
+        type: array
+        nullable: true
+        items:
+          type: integer
+          format: int32
+      EnableEachFlight:
+        type: boolean
+        nullable: true
+
+  ReservationComment:
+    type: object
+    required:
+      - CommenterId
+      - Comment
+    properties:
+      CommenterId:
+        type: integer
+        format: in32
+      Comment:
+        type: string
+        maxLength: 2000
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      ReservationId:
+        type: integer
+        format: int32
+        nullable: true
+      Created:
+        type: string
+        format: date-time
+        nullable: true
+      CommenterEmail:
+        type: string
+        nullable: true
+      CommenterName:
+        type: string
+        nullable: true

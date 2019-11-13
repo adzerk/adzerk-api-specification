@@ -18,6 +18,8 @@ tags:
     description: Manage Ads (Creative/Flight Maps)
   - name: creative templates
     description: Manage Creative Templates
+  - name: sales reservations
+    description: Sales Reservations (BETA)
 paths:
   /v1/advertiser:
     post:
@@ -892,6 +894,62 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreativeTemplate'
+  /v1/reservations:
+    post:
+      tags:
+        - sales reservations
+      description: Create Sales Reservation
+      operationId: createSalesReservation
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Sales Reservation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesReservation'
+    get:
+      tags:
+        - sales reservations
+      description: List Sales Reservations
+      operationId: listSalesReservations
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: A paged list of Sales Reservations
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservationList'
 components:
   schemas:
     Advertiser:
@@ -924,6 +982,14 @@ components:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
     CreativeTemplateList:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
+    SalesReservation:
+      $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
+    MapSalesReservationToCampaignRequest:
+      $ref: './schemas/sales-reservation.yaml#/schemas/MapSalesReservationToCampaignRequest'
+    TrafficReservation:
+      $ref: './schemas/sales-reservation.yaml#/schemas/TrafficReservation'
+    ReservationComment:
+      $ref: './schemas/sales-reservation.yaml#/schemas/ReservationComment'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
