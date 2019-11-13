@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Advertiser'
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
     get:
       tags:
         - advertisers
@@ -71,8 +71,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AdvertiserList'
+                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
   '/v1/advertiser/{advertiserId}':
+    parameters:
+      - name: advertiserId
+        in: path
+        description: Id of the Advertiser to update
+        required: true
+        schema:
+          type: integer
     put:
       tags:
         - advertisers
@@ -80,13 +87,6 @@ paths:
       operationId: updateAdvertiser
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: advertiserId
-          in: path
-          description: Id of the Advertiser to update
-          required: true
-          schema:
-            type: integer
       requestBody:
         content:
           application/json:
@@ -98,7 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Advertiser'
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
     get:
       tags:
         - advertisers
@@ -106,20 +106,13 @@ paths:
       operationId: getAdvertiser
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: advertiserId
-          in: path
-          description: Id of the Advertiser to get
-          required: true
-          schema:
-            type: integer
       responses:
         200:
           description: The Advertiser
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Advertiser'
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
   /v1/advertiser/search:
     post:
       tags:
@@ -139,7 +132,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AdvertiserList'
+                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
   '/v1/advertiser/{advertiserId}/trackingCode':
     get:
       tags:
@@ -161,7 +154,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TrackingPixel'
+                $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
   /v1/campaign:
     post:
       tags:
@@ -181,7 +174,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Campaign'
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
     get:
       tags:
         - campaigns
@@ -212,7 +205,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CampaignList'
+                $ref: './schemas/campaign.yaml#/schemas/CampaignList'
   '/v1/campaign/{campaignId}':
     put:
       tags:
@@ -239,7 +232,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Campaign'
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
     get:
       tags:
         - campaigns
@@ -260,7 +253,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Campaign'
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
   /v1/campaign/search:
     post:
       tags:
@@ -280,7 +273,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CampaignList'
+                $ref: './schemas/campaign.yaml#/schemas/CampaignList'
   '/v1/campaign/{campaignId}/flight':
     get:
       tags:
@@ -302,7 +295,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Campaign'
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
   /v1/flight:
     post:
       tags:
@@ -322,7 +315,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Flight'
+                $ref: './schemas/flight.yaml#/schemas/Flight'
     get:
       tags:
         - flights
@@ -367,8 +360,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FlightList'
+                $ref: './schemas/flight.yaml#/schemas/FlightList'
   '/v1/flight/{flightId}':
+    parameters:
+      - name: flightId
+        in: path
+        description: Id of the Flight to update
+        required: true
+        schema:
+          type: integer
     put:
       tags:
         - flights
@@ -376,13 +376,6 @@ paths:
       operationId: updateFlight
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: flightId
-          in: path
-          description: Id of the Flight to update
-          required: true
-          schema:
-            type: integer
       requestBody:
         content:
           application/json:
@@ -394,7 +387,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Flight'
+                $ref: './schemas/flight.yaml#/schemas/Flight'
     get:
       tags:
         - flights
@@ -403,12 +396,6 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: flightId
-          in: path
-          description: Id of the Flight to update
-          required: true
-          schema:
-            type: integer
         - name: excludeAds
           in: query
           description: Flag to exclude Ads (Creative/Flight Maps) from the results
@@ -420,7 +407,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Flight'
+                $ref: './schemas/flight.yaml#/schemas/Flight'
   '/v1/fast/flight':
     get:
       tags:
@@ -496,7 +483,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Creative'
+                $ref: './schemas/creative.yaml#/schemas/Creative'
   '/v1/creative/{CreativeId}/upload':
     post:
       tags:
@@ -538,8 +525,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Creative'
+                $ref: './schemas/creative.yaml#/schemas/Creative'
   '/v1/creative/{CreativeId}':
+    parameters:
+      - name: CreativeId
+        in: path
+        description: The Id of the Creative to update
+        required: true
+        schema:
+          type: integer
+          format: int32
     put:
       tags:
         - creatives
@@ -547,14 +542,6 @@ paths:
       operationId: updateCreative
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: CreativeId
-          in: path
-          description: The Id of the Creative to update
-          required: true
-          schema:
-            type: integer
-            format: int32
       requestBody:
         content:
           application/json:
@@ -566,7 +553,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Creative'
+                $ref: './schemas/creative.yaml#/schemas/Creative'
     get:
       tags:
         - creatives
@@ -574,21 +561,13 @@ paths:
       operationId: getCreative
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: CreativeId
-          in: path
-          description: The Id of the Creative to get
-          required: true
-          schema:
-            type: integer
-            format: int32
       responses:
         200:
           description: The requested Creative
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Creative'
+                $ref: './schemas/creative.yaml#/schemas/Creative'
   '/v1/advertiser/{AdvertiserId}/creatives':
     get:
       tags:
@@ -627,8 +606,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreativeList'
+                $ref: './schemas/creative.yaml#/schemas/CreativeList'
   '/v1/flight/{flightId}/creative':
+    parameters:
+      - name: flightId
+        in: path
+        description: The Flight to be mapped
+        required: true
+        schema:
+          type: integer
+          format: int32
     post:
       tags:
         - ads
@@ -636,14 +623,6 @@ paths:
       operationId: createAd
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: flightId
-          in: path
-          description: The Flight to be mapped
-          required: true
-          schema:
-            type: integer
-            format: int32
       requestBody:
         content:
           application/json:
@@ -655,7 +634,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ad'
+                $ref: './schemas/ad.yaml#/schemas/Ad'
     get:
       tags:
         - ads
@@ -664,13 +643,6 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: flightId
-          in: path
-          description: The Flight to be mapped
-          required: true
-          schema:
-            type: integer
-            format: int32
         - name: pageSize
           in: query
           description: The size of the page to be returned
@@ -693,7 +665,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AdList'
+                $ref: './schemas/ad.yaml#/schemas/AdList'
   '/v1/flight/{flightId}/creative/{adId}':
     put:
       tags:
@@ -728,7 +700,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ad'
+                $ref: './schemas/ad.yaml#/schemas/Ad'
   '/v1/ad/{adId}':
     get:
       tags:
@@ -751,7 +723,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ad'
+                $ref: './schemas/ad.yaml#/schemas/Ad'
   '/v1/ad/{adId}/tracking-urls':
     get:
       tags:
@@ -791,7 +763,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TrackingDetails'
+                $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
   '/v2/creative-templates':
     post:
       tags:
@@ -811,7 +783,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreativeTemplate'
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
     get:
       tags:
         - creative templates
@@ -842,7 +814,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreativeTemplateList'
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
   '/v2/creative-templates/{creativeTemplateId}':
     get:
       tags:
@@ -865,7 +837,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreativeTemplate'
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
   '/v2/creative-templates/{creativeTemplateId}/update':
     post:
       tags:
@@ -893,8 +865,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreativeTemplate'
-  /v1/reservations:
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
+  /v1/reservation:
     post:
       tags:
         - sales reservations
@@ -913,7 +885,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SalesReservation'
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
     get:
       tags:
         - sales reservations
@@ -950,46 +922,256 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservationList'
+  '/v1/reservation/{reservationId}':
+    parameters:
+      - name: reservationId
+        in: path
+        description: The Id of the Sales Reservation to be returned
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - sales reservations
+      description: Get a Sales Reservation
+      operationId: getSalesReservation
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Sales Reservation
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
+    put:
+      tags:
+        - sales reservations
+      description: Update a Sales Reservation
+      operationId: updateSalesReservation
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated Sales Reservation
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
+  '/v1/reservation/{reservationId}/duplicate':
+    post:
+      tags:
+        - sales reservations
+      operationId: duplicateSalesReservation
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: reservationId
+          in: path
+          description: The Id of the Sales Reservation to be duplicated
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The newly created Sales Reservation
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
+  '/v1/reservation/{reservationId}/archive':
+    post:
+      tags:
+        - sales reservations
+      operationId: archiveSalesReservation
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: reservationId
+          in: path
+          description: The Id of the Sales Reservation to be archived
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/unarchive':
+    post:
+      tags:
+        - sales reservations
+      operationId: unarchiveSalesReservation
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: reservationId
+          in: path
+          description: The Id of the Sales Reservation to be unarchived
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/map':
+    post:
+      tags:
+        - sales reservations
+      operationId: mapSalesReservationToCampaign
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      parameters:
+        - name: reservationId
+          in: path
+          description: The Id of the Sales Reservation to be mapped
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/unmap':
+    post:
+      tags:
+        - sales reservations
+      operationId: unmapSalesReservationToCampaign
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      parameters:
+        - name: reservationId
+          in: path
+          description: The Id of the Sales Reservation to be unmapped
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/traffic':
+    post:
+      tags:
+        - sales reservations
+      operationId: unmapSalesReservationToCampaign
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      parameters:
+        - name: reservationId
+          in: path
+          description: The Id of the Sales Reservation to be unmapped
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A campaign map with the new Id
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/CampaignMap'
+  '/v1/reservation/{reservationId}/comment':
+    parameters:
+      - name: reservationId
+        in: path
+        description: The Id of the Sales Reservation
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - sales reservations
+      operationId: createSalesReservationComment
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        204:
+          description: Success
+    get:
+      tags:
+        - sales reservations
+      operationId: getSalesReservationComments
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: A paged list of Sales Reservation Comments
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservationCommentList'
+
 components:
   schemas:
-    Advertiser:
-      $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
-    AdvertiserList:
-      $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
-    TrackingPixel:
-      $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
-    Campaign:
-      $ref: './schemas/campaign.yaml#/schemas/Campaign'
-    CampaignList:
-      $ref: './schemas/campaign.yaml#/schemas/CampaignList'
-    Flight:
-      $ref: './schemas/flight.yaml#/schemas/Flight'
-    FlightList:
-      $ref: './schemas/flight.yaml#/schemas/FlightList'
-    Ad:
-      $ref: './schemas/ad.yaml#/schemas/Ad'
-    AdList:
-      $ref: './schemas/ad.yaml#/schemas/AdList'
-    TrackingDetails:
-      $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
-    Creative:
-      $ref: './schemas/creative.yaml#/schemas/Creative'
-    CreativeList:
-      $ref: './schemas/creative.yaml#/schemas/CreativeList'
-    CreativeTemplate:
-      $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
+  #   Advertiser:
+  #     $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+  #   AdvertiserList:
+  #     $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
+  #   TrackingPixel:
+  #     $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
+  #   Campaign:
+  #     $ref: './schemas/campaign.yaml#/schemas/Campaign'
+  #   CampaignList:
+  #     $ref: './schemas/campaign.yaml#/schemas/CampaignList'
+  #   Flight:
+  #     $ref: './schemas/flight.yaml#/schemas/Flight'
+  #   FlightList:
+  #     $ref: './schemas/flight.yaml#/schemas/FlightList'
+  #   Ad:
+  #     $ref: './schemas/ad.yaml#/schemas/Ad'
+  #   AdList:
+  #     $ref: './schemas/ad.yaml#/schemas/AdList'
+  #   TrackingDetails:
+  #     $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
+  #   Creative:
+  #     $ref: './schemas/creative.yaml#/schemas/Creative'
+  #   CreativeList:
+  #     $ref: './schemas/creative.yaml#/schemas/CreativeList'
+  #   CreativeTemplate:
+  #     $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
     CreativeTemplateUpdate:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
-    CreativeTemplateList:
-      $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
-    SalesReservation:
-      $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
-    MapSalesReservationToCampaignRequest:
-      $ref: './schemas/sales-reservation.yaml#/schemas/MapSalesReservationToCampaignRequest'
+  #   CreativeTemplateList:
+  #     $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
+  #   SalesReservation:
+  #     $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
+    # CampaignMap:
+    #   $ref: './schemas/sales-reservation.yaml#/schemas/CampaignMap'
     TrafficReservation:
       $ref: './schemas/sales-reservation.yaml#/schemas/TrafficReservation'
-    ReservationComment:
-      $ref: './schemas/sales-reservation.yaml#/schemas/ReservationComment'
+  #   ReservationComment:
+  #     $ref: './schemas/sales-reservation.yaml#/schemas/ReservationComment'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

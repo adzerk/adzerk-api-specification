@@ -33,8 +33,129 @@ schemas:
         type: string
         maxLength: 2000
         nullable: true
+      IsArchived:
+        type: boolean
+        nullable: true
+      AdvertiserName:
+        type: string
+        nullable: true
+      SalespersonName:
+        type: string
+        nullable: true
+      ReservationItems:
+        type: array
+        nullable: true
+        items:
+          $ref: '#/schemas/SalesReservationItem'
 
-  MapSalesReservationToCampaignRequest:
+  SalesReservationItem:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      PriorityName:
+        type: string
+        nullable: true
+      PriorityId:
+        type: integer
+        format: int32
+        nullable: true
+      IsSunday:
+        type: boolean
+        nullable: true
+      IsMonday:
+        type: boolean
+        nullable: true
+      IsTuesday:
+        type: boolean
+        nullable: true
+      IsWednesday:
+        type: boolean
+        nullable: true
+      IsThursday:
+        type: boolean
+        nullable: true
+      IsFriday:
+        type: boolean
+        nullable: true
+      IsSaturday:
+        type: boolean
+        nullable: true
+      StartDate:
+        type: string
+        format: date
+        nullable: true
+      EndDate:
+        type: string
+        format: date
+        nullable: true
+      RateType:
+        type: integer
+        format: int32
+        nullable: true
+      AdTypeId:
+        type: integer
+        format: int32
+        nullable: true
+      Locations:
+        type: array
+        nullable: true
+        items:
+          $ref: '#/schemas/SalesReservationItemLocation'
+      ChannelName:
+        type: string
+        nullable: true
+      Price:
+        type: float
+        nullable: true
+      Reservationid:
+        type: integer
+        format: int32
+        nullable: true
+      GoalAmount:
+        type: float
+        nullable: true
+      AdTypeName:
+        type: string
+        nullable: true
+      GoalType:
+        type: integer
+        format: int32
+        nullable: true
+      Name:
+        type: string
+        nullable: true
+
+  SalesReservationItemLocation:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      ReservationItemId:
+        type: integer
+        format: int32
+        nullable: true
+      IsExcluded:
+        type: boolean
+        nullable: true
+      CountryCode:
+        type: string
+        nullable: true
+      RegionCode:
+        type: string
+        nullable: true
+      CountryName:
+        type: string
+        nullable: true
+      RegionName:
+        type: string
+        nullable: true
+
+  CampaignMap:
     type: object
     required:
       - CampaignId
@@ -86,3 +207,43 @@ schemas:
       CommenterName:
         type: string
         nullable: true
+
+  SalesReservationList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/SalesReservation'
+
+  SalesReservationCommentList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/ReservationComment'
