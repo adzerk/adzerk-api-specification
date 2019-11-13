@@ -46,9 +46,9 @@ schemas:
         type: array
         nullable: true
         items:
-          $ref: '#/schemas/SalesReservationItem'
+          $ref: '#/schemas/SalesReservationLineItem'
 
-  SalesReservationItem:
+  SalesReservationLineItem:
     type: object
     properties:
       Id:
@@ -103,7 +103,7 @@ schemas:
         type: array
         nullable: true
         items:
-          $ref: '#/schemas/SalesReservationItemLocation'
+          $ref: '#/schemas/SalesReservationLocation'
       ChannelName:
         type: string
         nullable: true
@@ -128,7 +128,7 @@ schemas:
         type: string
         nullable: true
 
-  SalesReservationItemLocation:
+  SalesReservationLocation:
     type: object
     properties:
       Id:
@@ -247,3 +247,125 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/ReservationComment'
+
+  SalesReservationLineItemList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/SalesReservationLineItem'
+
+  CreateSalesReservationLocationsRequest:
+    type: object
+    properties:
+      ReplaceExisting:
+        type: boolean
+      ReservationItemIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+      Locations:
+        type: array
+        items:
+          $ref: '#/schemas/SalesReservationLocation'
+
+  CreateSalesReservationSiteZonesRequest:
+    type: object
+    properties:
+      ReplaceExisting:
+        type: boolean
+      ReservationItemIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+      SizeZones:
+        type: array
+        items:
+          $ref: '#/schemas/SiteZone'
+
+  CreateSalesReservationDaypartingRequest:
+    type: object
+    properties:
+      ReplaceExisting:
+        type: boolean
+      ReservationItemIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+      DayParting:
+        $ref: '#/schemas/DayPartingSchedule'
+
+  CreateSalesReservationKeywordTargetingRequest:
+    type: object
+    properties:
+      ReplaceExisting:
+        type: boolean
+      ReservationItemIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+      Keywords:
+        type: string
+
+  DeleteSalesReservationItemsRequest:
+    type: object
+    properties:
+      ReservationItemIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+
+  SiteZone:
+    type: object
+    properties:
+      IsExcluded:
+        type: boolean
+      SiteId:
+        type: integer
+        format: int32
+      ZoneId:
+        type: integer
+        format: int32
+
+  DayPartingSchedule:
+    type: object
+    properties:
+      IsSunday:
+        type: boolean
+        nullable: true
+      IsMonday:
+        type: boolean
+        nullable: true
+      IsTuesday:
+        type: boolean
+        nullable: true
+      IsWednesday:
+        type: boolean
+        nullable: true
+      IsThursday:
+        type: boolean
+        nullable: true
+      IsFriday:
+        type: boolean
+        nullable: true
+      IsSaturday:
+        type: boolean
+        nullable: true

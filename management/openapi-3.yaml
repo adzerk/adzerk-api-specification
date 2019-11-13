@@ -1131,6 +1131,121 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservationCommentList'
+  '/v1/reservation/{reservationId}/item':
+    parameters:
+      - name: reservationId
+        in: path
+        description: The Id of the Sales Reservation
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - sales reservations
+      operationId: createSalesReservationLineItem
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Sales Reservation Line Item
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservationLineItem'
+    get:
+      tags:
+        - sales reservations
+      operationId: listLineItemsBySalesReservation
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: A paged list of Sales Reservation Line Items
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservationLineItemList'
+  '/v1/reservation/{reservationId}/geotargeting':
+    post:
+      tags:
+        - sales reservations
+      operationId: createSalesReservationGeoTargetingRule
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/sitezonetargeting':
+    post:
+      tags:
+        - sales reservations
+      operationId: createSalesReservationSiteZoneTargetingRule
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/dayparting':
+    post:
+      tags:
+        - sales reservations
+      operationId: createSalesReservationDaypartingRule
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/keywords':
+    post:
+      tags:
+        - sales reservations
+      operationId: createSalesReservationKeywordRule
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        204:
+          description: Success
+  '/v1/reservation/{reservationId}/item/delete':
+    post:
+      tags:
+        - sales reservations
+      operationId: deleteSalesReservationItemItem
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        204:
+          description: Success
 
 components:
   schemas:
@@ -1172,6 +1287,16 @@ components:
       $ref: './schemas/sales-reservation.yaml#/schemas/TrafficReservation'
   #   ReservationComment:
   #     $ref: './schemas/sales-reservation.yaml#/schemas/ReservationComment'
+    CreateSalesReservationLocationsRequest:
+      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationLocationsRequest'
+    CreateSalesReservationSizeZonesRequest:
+      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationSiteZonesRequest'
+    CreateSalesReservationDaypartingRequest:
+      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationDaypartingRequest'
+    CreateSalesReservationKeywordTargetingRequest:
+      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationKeywordTargetingRequest'
+    DeleteSalesReservationItemsRequest:
+      $ref: './schemas/sales-reservation.yaml#/schemas/DeleteSalesReservationItemsRequest'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
