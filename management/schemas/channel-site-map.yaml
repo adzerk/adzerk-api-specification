@@ -1,0 +1,48 @@
+schemas:
+
+  ChannelSiteMap:
+    type: object
+    properties:
+      SiteId:
+        type: integer
+        format: int32
+      ChannelId:
+        type: integer
+        format: int32
+      Priority:
+        type: integer
+        format: int32
+        nullable: true
+      FixedPaymentAmount:
+        type: float
+        nullable: true
+        deprecated: true
+
+  ChannelSiteMapList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/ChannelSiteMap'
+
+  ChannelList:
+    type: object
+    properties:
+      ChannelIds:
+        type: array
+        items:
+          type: integer
+          format: int32

@@ -30,6 +30,8 @@ tags:
     description: Channels
   - name: sites
     description: Sites
+  - name: channel site maps
+    description: Channel Site Maps
 paths:
   /v1/advertiser:
     post:
@@ -1919,6 +1921,149 @@ paths:
             text:
               schema:
                 type: string
+  /v1/channelSite:
+    post:
+      tags:
+        - channel site maps
+      operationId: createChannelSiteMap
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Channel/Site Map
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+    get:
+      tags:
+        - channel site maps
+      operationId: listChannelSiteMaps
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Channel/Site Maps
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMapList'
+    put:
+      tags:
+        - channel site maps
+      operationId: updateChannelSiteMap
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated Channel/Site Map
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+  '/v1/channel/{channelId}/site/{siteId}':
+    get:
+      tags:
+        - channel site maps
+      operationId: getChannelSiteMap
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: sitelId
+          in: path
+          description: The Site Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The Channel/Site Map
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+  '/v1/channelsInSite/{siteId}':
+    get:
+      tags:
+        - channel site maps
+      operationId: listChannelsBySite
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: sitelId
+          in: path
+          description: The Site Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A list of Channel Ids
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelList'
+  '/v1/channel/{channelId}/site/{siteId}/delete':
+    get:
+      tags:
+        - channel site maps
+      operationId: deleteChannelSiteMap
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: sitelId
+          in: path
+          description: The Site Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
 
 components:
   schemas:
