@@ -1,0 +1,31 @@
+schemas:
+
+  FlightCategory:
+    type: object
+    properties:
+      Name:
+        type: string
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+
+  FlightCategoryList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/FlightCategory'
