@@ -2418,44 +2418,10 @@ paths:
 
 components:
   schemas:
-  #   Advertiser:
-  #     $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
-  #   AdvertiserList:
-  #     $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
-  #   TrackingPixel:
-  #     $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
-  #   Campaign:
-  #     $ref: './schemas/campaign.yaml#/schemas/Campaign'
-  #   CampaignList:
-  #     $ref: './schemas/campaign.yaml#/schemas/CampaignList'
-  #   Flight:
-  #     $ref: './schemas/flight.yaml#/schemas/Flight'
-  #   FlightList:
-  #     $ref: './schemas/flight.yaml#/schemas/FlightList'
-  #   Ad:
-  #     $ref: './schemas/ad.yaml#/schemas/Ad'
-  #   AdList:
-  #     $ref: './schemas/ad.yaml#/schemas/AdList'
-  #   TrackingDetails:
-  #     $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
-  #   Creative:
-  #     $ref: './schemas/creative.yaml#/schemas/Creative'
-  #   CreativeList:
-  #     $ref: './schemas/creative.yaml#/schemas/CreativeList'
-  #   CreativeTemplate:
-  #     $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
     CreativeTemplateUpdate:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
-  #   CreativeTemplateList:
-  #     $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
-  #   SalesReservation:
-  #     $ref: './schemas/sales-reservation.yaml#/schemas/SalesReservation'
-    # CampaignMap:
-    #   $ref: './schemas/sales-reservation.yaml#/schemas/CampaignMap'
     TrafficReservation:
       $ref: './schemas/sales-reservation.yaml#/schemas/TrafficReservation'
-  #   ReservationComment:
-  #     $ref: './schemas/sales-reservation.yaml#/schemas/ReservationComment'
     CreateSalesReservationLocationsRequest:
       $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationLocationsRequest'
     CreateSalesReservationSizeZonesRequest:
