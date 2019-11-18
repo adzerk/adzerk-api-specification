@@ -32,6 +32,8 @@ tags:
     description: Sites
   - name: channel site maps
     description: Channel Site Maps
+  - name: zones
+    description: Zones
 paths:
   /v1/advertiser:
     post:
@@ -2054,7 +2056,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: sitelId
+        - name: siteId
           in: path
           description: The Site Id
           required: true
@@ -2064,6 +2066,78 @@ paths:
       responses:
         200:
           description: Successfully Deleted
+  /v1/zone:
+    post:
+      tags:
+        - zones
+      operationId: createZone
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/Zone'
+    get:
+      tags:
+        - zones
+      operationId: listZones
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The newly created Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/ZoneList'
+  '/v1/zone/{zoneId}':
+    parameters:
+      - name: zoneId
+        in: path
+        description: The Site Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - zones
+      operationId: getZone
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/Zone'
+    put:
+      tags:
+        - zones
+      operationId: updateZone
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/Zone'
 
 components:
   schemas:

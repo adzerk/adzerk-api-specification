@@ -1,0 +1,37 @@
+schemas:
+
+  Zone:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      Name:
+        type: string
+      SiteId:
+        type: integer
+        format: int32
+      IsDeleted:
+        type: boolean
+        nullable: true
+
+  ZoneList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Zone'
