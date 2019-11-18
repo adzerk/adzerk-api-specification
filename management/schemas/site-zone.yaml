@@ -13,4 +13,4 @@ schemas:
       FlightId:
         type: integer
         format: int32
-        nullabel: true
+        nullable: true
