@@ -34,6 +34,8 @@ tags:
     description: Channel Site Maps
   - name: zones
     description: Zones
+  - name: ad types
+    description: Ad Types
 paths:
   /v1/advertiser:
     post:
@@ -2091,6 +2093,23 @@ paths:
       operationId: listZones
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       responses:
         200:
           description: The newly created Zone
@@ -2138,6 +2157,155 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/zone.yaml#/schemas/Zone'
+  /v1/adtypes:
+    post:
+      tags:
+        - ad types
+      operationId: createAdType
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Ad Type
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad-type.yaml#/schemas/AdType'
+    get:
+      tags:
+        - ad types
+      operationId: listAdTypes
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Ad Types
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad-type.yaml#/schemas/AdTypeList'
+  '/v1/channel/{channelId}/adtypes':
+    parameters:
+      - name: channelId
+        in: path
+        description: The Channel Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - ad types
+      operationId: createAdTypeByChannel
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Ad Type
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad-type.yaml#/schemas/AdType'
+    get:
+      tags:
+        - ad types
+      operationId: listAdTypesByChannel
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Ad Types
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad-type.yaml#/schemas/AdTypeList'
+  '/v1/adtypes/{adTypeId}/delete':
+    get:
+      tags:
+        - ad types
+      operationId: deleteAdType
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: adTypeId
+          in: path
+          description: The Ad Type Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+  '/v1/channel/{channelId}/adtypes/{adTypeId}/delete':
+    get:
+      tags:
+        - ad types
+      operationId: deleteAdTypeByChannel
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: adTypeId
+          in: path
+          description: The Ad Type Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
 
 components:
   schemas:

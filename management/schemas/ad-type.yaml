@@ -1,0 +1,38 @@
+schemas:
+
+  AdType:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      Width:
+        type: integer
+        format: int32
+      Height:
+        type: integer
+        format: int32
+      Name:
+        type: string
+        nullable: true
+
+  AdTypeList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/AdType'
