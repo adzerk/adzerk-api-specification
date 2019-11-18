@@ -185,12 +185,12 @@ schemas:
         type: array
         nullable: true
         items:
-          $ref: '#/schemas/GeoTarget'
+          $ref: './geo-target.yaml#/schemas/GeoTarget'
       SizeZoneTargeting:
         type: array
         nullable: true
         items:
-          $ref: '#/schemas/SiteZoneTarget'
+          $ref: './site-zone.yaml#/schemas/SiteZone'
       RequireStrictLocation:
         type: boolean
         nullable: true
@@ -260,31 +260,7 @@ schemas:
             type: boolean
             default: false
             nullable: true
-  GeoTarget:
-    type: object
-    properties:
-      CountryCode:
-        type: string
-      Region:
-        type: string
-      MetroCode:
-        type: integer
-        format: int32
-      IsExcluded:
-        type: boolean
-        nullable: true
-  SiteZoneTarget:
-    type: object
-    properties:
-      SiteId:
-        type: integer
-        format: int32
-      ZoneId:
-        type: integer
-        format: int32
-      IsExcluded:
-        type: boolean
-        nullable: true
+
   FlightList:
     type: object
     properties:

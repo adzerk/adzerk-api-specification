@@ -1,0 +1,60 @@
+schemas:
+
+  GeoTarget:
+    type: object
+    properties:
+      CountryCode:
+        type: string
+      Region:
+        type: string
+      MetroCode:
+        type: integer
+        format: int32
+      IsExclude:
+        type: boolean
+        nullable: true
+      LocationId:
+        type: integer
+        format: int32
+        nullable: true
+
+  Country:
+    type: object
+    properties:
+      Name:
+        type: string
+      Code:
+        type: string
+      Regions:
+        type: object
+        nullable: true
+        additionalProperties:
+          $ref: '#/schemas/Region'
+
+  Region:
+    type: object
+    properties:
+      Name:
+        type: string
+      Code:
+        type: string
+      CountryCode:
+        type: string
+      Metros:
+        type: object
+        nullable: true
+        additionalProperties:
+          $ref: '#/schemas/Metro'
+
+  Metro:
+    type: object
+    properties:
+      Name:
+        type: string
+      Code:
+        type: string
+      RegionCodes:
+        type: array
+        nullable: true
+        items:
+          type: string

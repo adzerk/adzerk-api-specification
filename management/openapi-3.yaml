@@ -24,6 +24,8 @@ tags:
     description: Flight Categories
   - name: site zone targeting
     description: Site/Zone Targeting
+  - name: geo targeting
+    description: Geo Targeting
 paths:
   /v1/advertiser:
     post:
@@ -1410,6 +1412,259 @@ paths:
       tags:
         - site zone targeting
       operationId: createSiteZoneTargeting
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to create the Site Zone Targeting for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Site/Zone Targeting
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}':
+    parameters:
+      - name: flightId
+        description: The Flight Id to update the Site Zone Targeting for
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: siteZoneTargetingId
+        description: The Id of the Site Zone Targeting to update
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - site zone targeting
+      operationId: updateSiteZoneTargeting
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly updated Site/Zone Targeting
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+    get:
+      tags:
+        - site zone targeting
+      operationId: getSiteZoneTargeting
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Site/Zone Targeting
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}/delete':
+    parameters:
+      - name: flightId
+        description: The Flight Id to update the Site Zone Targeting for
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: siteZoneTargetingId
+        description: The Id of the Site Zone Targeting to update
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - site zone targeting
+      operationId: deleteSiteZoneTargeting
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: Successfully Deleted
+  '/v1/flight/{flightId}/geotargeting':
+    post:
+      tags:
+        - geo targeting
+      operationId: createGeoTarget
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to update the Site Zone Targeting for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Geo Target
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/geo-target.yaml#/schemas/GeoTarget'
+  '/v1/flight/{flightId}/geotargeting/{locationId}':
+    parameters:
+      - name: flightId
+        description: The Flight Id to update the Site Zone Targeting for
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: locationId
+        description: The Id of the Site Zone Targeting to update
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - geo targeting
+      operationId: updateGeoTarget
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated Geo Target
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/geo-target.yaml#/schemas/GeoTarget'
+    get:
+      tags:
+        - geo targeting
+      operationId: getGeoTarget
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Geo Target
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/geo-target.yaml#/schemas/GeoTarget'
+  '/v1/flight/{flightId}/geotargeting/{locationId}/delete':
+    get:
+      tags:
+        - geo targeting
+      operationId: deleteGeoTarget
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to update the Site Zone Targeting for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: locationId
+          description: The Id of the Site Zone Targeting to update
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+  /v1/countries:
+    get:
+      tags:
+        - geo targeting
+      operationId: listCountries
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: A list of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/geo-target.yaml#/schemas/Country'
+  '/v1/country/{countryCode}/regions':
+    get:
+      tags:
+        - geo targeting
+      operationId: listRegionsByCountry
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: countryCode
+          description: The Country Code to list Regions for
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A country with Regions included
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/geo-target.yaml#/schemas/Country'
+  '/v1/region/{regionCode}':
+    get:
+      tags:
+        - geo targeting
+      operationId: listMetroCodesInRegion
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: regionCode
+          description: The Region Code to get Metros for
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A list of Metros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/geo-target.yaml#/schemas/Metro'
 
 components:
   schemas:

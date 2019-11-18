@@ -2,6 +2,10 @@ schemas:
   SiteZone:
     type: object
     properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
       IsExcluded:
         type: boolean
       SiteId:
