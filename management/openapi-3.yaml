@@ -28,6 +28,8 @@ tags:
     description: Geo Targeting
   - name: channels
     description: Channels
+  - name: sites
+    description: Sites
 paths:
   /v1/advertiser:
     post:
@@ -1623,7 +1625,7 @@ paths:
                 type: array
                 items:
                   $ref: './schemas/geo-target.yaml#/schemas/Country'
-  '/v1/country/{countryCode}/regions':
+  '/v1/country/{countryCode}/regions?version=2':
     get:
       tags:
         - geo targeting
@@ -1799,6 +1801,124 @@ paths:
       responses:
         200:
           description: Successfully Deleted
+  /v1/site:
+    post:
+      tags:
+        - sites
+      operationId: createSite
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created Site
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/Site'
+    get:
+      tags:
+        - sites
+      operationId: listSites
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Sites
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/SiteList'
+  '/v1/site/{siteId}':
+    parameters:
+      - name: sitelId
+        in: path
+        description: The Site Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - sites
+      operationId: updateSite
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated Site
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/Site'
+    get:
+      tags:
+        - sites
+      operationId: getSite
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Site
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/Site'
+  /v1/fast/site:
+    get:
+      tags:
+        - sites
+      operationId: filterSites
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: titleLike
+          in: query
+          description: Filters the stream of sites based on the Title. This is a simple match - if the string provided in the query parameter is present anywhere in a site's Title, that site will be returned in the results.
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: urlLike
+          in: query
+          description: Filters the stream of sites based on the Url. This is a simple match - if the string provided in the query parameter is present anywhere in a site's Url, that site will be returned in the results.
+          required: false
+          schema:
+            type: string
+            nullable: true
+      responses:
+        200:
+          description: A line-delimited string of JSON encoded sites
+          content:
+            text:
+              schema:
+                type: string
 
 components:
   schemas:

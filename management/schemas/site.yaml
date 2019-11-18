@@ -1,0 +1,44 @@
+schemas:
+
+  Site:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      Title:
+        type: string
+      Url:
+        type: string
+      NetworkMargin:
+        type: float
+        nullable: true
+      IsDeleted:
+        type: boolean
+        nullable: true
+      PublisherAccountId:
+        type: integer
+        format: int32
+        nullable: true
+        deprecated: true
+
+  SiteList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Site'
