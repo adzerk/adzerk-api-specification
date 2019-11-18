@@ -22,6 +22,8 @@ tags:
     description: Sales Reservations (BETA)
   - name: flight categories
     description: Flight Categories
+  - name: site zone targeting
+    description: Site/Zone Targeting
 paths:
   /v1/advertiser:
     post:
@@ -1403,6 +1405,11 @@ paths:
       responses:
         200:
           description: "Successfully Deleted"
+  '/v1/flight/{flightId}/sitezonetargeting':
+    post:
+      tags:
+        - site zone targeting
+      operationId: createSiteZoneTargeting
 
 components:
   schemas:
