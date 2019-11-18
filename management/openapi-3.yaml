@@ -36,6 +36,8 @@ tags:
     description: Zones
   - name: ad types
     description: Ad Types
+  - name: priorities
+    description: Priorities
 paths:
   /v1/advertiser:
     post:
@@ -2299,6 +2301,113 @@ paths:
         - name: adTypeId
           in: path
           description: The Ad Type Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+  /v1/priority:
+    post:
+      tags:
+        - priorities
+      operationId: createPriority
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created priority
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/Priority'
+    get:
+      tags:
+        - priorities
+      operationId: listPriorities
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of the Priorities
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/PriorityList'
+  '/v1/priority/{priorityId}':
+    parameters:
+      - name: priorityId
+        in: path
+        description: The Channel Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - priorities
+      operationId: getPriority
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Priority
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/Priority'
+    put:
+      tags:
+        - priorities
+      operationId: updatePriority
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated priority
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/Priority'
+  '/v1/priority/{priorityId}/delete':
+    get:
+      tags:
+        - priorities
+      operationId: deletePriority
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: priorityId
+          in: path
+          description: The Channel Id
           required: true
           schema:
             type: integer

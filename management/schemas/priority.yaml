@@ -52,3 +52,23 @@ schemas:
       RelevancyScoreConfigJSON:
         type: string
         nullable: true
+
+  PriorityList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Priority'
