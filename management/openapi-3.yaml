@@ -26,6 +26,8 @@ tags:
     description: Site/Zone Targeting
   - name: geo targeting
     description: Geo Targeting
+  - name: channels
+    description: Channels
 paths:
   /v1/advertiser:
     post:
@@ -1665,6 +1667,138 @@ paths:
                 type: array
                 items:
                   $ref: './schemas/geo-target.yaml#/schemas/Metro'
+  /v1/channel:
+    post:
+      tags:
+        - channels
+      operationId: createChannel
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created channel
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/Channel'
+    get:
+      tags:
+        - channels
+      operationId: listChannels
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Channels
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/ChannelList'
+
+  '/v1/channel/{channelId}':
+    parameters:
+      - name: channelId
+        description: The Channel Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - channels
+      operationId: updateChannel
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated Channel
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/Channel'
+    get:
+      tags:
+        - channels
+      operationId: getChannel
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Channel
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/Channel'
+  '/v1/channel/{channelId}/priorities':
+    get:
+      tags:
+        - channels
+      operationId: getPrioritiesByChannel
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id to get Priorities for
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A list of Priorities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/priority.yaml#/schemas/Priority'
+  '/v1/channel/{channelId}/delete':
+    get:
+      tags:
+        - channels
+      operationId: deleteChannel
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id to delete
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
 
 components:
   schemas:

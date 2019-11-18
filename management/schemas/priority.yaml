@@ -1,0 +1,54 @@
+schemas:
+
+  Priority:
+    type: object
+    properties:
+      Name:
+        type: string
+      IsAdChainOptimized:
+        type: boolean
+      IsAdChainOrdered:
+        type: boolean
+      IsAdChain:
+        type: boolean
+      IsAuction:
+        type: boolean
+      IsDeleted:
+        type: boolean
+      SelectionAlgorithm:
+        type: integer
+        format: int32
+      ChannelId:
+        type: integer
+        format: int32
+        nullable: true
+      Weight:
+        type: integer
+        format: int32
+        nullable: true
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      IsSecondPricing:
+        type: boolean
+        nullable: true
+      PassbackTimeout:
+        type: integer
+        format: int32
+        nullable: true
+      RelevancyScoreConfig:
+        type: string
+        nullable: true
+      SerializeRelevancyScoreConfigJSON:
+        type: boolean
+        nullable: true
+      IsKeywordOptimized:
+        type: boolean
+        nullable: true
+      FloorPrice:
+        type: float
+        nullable: true
+      RelevancyScoreConfigJSON:
+        type: string
+        nullable: true

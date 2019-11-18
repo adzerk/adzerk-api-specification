@@ -1,0 +1,58 @@
+schemas:
+
+  Channel:
+    type: object
+    properties:
+      Title:
+        type: string
+      AdTypes:
+        type: array
+        items:
+          type: integer
+          format: int32
+      IsDeleted:
+        type: boolean
+        nullable: true
+      Engine:
+        type: string
+        nullable: true
+        default: "0"
+      CPM:
+        type: float
+        default: 0
+      Id:
+        type: integer
+        format: int32
+        nullable: true
+      Commission:
+        type: float
+        nullable: true
+        deprecated: true
+      CustomTargeting:
+        type: string
+        nullable: true
+        deprecated: true
+      Keywords:
+        type: string
+        nullable: true
+        deprecated: true
+
+  ChannelList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Channel'
