@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Adzerk Decision API
   description: Adzerk Decision API
-  version: '2.0'
+  version: '1.0'
 servers:
   - url: '{protocol}://e-{networkId}.adzerk.net'
     variables:
@@ -22,7 +22,7 @@ paths:
     post:
       tags:
         - decision
-      description: Auto generated using Swagger Inspector
+      description: Request Decision(s)
       operationId: getDecisions
       requestBody:
         content:
@@ -66,53 +66,62 @@ components:
             $ref: '#/components/schemas/Placement'
         user:
           $ref: '#/components/schemas/User'
+          nullable: true
         keywords:
           description: 'Keywords for keyword Targeting. Such as `"keywords": ["foo", "bar", "baz"]`.'
           type: array
+          nullable: true
           items:
             type: string
         url:
           description: The current page URL
           type: string
+          nullable: true
         referrer:
           description: The referrer URL
           type: string
+          nullable: true
         ip:
           description: The IP address. Required for [Geo-Targeting](https://dev.adzerk.com/docs/geo-location)
           type: string
+          nullable: true
         blockedCreatives:
           description: Numeric creative ids to disregard for ad selection
           type: array
+          nullable: true
           items:
             type: integer
         isMobile:
           description: If true, only ads containing a single image will be returned
           type: boolean
-          default: false
+          nullable: true
         includePricingData:
           description: If true, return pricing data for the decision in the response
           type: boolean
-          default: false
+          nullable: true
         notrack:
           description: If true, only return ads that are set to honor Do Not Track
           type: boolean
-          default: false
+          nullable: true
         enableBotFiltering:
           description: If making a client-side request, set to true. Defaults to false to ensure a server isn't seen as a bot. See [here](https://dev.adzerk.com/docs/tracking-overview#section-bot-filtering) for more info
           type: boolean
-          default: false
+          nullable: true
         enableUserDBIP:
           description: If true, override the IP address of the request with the IP address supplied on the UserKey. If no IP address is found on the UserKey, this will fall back to the IP address on the request. Requires UserDB
+          nullable: true
           type: boolean
         consent:
           description: Object that sets the data consent preferences. Other consent settings are available in the GDPR settings documentation.
           type: object
+          nullable: true
           properties:
             gdpr:
               type: boolean
         deviceID:
           description: RTB requests only - sets an Identifier for Advertisers (IFA or IDFA)
           type: string
+          nullable: true
       required:
         - placements
     Placement:
@@ -137,49 +146,61 @@ components:
         zoneIds:
           description: Zone IDs to use
           type: array
+          nullable: true
           items:
             type: integer
         campaignId:
           description: A numeric campaign id; if specified, only consider ads in that campaign
           type: integer
           format: int32
+          nullable: true
         flightId:
           description: A numeric ad (flight-creative map) id; if specified, only serve that ad if possible
           type: integer
           format: int32
+          nullable: true
         adId:
           description: A numeric ad (flight-creative map) id; if specified, only serve that ad if possible
           type: integer
           format: int32
+          nullable: true
         clickUrl:
           description: The ad's click-through URL
           type: string
+          nullable: true
         properties:
           description: A map of key/value pairs used for [Custom Targeting](https://dev.adzerk.com/docs/custom-targeting)
           type: object
+          nullable: true
         eventIds:
           description: An array of numeric event types. Requests tracking URLs for custom events. See here for [Event Tracking IDs](https://dev.adzerk.com/v1.0/docs/custom-event-tracking)
           type: array
+          nullable: true
           items:
             type: integer
         overrides:
           description: An object that overrides values for an advertiser, campaign, flight or ad. Used especially for header bidding
           type: object
+          nullable: true
         contentKeys:
           description: 'A map of key/value pairs used with [ContentDB](https://dev.adzerk.com/docs/contentdb-1). The format is `"contentKeys": {"schema": "contentKey"}`'
           type: object
+          nullable: true
           additionalProperties:
             type: integer
         count:
           description: (BETA) The number of ads to return per placement. Integer between 1 and 20
           type: integer
           format: int32
+          nullable: true
         proportionality:
           description: (BETA) If true, fills ads in a multi-winner placement in proportion to the flight's goals
           type: boolean
+          nullable: true
         ecpmPartition:
           description: (BETA) The name of the eCPM Partition that should be used to source eCPM data for auctions
           type: string
+          nullable: true
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
