@@ -53,7 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                '$ref': '#/components/schemas/Response'
+                type: object
 components:
   schemas:
     Request:
@@ -293,7 +293,7 @@ components:
           type: number
           format: float
     Response:
-      type: objectp
+      type: object
       properties:
         user:
           $ref: '#/components/schemas/User'
