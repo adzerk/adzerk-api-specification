@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Request'
+              type: object
             examples:
               '0':
                 value: >-
@@ -53,7 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                '$ref': '#/components/schemas/Response'
 components:
   schemas:
     Request:
