@@ -17,6 +17,8 @@ servers:
 tags:
   - name: decision
     description: Adzerk Decision API Endpoint
+  - name: userdb
+    description: Adzerk UserDB
 paths:
   /api/v2:
     post:
@@ -54,6 +56,125 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Response'
+  '/udb/{networkId}/set/i.gif':
+    get:
+      tags:
+        - userdb
+      description: Set User Cookie
+      operationId: setUserCookie
+      parameters:
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: userKey
+          in: query
+          description: UserDB Id for the user
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+  '/udb/{networkId}/custom':
+    post:
+      tags:
+        - userdb
+      description: Add Custom Properties to a User
+      operationId: addCustomProperties
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: azk
+          in: cookie
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Success
+  '/udb/{networkId}/interest/i.gif':
+    get:
+      tags:
+        - userdb
+      description: Add Interests to a User
+      operationId: addInterests
+      parameters:
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: userKey
+          in: query
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
+        - name: interest
+          in: query
+          description: Comma Seperated list of interests
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+  '/udb/{networkId}/rt/{advertiserId}/{retargetingSegmentId}/i.gif':
+    get:
+      tags:
+        - userdb
+      description: Add User to a Retargeting Segment
+      operationId: addRetargetingSegment
+      parameters:
+        - name: azk
+          in: cookie
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
+        - name: networkId
+          in: path
+          description: Your Network Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: advertiserId
+          in: path
+          description: The Advertiser's ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: retargetingSegmentId
+          in: path
+          description: The Segment's ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Success
 components:
   schemas:
     Request:
@@ -301,3 +422,8 @@ components:
           type: object
         explain:
           type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Adzerk-ApiKey
