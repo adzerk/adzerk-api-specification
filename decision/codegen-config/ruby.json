@@ -1,10 +1,11 @@
 {
   "gemName": "adzerk_decision_sdk",
-  "gemVersion": "1.0.1",
+  "gemVersion": "1.0.0",
   "gemLicense": "Apache-2.0",
   "gemHomepage": "http://adzerk.com",
   "gemSummary": "Adzerk Decision API",
   "gemDescription": "Ruby library for the Adzerk Decision API",
   "gemAuthor": "Adzerk, Inc.",
-  "gemAuthorEmail": "engineering@adzerk.com"
+  "gemAuthorEmail": "engineering@adzerk.com",
+  "moduleName": "AdzerkDecisionSdk::Generated"
 }
