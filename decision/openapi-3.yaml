@@ -239,8 +239,8 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: azk
-          in: cookie
+        - name: userKey
+          in: query
           description: The User's UserDB Key
           required: true
           schema:
