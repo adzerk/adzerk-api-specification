@@ -7,5 +7,5 @@
   "gemDescription": "Ruby library for the Adzerk Decision API",
   "gemAuthor": "Adzerk, Inc.",
   "gemAuthorEmail": "engineering@adzerk.com",
-  "moduleName": "AdzerkDecisionSdk::Generated"
+  "moduleName": "AdzerkDecisionSdk"
 }
