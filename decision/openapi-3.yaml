@@ -88,12 +88,6 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: azk
-          in: cookie
-          description: The User's UserDB Key
-          required: true
-          schema:
-            type: string
         - name: networkId
           in: path
           description: Your Network Id
@@ -101,6 +95,12 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: userKey
+          in: query
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -145,12 +145,6 @@ paths:
       description: Add User to a Retargeting Segment
       operationId: addRetargetingSegment
       parameters:
-        - name: azk
-          in: cookie
-          description: The User's UserDB Key
-          required: true
-          schema:
-            type: string
         - name: networkId
           in: path
           description: Your Network Id
@@ -172,6 +166,12 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: userKey
+          in: query
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: Success
@@ -182,12 +182,6 @@ paths:
       description: Opt-Out a User
       operationId: optOut
       parameters:
-        - name: azk
-          in: cookie
-          description: The User's UserDB Key
-          required: true
-          schema:
-            type: string
         - name: networkId
           in: path
           description: Your Network Id
@@ -195,6 +189,12 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: userKey
+          in: query
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: Sucess
@@ -205,12 +205,6 @@ paths:
       description: Read a User's UserDB Record
       operationId: read
       parameters:
-        - name: azk
-          in: cookie
-          description: The User's UserDB Key
-          required: true
-          schema:
-            type: string
         - name: networkId
           in: path
           description: Your Network Id
@@ -218,6 +212,12 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: userKey
+          in: query
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: The UserDB record
@@ -281,12 +281,6 @@ paths:
       description: User Matching
       operationId: matchUser
       parameters:
-        - name: azk
-          in: cookie
-          description: The User's UserDB Key
-          required: true
-          schema:
-            type: string
         - name: networkId
           in: path
           description: Your Network Id
@@ -294,6 +288,12 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: userKey
+          in: query
+          description: The User's UserDB Key
+          required: true
+          schema:
+            type: string
         - name: partnerId
           in: query
           description: The ID of the RTB provider in Adzerk. Contact Support if you don't have the ID.
