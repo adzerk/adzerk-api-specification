@@ -79,6 +79,11 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
   '/udb/{networkId}/custom':
     post:
       tags:
@@ -109,6 +114,11 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
   '/udb/{networkId}/interest/i.gif':
     get:
       tags:
@@ -138,6 +148,11 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
   '/udb/{networkId}/rt/{advertiserId}/{retargetingSegmentId}/i.gif':
     get:
       tags:
@@ -175,6 +190,11 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
   '/udb/{networkId}/optout/i.gif':
     get:
       tags:
@@ -198,6 +218,11 @@ paths:
       responses:
         200:
           description: Sucess
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
   '/udb/{networkId}/read':
     get:
       tags:
@@ -255,9 +280,10 @@ paths:
         200:
           description: The updated UserDB record
           content:
-            application/json:
+            image/gif:
               schema:
-                type: object
+                type: string
+                format: binary
   '/udb/{networkId}':
     delete:
       tags:
@@ -307,6 +333,11 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
   '/udb/{networkId}/sync/i.gif':
     get:
       tags:
@@ -344,6 +375,11 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
 components:
   schemas:
     Request:
