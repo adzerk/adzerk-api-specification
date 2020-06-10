@@ -30,7 +30,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/DecisionRequest'
             examples:
               '0':
                 value: >-
@@ -55,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                '$ref': '#/components/schemas/Response'
+                '$ref': '#/components/schemas/DecisionResponse'
   '/udb/{networkId}/set/i.gif':
     get:
       tags:
@@ -329,7 +329,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GdprConsent'
+              $ref: '#/components/schemas/ConsentRequest'
       responses:
         200:
           description: Success
@@ -382,7 +382,7 @@ paths:
                 format: binary
 components:
   schemas:
-    Request:
+    DecisionRequest:
       type: object
       properties:
         placements:
@@ -421,6 +421,7 @@ components:
           description: If true, only ads containing a single image will be returned
           type: boolean
           nullable: true
+          deprecated: true
         includePricingData:
           description: If true, return pricing data for the decision in the response
           type: boolean
@@ -441,9 +442,6 @@ components:
           description: Object that sets the data consent preferences. Other consent settings are available in the GDPR settings documentation.
           type: object
           nullable: true
-          properties:
-            gdpr:
-              type: boolean
         deviceID:
           description: RTB requests only - sets an Identifier for Advertisers (IFA or IDFA)
           type: string
@@ -588,9 +586,11 @@ components:
     DecisionData:
       type: object
       properties:
-        imageURL:
+        imageUrl:
           type: string
           format: uri
+        fileName:
+          type: string
         title:
           type: string
         width:
@@ -618,7 +618,7 @@ components:
         eCPM:
           type: number
           format: float
-    Response:
+    DecisionResponse:
       type: object
       properties:
         user:
@@ -627,18 +627,13 @@ components:
           type: object
         explain:
           type: object
-    GdprConsent:
+    ConsentRequest:
       type: object
       properties:
         userKey:
           type: string
         consent:
-          $ref: '#/components/schemas/Consent'
-    Consent:
-      type: object
-      properties:
-        gdpr:
-          type: boolean
+          type: object
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
