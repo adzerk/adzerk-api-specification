@@ -1,16 +1,22 @@
+## Install Instructions
+
+Can use either NPM or Brew (mac) to install:
+https://openapi-generator.tech/docs/installation/
 
 ## Sample Invocations
 
 Ruby Decision
 
 ```sh
-$ openapi-generator generate -g ruby -i decision/openapi-3.yaml -o ../swagger-codegen-results/decision/ruby --config ./decision/codegen-config/ruby.json
+$ cd ../adzerk-decision-sdk-ruby
+$ openapi-generator generate -g ruby -i ../api-swagger-spec/decision/openapi-3.yaml -o ./ --config ../api-swagger-spec/decision/codegen-config/ruby.json
 ```
 
 Ruby Management
 
 ```sh
-$ openapi-generator generate -g ruby -i management/openapi-3.yaml -o ../swagger-codegen-results/management/ruby --config ./management/codegen-config/ruby.json
+$ cd ../adzerk-management-sdk-ruby
+$ openapi-generator generate -g ruby -i ../api-swagger-spec/management/openapi-3.yaml -o ./ --config ../api-swagger-spec/management/codegen-config/ruby.json
 ```
 
 Java Management
