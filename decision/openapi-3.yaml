@@ -56,34 +56,6 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/DecisionResponse'
-  '/udb/{networkId}/set/i.gif':
-    get:
-      tags:
-        - userdb
-      description: Set User Cookie
-      operationId: setUserCookie
-      parameters:
-        - name: networkId
-          in: path
-          description: Your Network Id
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: userKey
-          in: query
-          description: UserDB Id for the user
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: Success
-          content:
-            image/gif:
-              schema:
-                type: string
-                format: binary
   '/udb/{networkId}/custom':
     post:
       tags:
