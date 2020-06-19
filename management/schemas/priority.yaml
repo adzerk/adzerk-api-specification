@@ -47,7 +47,8 @@ schemas:
         type: boolean
         nullable: true
       FloorPrice:
-        type: float
+        type: number
+        format: float
         nullable: true
       RelevancyScoreConfigJSON:
         type: string
