@@ -14,7 +14,8 @@ schemas:
         format: int32
         nullable: true
       FixedPaymentAmount:
-        type: float
+        type: number
+        format: float
         nullable: true
         deprecated: true
 
