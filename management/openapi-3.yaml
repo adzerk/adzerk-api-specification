@@ -18,8 +18,6 @@ tags:
     description: Manage Ads (Creative/Flight Maps)
   - name: creative templates
     description: Manage Creative Templates
-  - name: sales reservations
-    description: Sales Reservations (BETA)
   - name: flight categories
     description: Flight Categories
   - name: site zone targeting
@@ -2006,18 +2004,6 @@ components:
   schemas:
     CreativeTemplateUpdate:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
-    TrafficReservation:
-      $ref: './schemas/sales-reservation.yaml#/schemas/TrafficReservation'
-    CreateSalesReservationLocationsRequest:
-      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationLocationsRequest'
-    CreateSalesReservationSizeZonesRequest:
-      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationSiteZonesRequest'
-    CreateSalesReservationDaypartingRequest:
-      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationDaypartingRequest'
-    CreateSalesReservationKeywordTargetingRequest:
-      $ref: './schemas/sales-reservation.yaml#/schemas/CreateSalesReservationKeywordTargetingRequest'
-    DeleteSalesReservationItemsRequest:
-      $ref: './schemas/sales-reservation.yaml#/schemas/DeleteSalesReservationItemsRequest'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
