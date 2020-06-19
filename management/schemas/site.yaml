@@ -12,7 +12,8 @@ schemas:
       Url:
         type: string
       NetworkMargin:
-        type: float
+        type: number
+        format: float
         nullable: true
       IsDeleted:
         type: boolean
