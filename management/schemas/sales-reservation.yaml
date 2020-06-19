@@ -108,14 +108,16 @@ schemas:
         type: string
         nullable: true
       Price:
-        type: float
+        type: number
+        format: float
         nullable: true
       Reservationid:
         type: integer
         format: int32
         nullable: true
       GoalAmount:
-        type: float
+        type: number
+        float: float
         nullable: true
       AdTypeName:
         type: string

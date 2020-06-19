@@ -18,14 +18,16 @@ schemas:
         nullable: true
         default: "0"
       CPM:
-        type: float
+        type: number
+        format: float
         default: 0
       Id:
         type: integer
         format: int32
         nullable: true
       Commission:
-        type: float
+        type: number
+        format: float
         nullable: true
         deprecated: true
       CustomTargeting:
