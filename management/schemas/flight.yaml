@@ -186,7 +186,7 @@ schemas:
         nullable: true
         items:
           $ref: './geo-target.yaml#/schemas/GeoTarget'
-      SizeZoneTargeting:
+      SiteZoneTargeting:
         type: array
         nullable: true
         items:
