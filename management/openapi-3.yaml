@@ -293,9 +293,9 @@ paths:
   '/v1/campaign/{campaignId}/flight':
     get:
       tags:
-        - campaigns
-      description: Get Campaign with Flights
-      operationId: getCampaignWithFlights
+        - flights
+      description: List Flights For a Campaign
+      operationId: listFlightsForCampaign
       security:
         - ApiKeyAuth: []
       parameters:
@@ -307,11 +307,11 @@ paths:
             type: integer
       responses:
         200:
-          description: The Campaign
+          description: Paged list of Flights
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+                $ref: './schemas/flight.yaml#/schemas/FlightList'
   /v1/flight:
     post:
       tags:
