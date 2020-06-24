@@ -651,6 +651,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/ad.yaml#/schemas/Ad'
+  '/v1/flight/{flightId}/creatives':                
     get:
       tags:
         - ads
@@ -659,6 +660,13 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
+        - name: flightId
+          in: path
+          description: The Flight to be mapped
+          required: true
+          schema:
+            type: integer
+            format: int32
         - name: pageSize
           in: query
           description: The size of the page to be returned
