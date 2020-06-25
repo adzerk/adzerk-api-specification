@@ -22,6 +22,47 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - Title
+                - IsActive
+              properties:
+                Title:
+                  type: string
+                IsActive:
+                  type: boolean
+                  default: false
+                PlacementLimit:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                CapType:
+                  type: integer
+                  format: int32
+                  default: 4
+                  nullable: true
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
       responses:
         200:
           description: Advertiser Created
