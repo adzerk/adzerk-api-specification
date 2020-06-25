@@ -293,9 +293,9 @@ paths:
   '/v1/campaign/{campaignId}/flight':
     get:
       tags:
-        - campaigns
-      description: Get Campaign with Flights
-      operationId: getCampaignWithFlights
+        - flights
+      description: List Flights For a Campaign
+      operationId: listFlightsForCampaign
       security:
         - ApiKeyAuth: []
       parameters:
@@ -307,11 +307,11 @@ paths:
             type: integer
       responses:
         200:
-          description: The Campaign
+          description: Paged list of Flights
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+                $ref: './schemas/flight.yaml#/schemas/FlightList'
   /v1/flight:
     post:
       tags:
@@ -588,8 +588,8 @@ paths:
     get:
       tags:
         - creatives
-      description: List Creatives by Advertiser
-      operationId: listCreativesByAdvertiser
+      description: List Creatives for Advertiser
+      operationId: listCreativesForAdvertiser
       security:
         - ApiKeyAuth: []
       parameters:
@@ -651,14 +651,22 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/ad.yaml#/schemas/Ad'
+  '/v1/flight/{flightId}/creatives':                
     get:
       tags:
         - ads
       description: List Ads for a Flight
-      operationId: listAdsByFlight
+      operationId: listAdsForFlight
       security:
         - ApiKeyAuth: []
       parameters:
+        - name: flightId
+          in: path
+          description: The Flight to be mapped
+          required: true
+          schema:
+            type: integer
+            format: int32
         - name: pageSize
           in: query
           description: The size of the page to be returned
@@ -913,7 +921,7 @@ paths:
     get:
       tags:
         - flight categories
-      operationId: getFlightCategoriesByFlight
+      operationId: getFlightCategoriesForFlight
       security:
         - ApiKeyAuth: []
       parameters:
@@ -1221,7 +1229,7 @@ paths:
     get:
       tags:
         - geo targeting
-      operationId: listRegionsByCountry
+      operationId: listRegionsForCountry
       security:
         - ApiKeyAuth: []
       parameters:
@@ -1355,7 +1363,7 @@ paths:
     get:
       tags:
         - channels
-      operationId: getPrioritiesByChannel
+      operationId: getPrioritiesForChannel
       security:
         - ApiKeyAuth: []
       parameters:
@@ -1611,7 +1619,7 @@ paths:
     get:
       tags:
         - channel site maps
-      operationId: listChannelsBySite
+      operationId: listChannelsForSite
       security:
         - ApiKeyAuth: []
       parameters:
@@ -1804,7 +1812,7 @@ paths:
     post:
       tags:
         - ad types
-      operationId: createAdTypeByChannel
+      operationId: createAdTypeForChannel
       security:
         - ApiKeyAuth: []
       requestBody:
@@ -1822,7 +1830,7 @@ paths:
     get:
       tags:
         - ad types
-      operationId: listAdTypesByChannel
+      operationId: listAdTypesForChannel
       security:
         - ApiKeyAuth: []
       parameters:
@@ -1871,7 +1879,7 @@ paths:
     get:
       tags:
         - ad types
-      operationId: deleteAdTypeByChannel
+      operationId: deleteAdTypeForChannel
       security:
         - ApiKeyAuth: []
       parameters:
