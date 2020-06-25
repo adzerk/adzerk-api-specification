@@ -1,0 +1,34 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Advertisers
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: advertisers
+    description: Manage Advertisers
+paths:
+  /v1/advertiser:
+    post:
+      tags:
+        - advertisers
+      description: Create Advertiser
+      operationId: createAdvertiser
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Advertiser Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
