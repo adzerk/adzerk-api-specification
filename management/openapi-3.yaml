@@ -2005,7 +2005,4 @@ components:
     CreativeTemplateUpdate:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-Adzerk-ApiKey
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
