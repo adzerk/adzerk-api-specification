@@ -6,15 +6,46 @@ info:
 servers:
   - url: 'https://api.adzerk.net'
 tags:
-  - name: advertisers
+  - name: advertiser
     description: Manage Advertisers
 paths:
   /v1/advertiser:
+    get:
+      tags:
+        - advertiser
+      description: List Advertisers
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Advertisers
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
     post:
       tags:
-        - advertisers
+        - advertiser
       description: Create Advertiser
-      operationId: createAdvertiser
+      operationId: create
       security:
         - ApiKeyAuth: []
       requestBody:
@@ -70,6 +101,65 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+  '/v1/advertiser/{advertiserId}':
+    parameters:
+      - name: advertiserId
+        in: path
+        description: Id of the Advertiser to update
+        required: true
+        schema:
+          type: integer
+    get:
+      tags:
+        - advertiser
+      description: Get a single Advertiser by Id
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+  /v1/advertiser/search:
+    post:
+      tags:
+        - advertiser
+      description: Search Advertisers
+      operationId: search
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: './schemas/advertiser.yaml#/schemas/AdvertiserSearch'
+      responses:
+        200:
+          description: Paged list of Advertisers
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
 components:
   securitySchemes:
     $ref: './components/security-schemes.yaml#/components/securitySchemes'
