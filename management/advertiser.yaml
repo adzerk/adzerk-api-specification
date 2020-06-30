@@ -123,6 +123,79 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+    put:
+      tags:
+        - advertiser
+      description: Update Advertiser
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Title
+                - IsActive
+                - Id
+              properties:
+                Title:
+                  type: string
+                IsActive:
+                  type: boolean
+                  default: false
+                PlacementLimit:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                CapType:
+                  type: integer
+                  format: int32
+                  default: 4
+                  nullable: true
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                IsFreqCap:
+                  type: boolean
+                  nullable: true
+                RtbCustomFields:
+                  type: string
+                  nullable: true
+                PartnerId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                Id:
+                  type: integer
+      responses:
+        200:
+          description: Updated Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
   /v1/advertiser/search:
     post:
       tags:
