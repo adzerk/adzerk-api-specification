@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Flights
+  description: Flight related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: flight
+    description: Manage Flights
+paths:
+  '/v1/fast/flight':
+    get:
+      tags:
+        - flight
+      description: Filtered Flights
+      operationId: filter
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: isActive
+          in: query
+          schema:
+            type: boolean
+        - name: isArchived
+          in: query
+          schema:
+            type: boolean
+        - name: beforeStartDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: afterStartDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: beforeEndDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: afterEndDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: NoEndDate
+          in: query
+          schema:
+            type: boolean
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: nameContains
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: Line-delimited JSON objects
+          content:
+            text:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
