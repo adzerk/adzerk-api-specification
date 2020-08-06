@@ -497,6 +497,12 @@ components:
           description: (BETA) The name of the eCPM Partition that should be used to source eCPM data for auctions
           type: string
           nullable: true
+        eventMultiplier:
+          type: integer
+          format: int32
+          minimum: -100000000
+          maximum: 100000000
+          nullable: true
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
