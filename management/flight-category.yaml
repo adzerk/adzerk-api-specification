@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Flight Categories
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: flight-category
+    description: Manage Flight Categories
+paths:
+  '/v1/flight/{flightId}/category':
+    post:
+      tags:
+        - flight-category
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to create the Category for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+              properties:
+                Name:
+                  type: string
+                Id:
+                  type: integer
+                  format: int32
+                  nullable: true
+      responses:
+        200:
+          description: The newly created Flight Category
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight-category.yaml#/schemas/FlightCategory'
+  '/v1/flight/{flightId}/categories':
+    get:
+      tags:
+        - flight-category
+      operationId: getForFlight
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to get the Categories for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Flight Categories
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight-category.yaml#/schemas/FlightCategoryList'
+  /v1/categories:
+    get:
+      tags:
+        - flight-category
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Flight Categories
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight-category.yaml#/schemas/FlightCategoryList'
+  '/v1/flight/{flightId}/category/{flightCategoryId}/delete':
+    get:
+      tags:
+        - flight-category
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to delete the Category for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: flightCategoryId
+          description: The Flight Category Id to delete
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: "Successfully Deleted"
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

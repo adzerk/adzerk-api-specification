@@ -1,0 +1,194 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Priorities
+  description: Priority related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: priority
+    description: Manage Priorities
+paths:
+  /v1/priority:
+    post:
+      tags:
+        - priority
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+                - ChannelID
+                - Weight
+                - SelectionAlgorithm
+              properties:
+                Name:
+                  type: string
+                ChannelID:
+                  type: string
+                Weight:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 100
+                SelectionAlgorithm:
+                  type: integer
+                  format: int32
+                  enum: [0, 1, 2, 3, 4]
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+                IsKeywordOptimized:
+                  type: boolean
+                  nullable: true
+                FloorPrice:
+                  type: number
+                  format: float
+                  nullable: true
+                IsSecondPricing:
+                  type: boolean
+                  nullable: true
+                PassbackTimeout:
+                  type: boolean
+                  nullable: true
+      responses:
+        200:
+          description: The newly created priority
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/Priority'
+    get:
+      tags:
+        - priority
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of the Priorities
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/PriorityList'
+  '/v1/priority/{priorityId}':
+    parameters:
+      - name: priorityId
+        in: path
+        description: The Channel Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - priority
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Priority
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/Priority'
+    put:
+      tags:
+        - priority
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - Name
+                - ChannelID
+                - Weight
+              properties:
+                id:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                ChannelID:
+                  type: string
+                Weight:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 100
+                SelectionAlgorithm:
+                  type: integer
+                  format: int32
+                  enum: [0, 1, 2, 3, 4]
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+                FloorPrice:
+                  type: number
+                  format: float
+                  nullable: true
+                IsSecondPricing:
+                  type: boolean
+                  nullable: true
+                PassbackTimeout:
+                  type: boolean
+                  nullable: true
+      responses:
+        200:
+          description: The updated priority
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/priority.yaml#/schemas/Priority'
+  '/v1/priority/{priorityId}/delete':
+    get:
+      tags:
+        - priority
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: priorityId
+          in: path
+          description: The Channel Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

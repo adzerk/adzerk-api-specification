@@ -1,0 +1,252 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Campaigns
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: campaign
+    description: Manage Campaigns
+paths:
+  /v1/campaign:
+    post:
+      tags:
+        - campaigns
+      description: Create Campaign
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - AdvertiserId
+                - Name
+                - StartDateISO
+              properties:
+                AdvertiserId:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                StartDateISO:
+                  type: string
+                  format: date
+                Flights:
+                  type: array
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                IsActive:
+                  type: boolean
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+                IsArchived:
+                  type: boolean
+                  default: false
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3]
+                  nullable: true
+                DontAffectParentFreqCap:
+                  type: boolean
+                CapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  default: 4
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+      responses:
+        200:
+          description: Campaign Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+    get:
+      tags:
+        - campaign
+      description: List Campaigns
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Campaigns
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/CampaignList'
+  '/v1/campaign/{campaignId}':
+    put:
+      tags:
+        - campaign
+      description: Update Campaign
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: campaignId
+          in: path
+          description: Id of the Campaign to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - AdvertiserId
+                - Name
+                - StartDateISO
+                - IsActive
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                AdvertiserId:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                StartDateISO:
+                  type: string
+                  format: date
+                Flights:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                IsActive:
+                  type: boolean
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+                IsArchived:
+                  type: boolean
+                  default: false
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3]
+                  nullable: true
+                DontAffectParentFreqCap:
+                  type: boolean
+                CapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  default: 4
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+      responses:
+        200:
+          description: Updated Campaign
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+    get:
+      tags:
+        - campaign
+      description: Get a single Campaign by Id
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: campaignId
+          in: path
+          description: Id of the Campaign to get
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: The Campaign
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+  /v1/campaign/search:
+    post:
+      tags:
+        - campaign
+      description: Search Campaigns
+      operationId: search
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: './schemas/campaign.yaml#/schemas/CampaignSearch'
+      responses:
+        200:
+          description: Paged list of Campaigns
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/CampaignList'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

@@ -1,0 +1,345 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Ads
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: ad
+    description: Manage Ads
+paths:
+  '/v1/flight/{flightId}/creative':
+    parameters:
+      - name: flightId
+        in: path
+        description: The Flight to be mapped
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - ad
+      description: Create new Ad
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Creative
+                - FlightId
+                - IsActive
+              properties:
+                Creative:
+                  type: object
+                  properties:
+                    Id:
+                      type: integer
+                      format: int32
+                FlightId:
+                  type: integer
+                  format: int32
+                IsActive:
+                  type: boolean
+                RtbCustomFields:
+                  type: string
+                ActiveKeywords:
+                  type: array
+                  items:
+                    type: string
+                CustomTargeting:
+                  type: string
+                DistributionType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3]
+                  nullable: true
+                Percentage:
+                  type: integer
+                  format: int32
+                  nullable: true
+                Impressions:
+                  type: integer
+                  format: int32
+                  nullable: true
+                SiteId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                ZoneId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  nullable: true
+                Iframe:
+                  type: boolean
+                  nullable: true
+                SizeOverride:
+                  type: boolean
+                  nullable: true
+                IsStartEndDateOverride:
+                  type: boolean
+                  nullable: true
+                StartDateIso:
+                  type: string
+                  format: date
+                EndDateIso:
+                  type: string
+                  format: date
+                IsGoalOverride:
+                  type: boolean
+                  nullable: true
+      responses:
+        200:
+          description: The newly created Ad
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/Ad'
+  '/v1/flight/{flightId}/creatives':
+    get:
+      tags:
+        - ad
+      description: List Ads for a Flight
+      operationId: listByFlight
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          in: path
+          description: The Flight to be mapped
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Ads
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/AdList'
+  '/v1/flight/{flightId}/creative/{adId}':
+    put:
+      tags:
+        - ad
+      description: Update an existing Ad
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          in: path
+          description: The Id of the Flight for the Ad to be updated
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: adId
+          in: path
+          description: The Id of the Ad to be updated
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - CampaignId
+                - FlightId
+                - Creative
+                - IsActive
+                - IsDeleted
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                CampaignId:
+                  type: integer
+                  format: int32
+                FlightId:
+                  type: integer
+                  format: int32
+                Creative:
+                  type: object
+                  properties:
+                    Id:
+                      type: integer
+                      format: int32
+                IsActive:
+                  type: boolean
+                RtbCustomFields:
+                  type: string
+                ActiveKeywords:
+                  type: array
+                  items:
+                    type: string
+                CustomTargeting:
+                  type: string
+                DistributionType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3]
+                  nullable: true
+                Percentage:
+                  type: integer
+                  format: int32
+                  nullable: true
+                Impressions:
+                  type: integer
+                  format: int32
+                  nullable: true
+                SiteId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                ZoneId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                Iframe:
+                  type: boolean
+                  nullable: true
+                SizeOverride:
+                  type: boolean
+                  nullable: true
+                IsStartEndDateOverride:
+                  type: boolean
+                  nullable: true
+                StartDateIso:
+                  type: string
+                  format: date
+                EndDateIso:
+                  type: string
+                  format: date
+                IsGoalOverride:
+                  type: boolean
+                  nullable: true
+      responses:
+        200:
+          description: The updated Ad
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/Ad'
+  '/v1/flight/{flightId}/creative/{adId}/delete':
+    get:
+      tags:
+        - ad
+      description: Delete an existing Ad
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          in: path
+          description: The Id of the Flight for the Ad to be updated
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: adId
+          in: path
+          description: The Id of the Ad to be updated
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+  '/v1/ad/{adId}':
+    get:
+      tags:
+        - ad
+      description: Get an existing Ad
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: adId
+          in: path
+          description: The Id of the Ad to get
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The existing Ad
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/Ad'
+  '/v1/ad/{adId}/tracking-urls':
+    get:
+      tags:
+        - ad
+      description: Get the tracking pixel and click Url for an Ad
+      operationId: getTrackingUrls
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: adId
+          in: path
+          description: The Id of the Ad to get
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: siteId
+          in: query
+          description: The site in your network where the impression and/or click should be tracked. The site must be eligible to serve the ad (i.e. the ad's flight belongs to a channel the site is associated with).
+          schema:
+            type: integer
+            format: int32
+        - name: zoneId
+          in: query
+          description: An optional zone where the impression and/or click should be tracked. Must belong to the `siteid`.
+          schema:
+            type: integer
+            format: int32
+        - name: keywords
+          in: query
+          description: A comma separated string of keywords, like `foo,bar,baz`, that will be tracked in reporting with the click and/or impression. Keywords must not contain [disallowed characters defined in the keyword documentation](https://dev.adzerk.com/docs/keyword-targeting#section-keywords-and-special-characters).
+          schema:
+            type: string
+      responses:
+        200:
+          description: The requested tracking urls
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

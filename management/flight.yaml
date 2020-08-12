@@ -65,6 +65,28 @@ paths:
             text:
               schema:
                 type: string
+  '/v1/campaign/{campaignId}/flight':
+    get:
+      tags:
+        - flight
+      description: List Flights For a Campaign
+      operationId: listForCampaign
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: campaignId
+          in: path
+          description: Id of the Campaign to get
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Paged list of Flights
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight.yaml#/schemas/FlightList'
 components:
   securitySchemes:
     $ref: './components/security-schemes.yaml#/components/securitySchemes'

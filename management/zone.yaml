@@ -1,0 +1,133 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Zones
+  description: Zone related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: zone
+    description: Manage Zones
+paths:
+  /v1/zone:
+    post:
+      tags:
+        - zone
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+              properties:
+                Name:
+                  type: string
+                SiteId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+      responses:
+        200:
+          description: The newly created Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/Zone'
+    get:
+      tags:
+        - zone
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: The newly created Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/ZoneList'
+  '/v1/zone/{zoneId}':
+    parameters:
+      - name: zoneId
+        in: path
+        description: The Site Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - zone
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/Zone'
+    put:
+      tags:
+        - zone
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - Name
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                SiteId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+      responses:
+        200:
+          description: The updated Zone
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/zone.yaml#/schemas/Zone'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

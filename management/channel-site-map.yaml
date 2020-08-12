@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Channel Site Maps
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: channel-site-map
+    description: Manage Channel/Site Maps
+paths:
+  /v1/channelSite:
+    post:
+      tags:
+        - channel-site-map
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - siteId
+                - channelId
+              properties:
+                siteid:
+                  type: integer
+                  format: int32
+                channelId:
+                  type: integer
+                  format: int32
+                priority:
+                  type: integer
+                  format: int32
+      responses:
+        200:
+          description: The newly created Channel/Site Map
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+    get:
+      tags:
+        - channel-site-map
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Channel/Site Maps
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMapList'
+    put:
+      tags:
+        - channel-site-map
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - siteId
+                - channelId
+                - priority
+              properties:
+                siteid:
+                  type: integer
+                  format: int32
+                channelId:
+                  type: integer
+                  format: int32
+                priority:
+                  type: integer
+                  format: int32
+      responses:
+        200:
+          description: The updated Channel/Site Map
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+  '/v1/channel/{channelId}/site/{siteId}':
+    get:
+      tags:
+        - channel-site-map
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: siteId
+          in: path
+          description: The Site Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The Channel/Site Map
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+  '/v1/channelsInSite/{siteId}':
+    get:
+      tags:
+        - channel-site-map
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: siteId
+          in: path
+          description: The Site Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A list of Channel Ids
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelList'
+  '/v1/channel/{channelId}/site/{siteId}/delete':
+    get:
+      tags:
+        - channel-site-map
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: siteId
+          in: path
+          description: The Site Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
