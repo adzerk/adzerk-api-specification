@@ -1,0 +1,140 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Site Zone Targeting
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: site-zone-targeting
+    description: Manage Size/Zone Targeting
+paths:
+  '/v1/flight/{flightId}/sitezonetargeting':
+    post:
+      tags:
+        - site-zone-targeting
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to create the Site Zone Targeting for
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - SiteId
+              properties:
+                SiteId:
+                  type: integer
+                  format: int32
+                ZoneId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsExcluded:
+                  type: boolean
+                  default: false
+                  nullable: true
+      responses:
+        200:
+          description: The newly created Site/Zone Targeting
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}':
+    parameters:
+      - name: flightId
+        description: The Flight Id to update the Site Zone Targeting for
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: siteZoneTargetingId
+        description: The Id of the Site Zone Targeting to update
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - site-zone-targeting
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                SiteId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                ZoneId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsExcluded:
+                  type: boolean
+                  default: false
+                  nullable: true
+      responses:
+        200:
+          description: The newly updated Site/Zone Targeting
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+    get:
+      tags:
+        - site-zone-targeting
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Site/Zone Targeting
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}/delete':
+    parameters:
+      - name: flightId
+        description: The Flight Id to update the Site Zone Targeting for
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: siteZoneTargetingId
+        description: The Id of the Site Zone Targeting to update
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - site-zone-targeting
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: Successfully Deleted
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

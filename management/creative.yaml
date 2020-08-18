@@ -1,0 +1,118 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Creative Templates
+  description: Creative Template related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: creative
+    description: Manage Creative Templates
+paths:
+  /v1/creative:
+    post:
+      tags:
+        - creative
+      description: Create Creative
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Creative Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative.yaml#/schemas/Creative'
+  '/v1/creative/{CreativeId}':
+    parameters:
+      - name: CreativeId
+        in: path
+        description: The Id of the Creative to update
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - creative
+      description: Update Creative
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Creative Updated
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative.yaml#/schemas/Creative'
+    get:
+      tags:
+        - creative
+      description: Get Creative
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The requested Creative
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative.yaml#/schemas/Creative'
+  '/v1/creative/{CreativeId}/upload':
+    post:
+      tags:
+        - creative
+      description: Upload Creative Image
+      operationId: uploadImage
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: CreativeId
+          in: path
+          description: The Id of the Creative to upload an image for
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: sizeOverride
+          in: query
+          description: Add this to upload an image that is a different dimension than the creative's `adTypeId`
+          schema:
+            type: boolean
+        - name: fieldName
+          in: query
+          description: Specifies which image field (of Type `File`) the file will be uploaded to. Can be used with single-image and multiple-image templates. If a template has only one image, `fieldName` is not required.
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Creative Updated
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative.yaml#/schemas/Creative'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

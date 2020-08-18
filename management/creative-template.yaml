@@ -1,0 +1,179 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Creative Templates
+  description: Creative Template related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: creative-template
+    description: Manage Creative Templates
+paths:
+  '/v2/creative-templates':
+    get:
+      tags:
+        - creative-template
+      description: List Creative Templates
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Creative Templates
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
+    post:
+      tags:
+        - creative-template
+      description: Create new Creative Template
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+                - Description
+              properties:
+                Name:
+                  type: string
+                  minLength: 1
+                  maxLength: 50
+                Description:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+                IsArchived:
+                  type: boolean
+                  default: false
+                Fields:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - Name
+                      - Variable
+                      - Type
+                    properties:
+                      Name:
+                        type: string
+                        maxLength: 255
+                      Variable:
+                        type: string
+                        pattern: '^ct[a-zA-Z0-9]+'
+                      Type:
+                        type: string
+                        enum: [String, File, ExternalFile, Array]
+                      Required:
+                        type: boolean
+                        default: false
+                      Description:
+                        type: string
+                        nullable: true
+                      Hidden:
+                        type: boolean
+                        default: false
+                      Default:
+                        type: object
+                        nullable: true
+      responses:
+        200:
+          description: The newly created Creative Template
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
+  '/v2/creative-templates/{creativeTemplateId}':
+    get:
+      tags:
+        - creative-template
+      description: Get an existing Creative Template
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: creativeTemplateId
+          in: path
+          description: The Id of the Creative Template to update
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The Creative Template
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
+  '/v2/creative-templates/{creativeTemplateId}/update':
+    post:
+      tags:
+        - creative-template
+      description: Update an existing Creative Template
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: creativeTemplateId
+          in: path
+          description: The Id of the Creative Template to update
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Updates
+              properties:
+                Updates:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - Path
+                    properties:
+                      Path:
+                        type: array
+                      Op:
+                        type: string
+                        default: Update
+                        enum: [Update, Delete, InsertAfter]
+                      Value:
+                        type: object
+      responses:
+        200:
+          description: The updated Creative Template
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

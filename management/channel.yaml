@@ -1,0 +1,189 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Channels
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: channel
+    description: Manage Channels
+paths:
+  /v1/channel:
+    post:
+      tags:
+        - channel
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Title
+                - AdTypes
+                - Engine
+              properties:
+                Title:
+                  type: string
+                AdTypes:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                Engine:
+                  type: integer
+                  format: int32
+                  default: 0
+                CPM:
+                  type: number
+                  format: float
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+      responses:
+        200:
+          description: The newly created channel
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/Channel'
+    get:
+      tags:
+        - channel
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Channels
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/ChannelList'
+
+  '/v1/channel/{channelId}':
+    parameters:
+      - name: channelId
+        description: The Channel Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - channel
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - Title
+                - AdTypes
+                - Engine
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Title:
+                  type: string
+                AdTypes:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                Engine:
+                  type: integer
+                  format: int32
+                  default: 0
+      responses:
+        200:
+          description: The updated Channel
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/Channel'
+    get:
+      tags:
+        - channel
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Channel
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/channel.yaml#/schemas/Channel'
+  '/v1/channel/{channelId}/priorities':
+    get:
+      tags:
+        - channel
+      operationId: getPrioritiesForChannel
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id to get Priorities for
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A list of Priorities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/priority.yaml#/schemas/Priority'
+  '/v1/channel/{channelId}/delete':
+    get:
+      tags:
+        - channel
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: channelId
+          in: path
+          description: The Channel Id to delete
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

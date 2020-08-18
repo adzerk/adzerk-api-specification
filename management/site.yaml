@@ -1,0 +1,170 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Sites
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: site
+    description: Manage Sites
+paths:
+  /v1/site:
+    post:
+      tags:
+        - site
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Title
+                - URL
+              properties:
+                Title:
+                  type: string
+                URL:
+                  type: string
+                  format: uri
+                NetworkMargin:
+                  type: number
+                  format: float
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+      responses:
+        200:
+          description: The newly created Site
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/Site'
+    get:
+      tags:
+        - sites
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Sites
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/SiteList'
+  '/v1/site/{siteId}':
+    parameters:
+      - name: siteId
+        in: path
+        description: The Site Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    put:
+      tags:
+        - sites
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - Title
+                - URL
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Title:
+                  type: string
+                URL:
+                  type: string
+                  format: uri
+                NetworkMargin:
+                  type: number
+                  format: float
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                  nullable: true
+      responses:
+        200:
+          description: The updated Site
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/Site'
+    get:
+      tags:
+        - sites
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Site
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/site.yaml#/schemas/Site'
+  /v1/fast/site:
+    get:
+      tags:
+        - sites
+      operationId: filterSites
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: titleLike
+          in: query
+          description: Filters the stream of sites based on the Title. This is a simple match - if the string provided in the query parameter is present anywhere in a site's Title, that site will be returned in the results.
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: urlLike
+          in: query
+          description: Filters the stream of sites based on the Url. This is a simple match - if the string provided in the query parameter is present anywhere in a site's Url, that site will be returned in the results.
+          required: false
+          schema:
+            type: string
+            nullable: true
+      responses:
+        200:
+          description: A line-delimited string of JSON encoded sites
+          content:
+            text:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

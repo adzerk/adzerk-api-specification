@@ -1,0 +1,277 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Advertisers
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: advertiser
+    description: Manage Advertisers
+paths:
+  /v1/advertiser:
+    get:
+      tags:
+        - advertiser
+      description: List Advertisers
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Advertisers
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
+    post:
+      tags:
+        - advertiser
+      description: Create Advertiser
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Title
+                - IsActive
+              properties:
+                Title:
+                  type: string
+                IsActive:
+                  type: boolean
+                  default: false
+                PlacementLimit:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                CapType:
+                  type: integer
+                  format: int32
+                  default: 4
+                  nullable: true
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+      responses:
+        200:
+          description: Advertiser Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+  '/v1/advertiser/{advertiserId}':
+    parameters:
+      - name: advertiserId
+        in: path
+        description: Id of the Advertiser to update
+        required: true
+        schema:
+          type: integer
+    get:
+      tags:
+        - advertiser
+      description: Get a single Advertiser by Id
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+    put:
+      tags:
+        - advertiser
+      description: Update Advertiser
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Title
+                - IsActive
+                - Id
+              properties:
+                Title:
+                  type: string
+                IsActive:
+                  type: boolean
+                  default: false
+                PlacementLimit:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                CapType:
+                  type: integer
+                  format: int32
+                  default: 4
+                  nullable: true
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  default: false
+                IsFreqCap:
+                  type: boolean
+                  nullable: true
+                RtbCustomFields:
+                  type: string
+                  nullable: true
+                PartnerId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                Id:
+                  type: integer
+      responses:
+        200:
+          description: Updated Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+  /v1/advertiser/search:
+    post:
+      tags:
+        - advertiser
+      description: Search Advertisers
+      operationId: search
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: './schemas/advertiser.yaml#/schemas/AdvertiserSearch'
+      responses:
+        200:
+          description: Paged list of Advertisers
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
+  '/v1/advertiser/{AdvertiserId}/creatives':
+    get:
+      tags:
+        - advertiser
+      description: List Creatives for Advertiser
+      operationId: listCreatives
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: AdvertiserId
+          in: path
+          description: Advertiser Id to list Creatives for
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Creatives for the Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative.yaml#/schemas/CreativeList'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
