@@ -26,19 +26,20 @@ The JavaScript generator is currently the only special case. We specificially ro
 
 ```sh
 $ openapi-generator generate \
-    -i ~/projects/adzerk/api-swagger-spec/decision/openapi-3.yaml \
+    -i ./decision/openapi-3.yaml \
     -g typescript-fetch \
-    -o ./src/generated/ \
-    -c ~/projects/adzerk/api-swagger-spec/decision/codegen-config/typescript-fetch.json
+    -o ./build/decision-js/ \
+    -c ./decision/codegen-config/typescript-fetch.json
 ```
 
 #### Java
 
 ```sh
 $ openapi-generator generate \
-    -i ~/projects/adzerk/api-swagger-spec/decision/openapi-3.yaml \
+    -i ./decision/openapi-3.yaml \
     -g java \
-    -c ~/projects/adzerk/api-swagger-spec/decision/codegen-config/java.json
+    -o ./build/decision-java/ \
+    -c ./decision/codegen-config/java.json
 ```
 
 #### Ruby
@@ -46,9 +47,9 @@ $ openapi-generator generate \
 ```sh
 $ openapi-generator generate \
     -g ruby \
-    -i ../api-swagger-spec/decision/openapi-3.yaml \
-    -o ./ \
-    -c ../api-swagger-spec/decision/codegen-config/ruby.json
+    -i ./decision/openapi-3.yaml \
+    -o ./build/decision-ruby/ \
+    -c ./decision/codegen-config/ruby.json
 ```
 
 #### Python
@@ -56,19 +57,29 @@ $ openapi-generator generate \
 ```sh
 $ openapi-generator generate \
     -g python \
-    -i ../api-swagger-spec/decision/openapi-3.yaml \
-    -o ./ \
-    -c ../api-swagger-spec/decision/codegen-config/python.json
+    -i ./decision/openapi-3.yaml \
+    -o ./build/decision-python/ \
+    -c ./decision/codegen-config/python.json
 ```
 
 ### Management SDK
+
+#### JavaScript
+
+```sh
+$ openapi-generator generate \
+    -i ./management/openapi-3.yaml \
+    -g typescript-fetch \
+    -o ./build/mgmt-js/ \
+    -c ./management/codegen-config/typescript-fetch.json
+```
 
 #### Ruby
 
 ```sh
 $ openapi-generator generate \
     -g ruby \
-    -i ../api-swagger-spec/management/openapi-3.yaml \
-    -o ./ \
-    --c ../api-swagger-spec/management/codegen-config/ruby.json
+    -i ./management/openapi-3.yaml \
+    -o ./build/mgmt-ruby/ \
+    -c ./management/codegen-config/ruby.json
 ```

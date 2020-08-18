@@ -1,0 +1,6 @@
+{
+  "enablePostProcessFile": true,
+  "supportsES6": true,
+  "typescriptThreePlus": true,
+  "useSingleRequestParameter": false
+}
