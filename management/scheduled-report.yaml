@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Scheduled Reporting
+  description: Scheduled Reporting related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: scheduled-report
+    description: Scheduled Reporting
+paths:
+  /v1/report/schedule:
+    get:
+      tags:
+        - scheduled-report
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Scheduled Reports
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReportList'
+    post:
+      tags:
+        - scheduled-report
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+                - LoginID
+                - KickoffDate
+                - SchedulingWindow
+                - RecurrenceType
+                - Criteria
+              properties:
+                Name:
+                  type: string
+                LoginID:
+                  type: integer
+                  format: int32
+                KickoffDate:
+                  type: string
+                  format: date
+                SchedulingWindow:
+                  type: integer
+                  format: int32
+                  enum: [0, 1, 2, 3]
+                RecurrenceType:
+                  type: integer
+                  format: int32
+                  enum: [0, 1, 2, 3]
+                Criteria:
+                  type: object
+                  required:
+                    - StartDateISO
+                    - EndDateISO
+                    - GroupBy
+                    - Properties
+                  properties:
+                    StartDateISO:
+                      type: string
+                      format: date-time
+                    EndDateISO:
+                      type: string
+                      format: date-timme
+                    GroupBy:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - day
+                          - week
+                          - month
+                          - hour
+                          - brandId
+                          - campaignId
+                          - optionId
+                          - creativeId
+                          - adTypeId
+                          - siteId
+                          - zoneId
+                          - publisherAccountId
+                          - countryCode
+                          - metroCode
+                          - keyword
+                          - regionCode
+                          - city
+                    Parameters:
+                      type: object
+                    TimeZone:
+                      type: string
+                Emails:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                ShowEvents:
+                  type: boolean
+                  nullable: true
+                ShowClickBuckets:
+                  type: boolean
+                  nullable: true
+                ShowRevenue:
+                  type: boolean
+                  nullable: true
+                ShowConversions:
+                  type: boolean
+                  nullable: true
+                fixedDate:
+                  type: boolean
+                  nullable: true
+      responses:
+        200:
+          description: The scheduled report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
+  '/v1/report/schedule/{ScheduledReportID}':
+    parameters:
+      - name: ScheduledReportID
+        in: path
+        description: The Report Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - scheduled-report
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
+  '/v1/report/schedule/{ScheduledReportID}/delete':
+    parameters:
+      - name: ScheduledReportID
+        in: path
+        description: The Report Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - scheduled-report
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Report
