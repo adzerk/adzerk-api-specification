@@ -12,7 +12,7 @@ paths:
   /v1/campaign:
     post:
       tags:
-        - campaigns
+        - campaign
       description: Create Campaign
       operationId: create
       security:
