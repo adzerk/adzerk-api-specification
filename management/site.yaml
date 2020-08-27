@@ -47,7 +47,7 @@ paths:
                 $ref: './schemas/site.yaml#/schemas/Site'
     get:
       tags:
-        - sites
+        - site
       operationId: list
       security:
         - ApiKeyAuth: []
@@ -86,7 +86,7 @@ paths:
           format: int32
     put:
       tags:
-        - sites
+        - site
       operationId: update
       security:
         - ApiKeyAuth: []
@@ -125,7 +125,7 @@ paths:
                 $ref: './schemas/site.yaml#/schemas/Site'
     get:
       tags:
-        - sites
+        - site
       operationId: get
       security:
         - ApiKeyAuth: []
@@ -139,7 +139,7 @@ paths:
   /v1/fast/site:
     get:
       tags:
-        - sites
+        - site
       operationId: filterSites
       security:
         - ApiKeyAuth: []
