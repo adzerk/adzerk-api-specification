@@ -80,6 +80,7 @@ paths:
           required: true
           schema:
             type: integer
+            format: int32
       responses:
         200:
           description: Paged list of Flights
@@ -87,6 +88,507 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/flight.yaml#/schemas/FlightList'
+  /v1/flight/{id}:
+    parameters:
+      - name: flightId
+        in: path
+        description: Id of the Flight to update
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - flight
+      description: Get Flight
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: Flight Updated
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight.yaml#/schemas/Flight'
+    put:
+      tags:
+        - flight
+      description: Update Flight
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - Name
+                - StartDateISO
+                - CampaignId
+                - PriorityId
+                - GoalType
+                - Impressions
+                - IsActive
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                StartDateISO:
+                  type: string
+                  format: date-time
+                CampaignId:
+                  type: integer
+                  format: int32
+                PriorityId:
+                  type: integer
+                  format: int32
+                GoalType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3, 8, 9]
+                Impressions:
+                  type: integer
+                  format: int32
+                IsActive:
+                  type: boolean
+                  default: false
+                EndDateISO:
+                  type: string
+                  format: date-time
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  nullable: true
+                RateType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3, 4, 5]
+                  nullable: true
+                Price:
+                  type: number
+                  format: float
+                  nullable: true
+                CapType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3, 4]
+                  nullable: true
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                Keywords:
+                  type: string
+                CustomTarget:
+                  type: string
+                CustomFieldsJSON:
+                  type: string
+                IsFreqCap:
+                  type: boolean
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  enum: [1, 2, 3]
+                DontAffectParentFreqCap:
+                  type: boolean
+                  nullable: true
+                IsCompanion:
+                  type: boolean
+                  nullable: true
+                isNoDuplicates:
+                  type: boolean
+                  nullable: true
+                DuplicateMode:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  enum: [1, 2, 3, 4]
+                DeliveryStatus:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  enum: [1, 2, 3, 4, 5]
+                IsTrackingConversions:
+                  type: boolean
+                  nullable: true
+                CanPassback:
+                  type: boolean
+                  nullable: true
+                PassbackSortOrder:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsECPMOptimized:
+                  type: boolean
+                  nullable: true
+                ECPMOptimizePeriod:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 90
+                  nullable: true
+                ECPMMultiplier:
+                  type: number
+                  format: float
+                  nullable: true
+                FloorECPM:
+                  type: number
+                  format: float
+                  nullable: true
+                CeilingECPM:
+                  type: number
+                  format: float
+                  nullable: true
+                DefaultECPM:
+                  type: number
+                  format: float
+                  nullable: true
+                ECPMBurnInImpressions:
+                  type: integer
+                  format: int32
+                  nullable: true
+                EffectiveCPMOverride:
+                  type: number
+                  format: float
+                  nullable: true
+                DatePartingStartTimeISO:
+                  type: string
+                  format: date-time
+                DatePartingEndTimeISO:
+                  type: string
+                  format: date-time
+                IsSunday:
+                  type: boolean
+                  nullable: true
+                IsMonday:
+                  type: boolean
+                  nullable: true
+                IsTuesday:
+                  type: boolean
+                  nullable: true
+                IsWednesday:
+                  type: boolean
+                  nullable: true
+                IsThursday:
+                  type: boolean
+                  nullable: true
+                IsFriday:
+                  type: boolean
+                  nullable: true
+                IsSaturday:
+                  type: boolean
+                  nullable: true
+                IsArchived:
+                  type: boolean
+                  nullable: true
+                RequireStrictLocation:
+                  type: boolean
+                  nullable: true
+                TimeZone:
+                  type: string
+                IsTargetingOptimization:
+                  type: boolean
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationTargetType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationTarget:
+                  type: number
+                  format: float
+                  nullable: true
+                  deprecated: true
+                TargetOptimizationBurnIn:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationCanMiss:
+                  type: boolean
+                  nullable: true
+                  deprecated: true
+      responses:
+        200:
+          description: Flight Updated
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight.yaml#/schemas/Flight'
+  /v1/flight:
+    get:
+      tags:
+        - flight
+      description: List Flights
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: isArchived
+          in: query
+          schema:
+            type: boolean
+        - name: isActive
+          in: query
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Paged list of Flights
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight.yaml#/schemas/FlightList'
+    post:
+      tags:
+        - flight
+      description: Create Flight
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+                - StartDateISO
+                - CampaignId
+                - PriorityId
+                - GoalType
+                - Impressions
+                - IsActive
+              properties:
+                Name:
+                  type: string
+                StartDateISO:
+                  type: string
+                  format: date-time
+                CampaignId:
+                  type: integer
+                  format: int32
+                PriorityId:
+                  type: integer
+                  format: int32
+                GoalType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3, 8, 9]
+                Impressions:
+                  type: integer
+                  format: int32
+                IsActive:
+                  type: boolean
+                  default: false
+                EndDateISO:
+                  type: string
+                  format: date-time
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  nullable: true
+                RateType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3, 4, 5]
+                  nullable: true
+                Price:
+                  type: number
+                  format: float
+                  nullable: true
+                CapType:
+                  type: integer
+                  format: int32
+                  enum: [1, 2, 3, 4]
+                  nullable: true
+                DailyCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                LifetimeCapAmount:
+                  type: integer
+                  format: int32
+                  nullable: true
+                Keywords:
+                  type: string
+                CustomTarget:
+                  type: string
+                CustomFieldsJSON:
+                  type: string
+                IsFreqCap:
+                  type: boolean
+                  nullable: true
+                FreqCap:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapDuration:
+                  type: integer
+                  format: int32
+                  nullable: true
+                FreqCapType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  enum: [1, 2, 3]
+                DontAffectParentFreqCap:
+                  type: boolean
+                  nullable: true
+                IsCompanion:
+                  type: boolean
+                  nullable: true
+                isNoDuplicates:
+                  type: boolean
+                  nullable: true
+                DuplicateMode:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  enum: [1, 2, 3, 4]
+                DeliveryStatus:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  enum: [1, 2, 3, 4, 5]
+                IsTrackingConversions:
+                  type: boolean
+                  nullable: true
+                CanPassback:
+                  type: boolean
+                  nullable: true
+                PassbackSortOrder:
+                  type: integer
+                  format: int32
+                  nullable: true
+                IsECPMOptimized:
+                  type: boolean
+                  nullable: true
+                ECPMOptimizePeriod:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 90
+                  nullable: true
+                ECPMMultiplier:
+                  type: number
+                  format: float
+                  nullable: true
+                FloorECPM:
+                  type: number
+                  format: float
+                  nullable: true
+                CeilingECPM:
+                  type: number
+                  format: float
+                  nullable: true
+                DefaultECPM:
+                  type: number
+                  format: float
+                  nullable: true
+                ECPMBurnInImpressions:
+                  type: integer
+                  format: int32
+                  nullable: true
+                EffectiveCPMOverride:
+                  type: number
+                  format: float
+                  nullable: true
+                DatePartingStartTimeISO:
+                  type: string
+                  format: date-time
+                DatePartingEndTimeISO:
+                  type: string
+                  format: date-time
+                IsSunday:
+                  type: boolean
+                  nullable: true
+                IsMonday:
+                  type: boolean
+                  nullable: true
+                IsTuesday:
+                  type: boolean
+                  nullable: true
+                IsWednesday:
+                  type: boolean
+                  nullable: true
+                IsThursday:
+                  type: boolean
+                  nullable: true
+                IsFriday:
+                  type: boolean
+                  nullable: true
+                IsSaturday:
+                  type: boolean
+                  nullable: true
+                IsArchived:
+                  type: boolean
+                  nullable: true
+                RequireStrictLocation:
+                  type: boolean
+                  nullable: true
+                TimeZone:
+                  type: string
+                IsTargetingOptimization:
+                  type: boolean
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationTargetType:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationTarget:
+                  type: number
+                  format: float
+                  nullable: true
+                  deprecated: true
+                TargetOptimizationBurnIn:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  deprecated: true
+                TargetingOptimizationCanMiss:
+                  type: boolean
+                  nullable: true
+                  deprecated: true
+      responses:
+        200:
+          description: Flight Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight.yaml#/schemas/Flight'
 components:
   securitySchemes:
     $ref: './components/security-schemes.yaml#/components/securitySchemes'
