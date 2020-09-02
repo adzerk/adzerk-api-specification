@@ -67,6 +67,7 @@ paths:
                   nullable: true
                 DontAffectParentFreqCap:
                   type: boolean
+                  nullable: true
                 CapType:
                   type: integer
                   format: int32
@@ -156,6 +157,7 @@ paths:
                 StartDateISO:
                   type: string
                   format: date
+                  nullable: true
                 Flights:
                   type: array
                   items:
@@ -186,6 +188,7 @@ paths:
                   nullable: true
                 DontAffectParentFreqCap:
                   type: boolean
+                  nullable: true
                 CapType:
                   type: integer
                   format: int32

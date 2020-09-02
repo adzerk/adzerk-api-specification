@@ -188,10 +188,13 @@ paths:
                   nullable: true
                 Keywords:
                   type: string
+                  nullable: true
                 CustomTarget:
                   type: string
+                  nullable: true
                 CustomFieldsJSON:
                   type: string
+                  nullable: true
                 IsFreqCap:
                   type: boolean
                   nullable: true
@@ -273,9 +276,11 @@ paths:
                 DatePartingStartTimeISO:
                   type: string
                   format: date-time
+                  nullable: true
                 DatePartingEndTimeISO:
                   type: string
                   format: date-time
+                  nullable: true
                 IsSunday:
                   type: boolean
                   nullable: true
@@ -305,6 +310,7 @@ paths:
                   nullable: true
                 TimeZone:
                   type: string
+                  nullable: true
                 IsTargetingOptimization:
                   type: boolean
                   nullable: true
@@ -437,10 +443,13 @@ paths:
                   nullable: true
                 Keywords:
                   type: string
+                  nullable: true
                 CustomTarget:
                   type: string
+                  nullable: true
                 CustomFieldsJSON:
                   type: string
+                  nullable: true
                 IsFreqCap:
                   type: boolean
                   nullable: true
@@ -522,9 +531,11 @@ paths:
                 DatePartingStartTimeISO:
                   type: string
                   format: date-time
+                  nullable: true
                 DatePartingEndTimeISO:
                   type: string
                   format: date-time
+                  nullable: true
                 IsSunday:
                   type: boolean
                   nullable: true
@@ -554,6 +565,7 @@ paths:
                   nullable: true
                 TimeZone:
                   type: string
+                  nullable: true
                 IsTargetingOptimization:
                   type: boolean
                   nullable: true

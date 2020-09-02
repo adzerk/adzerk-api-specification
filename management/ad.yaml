@@ -48,12 +48,15 @@ paths:
                   type: boolean
                 RtbCustomFields:
                   type: string
+                  nullable: true
                 ActiveKeywords:
+                  nullable: true
                   type: array
                   items:
                     type: string
                 CustomTargeting:
                   type: string
+                  nullable: true
                 DistributionType:
                   type: integer
                   format: int32
@@ -90,9 +93,11 @@ paths:
                 StartDateIso:
                   type: string
                   format: date
+                  nullable: true
                 EndDateIso:
                   type: string
                   format: date
+                  nullable: true
                 IsGoalOverride:
                   type: boolean
                   nullable: true
@@ -197,12 +202,15 @@ paths:
                   type: boolean
                 RtbCustomFields:
                   type: string
+                  nullable: true
                 ActiveKeywords:
+                  nullable: true
                   type: array
                   items:
                     type: string
                 CustomTargeting:
                   type: string
+                  nullable: true
                 DistributionType:
                   type: integer
                   format: int32
@@ -238,9 +246,11 @@ paths:
                 StartDateIso:
                   type: string
                   format: date
+                  nullable: true
                 EndDateIso:
                   type: string
                   format: date
+                  nullable: true
                 IsGoalOverride:
                   type: boolean
                   nullable: true
