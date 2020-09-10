@@ -101,9 +101,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
-  '/v1/advertiser/{advertiserId}':
+  '/v1/advertiser/{id}':
     parameters:
-      - name: advertiserId
+      - name: id
         in: path
         description: Id of the Advertiser to update
         required: true
@@ -233,7 +233,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
-  '/v1/advertiser/{AdvertiserId}/creatives':
+  '/v1/advertiser/{id}/creatives':
     get:
       tags:
         - advertiser
@@ -242,7 +242,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: AdvertiserId
+        - name: id
           in: path
           description: Advertiser Id to list Creatives for
           required: true
