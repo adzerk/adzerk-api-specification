@@ -140,7 +140,7 @@ paths:
     get:
       tags:
         - site
-      operationId: filterSites
+      operationId: filter
       security:
         - ApiKeyAuth: []
       parameters:
