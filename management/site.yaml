@@ -75,9 +75,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/site.yaml#/schemas/SiteList'
-  '/v1/site/{siteId}':
+  '/v1/site/{id}':
     parameters:
-      - name: siteId
+      - name: id
         in: path
         description: The Site Id
         required: true
