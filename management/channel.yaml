@@ -146,7 +146,7 @@ paths:
     get:
       tags:
         - channel
-      operationId: getPrioritiesForChannel
+      operationId: getPriorities
       security:
         - ApiKeyAuth: []
       parameters:
