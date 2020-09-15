@@ -145,11 +145,6 @@ paths:
                   format: int32
                   minimum: 1
                   maximum: 100
-                SelectionAlgorithm:
-                  type: integer
-                  format: int32
-                  enum: [0, 1, 2, 3, 4]
-                  nullable: true
                 IsDeleted:
                   type: boolean
                   nullable: true
