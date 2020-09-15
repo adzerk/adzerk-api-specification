@@ -94,9 +94,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/priority.yaml#/schemas/PriorityList'
-  '/v1/priority/{priorityId}':
+  '/v1/priority/{id}':
     parameters:
-      - name: priorityId
+      - name: id
         in: path
         description: The Channel Id
         required: true
@@ -171,7 +171,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/priority.yaml#/schemas/Priority'
-  '/v1/priority/{priorityId}/delete':
+  '/v1/priority/{id}/delete':
     get:
       tags:
         - priority
@@ -179,7 +179,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: priorityId
+        - name: id
           in: path
           description: The Channel Id
           required: true
