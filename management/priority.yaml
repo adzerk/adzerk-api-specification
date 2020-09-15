@@ -54,7 +54,8 @@ paths:
                   type: boolean
                   nullable: true
                 PassbackTimeout:
-                  type: boolean
+                  type: integer
+                  format: int32
                   nullable: true
       responses:
         200:
