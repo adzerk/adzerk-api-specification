@@ -128,12 +128,12 @@ paths:
             schema:
               type: object
               required:
-                - id
+                - Id
                 - Name
                 - ChannelID
                 - Weight
               properties:
-                id:
+                Id:
                   type: integer
                   format: int32
                 Name:
