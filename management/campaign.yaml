@@ -119,7 +119,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/campaign.yaml#/schemas/CampaignList'
-  '/v1/campaign/{campaignId}':
+  '/v1/campaign/{id}':
     put:
       tags:
         - campaign
@@ -128,7 +128,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: campaignId
+        - name: id
           in: path
           description: Id of the Campaign to update
           required: true
@@ -217,7 +217,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: campaignId
+        - name: id
           in: path
           description: Id of the Campaign to get
           required: true
