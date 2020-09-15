@@ -98,6 +98,20 @@ paths:
                       Default:
                         type: object
                         nullable: true
+                Contents:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - Type
+                    properties:
+                      Type:
+                        type: string
+                        enum: [HTML, JavaScript, JavaScriptExternal, CSS, Raw]
+                      Body:
+                        type: string
+                        maxLength: 10000
+                        nullable: true
       responses:
         200:
           description: The newly created Creative Template
