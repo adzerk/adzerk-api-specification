@@ -71,9 +71,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/zone.yaml#/schemas/ZoneList'
-  '/v1/zone/{zoneId}':
+  '/v1/zone/{id}':
     parameters:
-      - name: zoneId
+      - name: id
         in: path
         description: The Site Id
         required: true
