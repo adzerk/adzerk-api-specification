@@ -136,7 +136,7 @@ paths:
     get:
       tags:
         - channel-site-map
-      operationId: list
+      operationId: listChannelsForSite
       security:
         - ApiKeyAuth: []
       parameters:
