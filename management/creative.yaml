@@ -29,9 +29,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/creative/{CreativeId}':
+  '/v1/creative/{id}':
     parameters:
-      - name: CreativeId
+      - name: id
         in: path
         description: The Id of the Creative to update
         required: true
@@ -71,7 +71,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/creative/{CreativeId}/upload':
+  '/v1/creative/{id}/upload':
     post:
       tags:
         - creative
@@ -80,7 +80,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: CreativeId
+        - name: id
           in: path
           description: The Id of the Creative to upload an image for
           required: true

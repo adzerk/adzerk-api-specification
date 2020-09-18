@@ -50,7 +50,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
-  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}':
+  '/v1/flight/{flightId}/sitezonetargeting/{id}':
     parameters:
       - name: flightId
         description: The Flight Id to update the Site Zone Targeting for
@@ -59,7 +59,7 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: siteZoneTargetingId
+      - name: id
         description: The Id of the Site Zone Targeting to update
         in: path
         required: true
@@ -110,7 +110,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
-  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}/delete':
+  '/v1/flight/{flightId}/sitezonetargeting/{id}/delete':
     parameters:
       - name: flightId
         description: The Flight Id to update the Site Zone Targeting for
@@ -119,7 +119,7 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: siteZoneTargetingId
+      - name: id
         description: The Id of the Site Zone Targeting to update
         in: path
         required: true

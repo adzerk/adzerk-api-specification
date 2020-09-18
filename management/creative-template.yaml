@@ -119,7 +119,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
-  '/v2/creative-templates/{creativeTemplateId}':
+  '/v2/creative-templates/{id}':
     get:
       tags:
         - creative-template
@@ -128,7 +128,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: creativeTemplateId
+        - name: id
           in: path
           description: The Id of the Creative Template to update
           required: true
@@ -142,7 +142,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
-  '/v2/creative-templates/{creativeTemplateId}/update':
+  '/v2/creative-templates/{id}/update':
     post:
       tags:
         - creative-template
@@ -151,7 +151,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: creativeTemplateId
+        - name: id
           in: path
           description: The Id of the Creative Template to update
           required: true
