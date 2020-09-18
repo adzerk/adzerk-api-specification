@@ -112,10 +112,14 @@ paths:
             schema:
               type: object
               required:
+                - Id
                 - AdvertiserId
                 - AdTypeId
                 - IsActive
               properties:
+                Id:
+                  type: integer
+                  format: int32
                 AdvertiserId:
                   type: integer
                   format: int32
