@@ -35,12 +35,6 @@ paths:
                 StartDateISO:
                   type: string
                   format: date
-                Flights:
-                  type: array
-                  nullable: true
-                  items:
-                    type: integer
-                    format: int32
                 IsActive:
                   type: boolean
                   nullable: true
@@ -158,11 +152,6 @@ paths:
                   type: string
                   format: date
                   nullable: true
-                Flights:
-                  type: array
-                  items:
-                    type: integer
-                    format: int32
                 IsActive:
                   type: boolean
                 IsDeleted:
