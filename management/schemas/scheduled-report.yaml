@@ -1,0 +1,46 @@
+schemas:
+
+  ScheduledReport:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Name:
+        type: string
+      LoginId:
+        type: integer
+        format: int32
+      KickoffDate:
+        type: string
+        format: date
+      SchedulingWindow:
+        type: integer
+        format: int32
+        enum: [0, 1, 2, 3]
+      RecurrenceType:
+        type: integer
+        format: int32
+        enum: [0, 1, 2, 3]
+      Criteria:
+        type: object
+
+  ScheduledReportList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/ScheduledReport'

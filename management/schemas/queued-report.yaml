@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Queued Reporting
+  description: Queued Reporting related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: queued-report
+    description: Queued Reporting
+paths:
+  /v1/report/queue:
+    post:
+      tags:
+        - queued-report
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - StartDateISO
+                - EndDateISO
+                - GroupBy
+                - Parameters
+              properties:
+                StartDateISO:
+                  type: string
+                  format: date-time
+                EndDateISO:
+                  type: string
+                  format: date-timme
+                GroupBy:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - day
+                      - week
+                      - month
+                      - hour
+                      - brandId
+                      - campaignId
+                      - optionId
+                      - creativeId
+                      - adTypeId
+                      - siteId
+                      - zoneId
+                      - publisherAccountId
+                      - countryCode
+                      - metroCode
+                      - keyword
+                      - regionCode
+                      - city
+                Parameters:
+                  type: object
+                TimeZone:
+                  type: string
+      responses:
+        200:
+          description: The queued report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Id:
+                    type: string
+
+  /v1/report/queue/{id}:
+    get:
+      tags:
+        - queued-report
+      operationId: poll
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: Id
+          in: path
+          description: The id of the queued report to poll
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The queued report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Id:
+                    type: string
+                  Status:
+                    type: integer
+                  Message:
+                    type: string
+                  Result:
+                    type: object
