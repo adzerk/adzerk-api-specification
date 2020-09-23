@@ -42,7 +42,6 @@ paths:
                   enum: [0, 1, 2, 3, 4]
                 IsDeleted:
                   type: boolean
-                  default: false
                   nullable: true
                 IsKeywordOptimized:
                   type: boolean
@@ -55,7 +54,8 @@ paths:
                   type: boolean
                   nullable: true
                 PassbackTimeout:
-                  type: boolean
+                  type: integer
+                  format: int32
                   nullable: true
       responses:
         200:
@@ -94,9 +94,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/priority.yaml#/schemas/PriorityList'
-  '/v1/priority/{priorityId}':
+  '/v1/priority/{id}':
     parameters:
-      - name: priorityId
+      - name: id
         in: path
         description: The Channel Id
         required: true
@@ -128,12 +128,12 @@ paths:
             schema:
               type: object
               required:
-                - id
+                - Id
                 - Name
                 - ChannelID
                 - Weight
               properties:
-                id:
+                Id:
                   type: integer
                   format: int32
                 Name:
@@ -145,14 +145,8 @@ paths:
                   format: int32
                   minimum: 1
                   maximum: 100
-                SelectionAlgorithm:
-                  type: integer
-                  format: int32
-                  enum: [0, 1, 2, 3, 4]
-                  nullable: true
                 IsDeleted:
                   type: boolean
-                  default: false
                   nullable: true
                 FloorPrice:
                   type: number
@@ -171,7 +165,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/priority.yaml#/schemas/Priority'
-  '/v1/priority/{priorityId}/delete':
+  '/v1/priority/{id}/delete':
     get:
       tags:
         - priority
@@ -179,7 +173,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: priorityId
+        - name: id
           in: path
           description: The Channel Id
           required: true

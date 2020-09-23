@@ -114,7 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/flight-category.yaml#/schemas/FlightCategoryList'
-  '/v1/flight/{flightId}/category/{flightCategoryId}/delete':
+  '/v1/flight/{flightId}/category/{id}/delete':
     get:
       tags:
         - flight-category
@@ -129,7 +129,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: flightCategoryId
+        - name: id
           description: The Flight Category Id to delete
           in: path
           required: true

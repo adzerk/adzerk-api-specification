@@ -98,6 +98,20 @@ paths:
                       Default:
                         type: object
                         nullable: true
+                Contents:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - Type
+                    properties:
+                      Type:
+                        type: string
+                        enum: [HTML, JavaScript, JavaScriptExternal, CSS, Raw]
+                      Body:
+                        type: string
+                        maxLength: 10000
+                        nullable: true
       responses:
         200:
           description: The newly created Creative Template
@@ -105,7 +119,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
-  '/v2/creative-templates/{creativeTemplateId}':
+  '/v2/creative-templates/{id}':
     get:
       tags:
         - creative-template
@@ -114,7 +128,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: creativeTemplateId
+        - name: id
           in: path
           description: The Id of the Creative Template to update
           required: true
@@ -128,7 +142,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
-  '/v2/creative-templates/{creativeTemplateId}/update':
+  '/v2/creative-templates/{id}/update':
     post:
       tags:
         - creative-template
@@ -137,7 +151,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: creativeTemplateId
+        - name: id
           in: path
           description: The Id of the Creative Template to update
           required: true

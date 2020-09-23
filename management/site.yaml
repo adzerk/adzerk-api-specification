@@ -47,7 +47,7 @@ paths:
                 $ref: './schemas/site.yaml#/schemas/Site'
     get:
       tags:
-        - sites
+        - site
       operationId: list
       security:
         - ApiKeyAuth: []
@@ -75,9 +75,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/site.yaml#/schemas/SiteList'
-  '/v1/site/{siteId}':
+  '/v1/site/{id}':
     parameters:
-      - name: siteId
+      - name: id
         in: path
         description: The Site Id
         required: true
@@ -86,7 +86,7 @@ paths:
           format: int32
     put:
       tags:
-        - sites
+        - site
       operationId: update
       security:
         - ApiKeyAuth: []
@@ -125,7 +125,7 @@ paths:
                 $ref: './schemas/site.yaml#/schemas/Site'
     get:
       tags:
-        - sites
+        - site
       operationId: get
       security:
         - ApiKeyAuth: []
@@ -139,8 +139,8 @@ paths:
   /v1/fast/site:
     get:
       tags:
-        - sites
-      operationId: filterSites
+        - site
+      operationId: filter
       security:
         - ApiKeyAuth: []
       parameters:

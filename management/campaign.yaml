@@ -12,7 +12,7 @@ paths:
   /v1/campaign:
     post:
       tags:
-        - campaigns
+        - campaign
       description: Create Campaign
       operationId: create
       security:
@@ -35,12 +35,6 @@ paths:
                 StartDateISO:
                   type: string
                   format: date
-                Flights:
-                  type: array
-                  nullable: true
-                  items:
-                    type: integer
-                    format: int32
                 IsActive:
                   type: boolean
                   nullable: true
@@ -67,6 +61,7 @@ paths:
                   nullable: true
                 DontAffectParentFreqCap:
                   type: boolean
+                  nullable: true
                 CapType:
                   type: integer
                   format: int32
@@ -118,7 +113,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/campaign.yaml#/schemas/CampaignList'
-  '/v1/campaign/{campaignId}':
+  '/v1/campaign/{id}':
     put:
       tags:
         - campaign
@@ -127,7 +122,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: campaignId
+        - name: id
           in: path
           description: Id of the Campaign to update
           required: true
@@ -156,11 +151,7 @@ paths:
                 StartDateISO:
                   type: string
                   format: date
-                Flights:
-                  type: array
-                  items:
-                    type: integer
-                    format: int32
+                  nullable: true
                 IsActive:
                   type: boolean
                 IsDeleted:
@@ -186,6 +177,7 @@ paths:
                   nullable: true
                 DontAffectParentFreqCap:
                   type: boolean
+                  nullable: true
                 CapType:
                   type: integer
                   format: int32
@@ -214,7 +206,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: campaignId
+        - name: id
           in: path
           description: Id of the Campaign to get
           required: true

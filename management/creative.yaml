@@ -22,6 +22,67 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - AdvertiserId
+                - AdTypeId
+                - IsActive
+              properties:
+                AdvertiserId:
+                  type: integer
+                  format: int32
+                AdTypeId:
+                  type: integer
+                  format: int32
+                IsActive:
+                  type: boolean
+                  default: false
+                Title:
+                  type: string
+                  nullable: true
+                ImageName:
+                  type: string
+                  nullable: true
+                Body:
+                  type: string
+                  nullable: true
+                Url:
+                  type: string
+                  nullable: true
+                  format: url
+                Alt:
+                  type: string
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  nullable: true
+                IsHTMLJS:
+                  type: boolean
+                  nullable: true
+                ScriptBody:
+                  type: string
+                  nullable: true
+                Metadata:
+                  type: string
+                  nullable: true
+                ImageLink:
+                  type: string
+                  nullable: true
+                SaveEmptyCreative:
+                  type: boolean
+                  nullable: true
+                IsNoTrack:
+                  type: boolean
+                  nullable: true
+                IsNetworkAd:
+                  type: boolean
+                  nullable: true
+                TemplateId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                TemplateValues:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: Creative Created
@@ -29,9 +90,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/creative/{CreativeId}':
+  '/v1/creative/{id}':
     parameters:
-      - name: CreativeId
+      - name: id
         in: path
         description: The Id of the Creative to update
         required: true
@@ -50,6 +111,71 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - Id
+                - AdvertiserId
+                - AdTypeId
+                - IsActive
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                AdvertiserId:
+                  type: integer
+                  format: int32
+                AdTypeId:
+                  type: integer
+                  format: int32
+                IsActive:
+                  type: boolean
+                  default: false
+                Title:
+                  type: string
+                  nullable: true
+                ImageName:
+                  type: string
+                  nullable: true
+                Body:
+                  type: string
+                  nullable: true
+                Url:
+                  type: string
+                  nullable: true
+                  format: url
+                Alt:
+                  type: string
+                  nullable: true
+                IsDeleted:
+                  type: boolean
+                  nullable: true
+                IsHTMLJS:
+                  type: boolean
+                  nullable: true
+                ScriptBody:
+                  type: string
+                  nullable: true
+                Metadata:
+                  type: string
+                  nullable: true
+                ImageLink:
+                  type: string
+                  nullable: true
+                SaveEmptyCreative:
+                  type: boolean
+                  nullable: true
+                IsNoTrack:
+                  type: boolean
+                  nullable: true
+                IsNetworkAd:
+                  type: boolean
+                  nullable: true
+                TemplateId:
+                  type: integer
+                  format: int32
+                  nullable: true
+                TemplateValues:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: Creative Updated
@@ -71,7 +197,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/creative/{CreativeId}/upload':
+  '/v1/creative/{id}/upload':
     post:
       tags:
         - creative
@@ -80,7 +206,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: CreativeId
+        - name: id
           in: path
           description: The Id of the Creative to upload an image for
           required: true

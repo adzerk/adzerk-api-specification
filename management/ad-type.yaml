@@ -139,7 +139,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/ad-type.yaml#/schemas/AdTypeList'
-  '/v1/adtypes/{adTypeId}/delete':
+  '/v1/adtypes/{id}/delete':
     get:
       tags:
         - ad-type
@@ -147,7 +147,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: adTypeId
+        - name: id
           in: path
           description: The Ad Type Id
           required: true
@@ -157,7 +157,7 @@ paths:
       responses:
         200:
           description: Successfully Deleted
-  '/v1/channel/{channelId}/adtypes/{adTypeId}/delete':
+  '/v1/channel/{channelId}/adtypes/{id}/delete':
     get:
       tags:
         - ad-type
@@ -172,7 +172,7 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: adTypeId
+        - name: id
           in: path
           description: The Ad Type Id
           required: true

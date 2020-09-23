@@ -82,9 +82,9 @@ paths:
               schema:
                 $ref: './schemas/channel.yaml#/schemas/ChannelList'
 
-  '/v1/channel/{channelId}':
+  '/v1/channel/{id}':
     parameters:
-      - name: channelId
+      - name: id
         description: The Channel Id
         in: path
         required: true
@@ -142,15 +142,15 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/channel.yaml#/schemas/Channel'
-  '/v1/channel/{channelId}/priorities':
+  '/v1/channel/{id}/priorities':
     get:
       tags:
         - channel
-      operationId: getPrioritiesForChannel
+      operationId: getPriorities
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: channelId
+        - name: id
           in: path
           description: The Channel Id to get Priorities for
           required: true
@@ -166,7 +166,7 @@ paths:
                 type: array
                 items:
                   $ref: './schemas/priority.yaml#/schemas/Priority'
-  '/v1/channel/{channelId}/delete':
+  '/v1/channel/{id}/delete':
     get:
       tags:
         - channel
@@ -174,7 +174,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: channelId
+        - name: id
           in: path
           description: The Channel Id to delete
           required: true

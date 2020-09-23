@@ -25,7 +25,7 @@ paths:
                 - siteId
                 - channelId
               properties:
-                siteid:
+                siteId:
                   type: integer
                   format: int32
                 channelId:
@@ -87,7 +87,7 @@ paths:
                 - channelId
                 - priority
               properties:
-                siteid:
+                siteId:
                   type: integer
                   format: int32
                 channelId:
@@ -136,7 +136,7 @@ paths:
     get:
       tags:
         - channel-site-map
-      operationId: list
+      operationId: listChannelsForSite
       security:
         - ApiKeyAuth: []
       parameters:
