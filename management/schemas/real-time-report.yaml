@@ -1,0 +1,224 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Real Time Reporting
+  description: Real Time Reporting related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: real-time-report
+    description: Real Time Reporting
+paths:
+  /v1/instantcounts/advertiser/{advertiserId}:
+    get:
+      tags:
+        - real-time-report
+      operationId: getAdvertiserCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: advertiserId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The advertiser counts
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/instantcounts/campaign/{campaignId}:
+    get:
+      tags:
+        - real-time-report
+      operationId: getCampaignCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The campaign counts
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/instantcounts/flight/{flightId}:
+    get:
+      tags:
+        - real-time-report
+      operationId: getFlightCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The flight counts
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/instantcounts/ad/{adId}:
+    get:
+      tags:
+        - real-time-report
+      operationId: getAdCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: adId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The ad counts
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/instantcounts/bulk:
+    post:
+      tags:
+        - real-time-report
+      operationId: bulk
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advertisers:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                campaigns:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                fights:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                ads:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+      responses:
+        200:
+          description: The counts
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

@@ -81,7 +81,7 @@ paths:
                     - StartDateISO
                     - EndDateISO
                     - GroupBy
-                    - Properties
+                    - Parameters
                   properties:
                     StartDateISO:
                       type: string
@@ -182,3 +182,6 @@ paths:
       responses:
         200:
           description: The Report
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
