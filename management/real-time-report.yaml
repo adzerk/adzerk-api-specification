@@ -194,21 +194,25 @@ paths:
               properties:
                 advertisers:
                   type: array
+                  nullable: true
                   items:
                     type: integer
                     format: int32
                 campaigns:
                   type: array
+                  nullable: true
                   items:
                     type: integer
                     format: int32
-                fights:
+                flights:
                   type: array
+                  nullable: true
                   items:
                     type: integer
                     format: int32
                 ads:
                   type: array
+                  nullable: true
                   items:
                     type: integer
                     format: int32
