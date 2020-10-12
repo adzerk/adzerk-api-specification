@@ -88,9 +88,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/flight.yaml#/schemas/FlightList'
-  /v1/flight/{flightId}:
+  /v1/flight/{id}:
     parameters:
-      - name: flightId
+      - name: id
         in: path
         description: Id of the Flight to update
         required: true
