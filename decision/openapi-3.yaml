@@ -576,27 +576,9 @@ components:
         customTemplate:
           type: string
         data:
-          $ref: '#/components/schemas/DecisionData'
+          type: object
         body:
           type: string
-    DecisionData:
-      type: object
-      properties:
-        imageUrl:
-          type: string
-          format: uri
-        fileName:
-          type: string
-        title:
-          type: string
-        width:
-          type: integer
-          format: int32
-        height:
-          type: integer
-          format: int32
-        customData:
-          type: object
     PricingData:
       type: object
       properties:
