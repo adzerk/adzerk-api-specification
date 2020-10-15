@@ -418,6 +418,9 @@ components:
           description: RTB requests only - sets an Identifier for Advertisers (IFA or IDFA)
           type: string
           nullable: true
+        parallel:
+          type: boolean
+          nullable: true
       required:
         - placements
     Placement:
