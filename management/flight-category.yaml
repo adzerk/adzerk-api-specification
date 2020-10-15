@@ -49,7 +49,7 @@ paths:
     get:
       tags:
         - flight-category
-      operationId: getForFlight
+      operationId: listForFlight
       security:
         - ApiKeyAuth: []
       parameters:
@@ -87,7 +87,7 @@ paths:
     get:
       tags:
         - flight-category
-      operationId: get
+      operationId: list
       security:
         - ApiKeyAuth: []
       parameters:

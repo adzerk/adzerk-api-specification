@@ -45,6 +45,7 @@ paths:
                       - brandId
                       - campaignId
                       - optionId
+                      - flightId
                       - creativeId
                       - adTypeId
                       - siteId
@@ -59,6 +60,7 @@ paths:
                   type: object
                 TimeZone:
                   type: string
+                  nullable: true
       responses:
         200:
           description: The queued report
@@ -78,7 +80,7 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: Id
+        - name: id
           in: path
           description: The id of the queued report to poll
           required: true

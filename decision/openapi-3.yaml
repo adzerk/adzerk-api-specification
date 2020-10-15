@@ -421,6 +421,18 @@ components:
         parallel:
           type: boolean
           nullable: true
+        intendedLatitude:
+          type: string
+          nullable: true
+        intendedLongitude:
+          type: string
+          nullable: true
+        includeMatchedPoints:
+          type: boolean
+          nullable: true
+        location:
+          $ref: '#/components/schemas/RequestLocation'
+          nullable: true
       required:
         - placements
     Placement:
@@ -505,6 +517,9 @@ components:
           format: int32
           minimum: -100000000
           maximum: 100000000
+          nullable: true
+        skipSelection:
+          type: boolean
           nullable: true
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
@@ -608,6 +623,10 @@ components:
           type: object
         explain:
           type: object
+        matchedPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchedPoint'
     ConsentRequest:
       type: object
       properties:
@@ -615,6 +634,20 @@ components:
           type: string
         consent:
           type: object
+    RequestLocation:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+    MatchedPoint:
+      type: object
+      properties:
+        lat:
+          type: string
+        long:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

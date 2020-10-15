@@ -272,6 +272,28 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative.yaml#/schemas/CreativeList'
+  '/v1/advertiser/{id}/trackingCode':
+    get:
+      tags:
+        - advertiser
+      description: Get Tracking Code for an Advertiser
+      operationId: getTrackingCode
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the Advertiser to generate Tracking Code for
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Tracking Code
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
 components:
   securitySchemes:
     $ref: './components/security-schemes.yaml#/components/securitySchemes'
