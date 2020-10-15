@@ -515,6 +515,9 @@ components:
           minimum: -100000000
           maximum: 100000000
           nullable: true
+        skipSelection:
+          type: boolean
+          nullable: true
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
