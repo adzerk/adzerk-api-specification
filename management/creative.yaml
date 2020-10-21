@@ -239,6 +239,46 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/creative.yaml#/schemas/Creative'
+
+  '/v1/advertiser/{id}/creatives':
+    get:
+      tags:
+        - creative
+      description: List Creatives for Advertiser
+      operationId: listForAdvertiser
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Advertiser Id to list Creatives for
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Creatives for the Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/creative.yaml#/schemas/CreativeList'
 components:
   securitySchemes:
     $ref: './components/security-schemes.yaml#/components/securitySchemes'
