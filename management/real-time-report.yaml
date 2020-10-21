@@ -161,6 +161,38 @@ paths:
             application/json:
               schema:
                 type: object
+  /v1/instantcounts/network:
+    get:
+      tags:
+        - real-time-report
+      operationId: getNetworkCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The network counts
+          content:
+            application/json:
+              schema:
+                type: object
   /v1/instantcounts/bulk:
     post:
       tags:
