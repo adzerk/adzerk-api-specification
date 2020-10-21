@@ -35,6 +35,8 @@ paths:
                 StartDateISO:
                   type: string
                   format: date
+                  deprecated: true
+                  default: '2017-01-01T00:00:00.0000000'
                 IsActive:
                   type: boolean
                   nullable: true
