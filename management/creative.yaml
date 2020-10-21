@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
-  title: Adzerk Management API - Creative Templates
-  description: Creative Template related Adzerk Management API
+  title: Adzerk Management API - Creatives
+  description: Creatives related Adzerk Management API
   version: '1.0'
 servers:
   - url: 'https://api.adzerk.net'
 tags:
   - name: creative
-    description: Manage Creative Templates
+    description: Manage Creatives
 paths:
   /v1/creative:
     post:
