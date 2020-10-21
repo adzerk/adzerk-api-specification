@@ -430,9 +430,6 @@ components:
         includeMatchedPoints:
           type: boolean
           nullable: true
-        location:
-          $ref: '#/components/schemas/RequestLocation'
-          nullable: true
       required:
         - placements
     Placement:
@@ -555,6 +552,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
+        matchedPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchedPoint'
         pricing:
           $ref: '#/components/schemas/PricingData'
     Event:
@@ -605,10 +606,6 @@ components:
           type: object
         explain:
           type: object
-        matchedPoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchedPoint'
     ConsentRequest:
       type: object
       properties:
@@ -616,13 +613,6 @@ components:
           type: string
         consent:
           type: object
-    RequestLocation:
-      type: object
-      properties:
-        latitude:
-          type: string
-        longitude:
-          type: string
     MatchedPoint:
       type: object
       properties:
