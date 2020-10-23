@@ -32,10 +32,13 @@ paths:
               properties:
                 CountryCode:
                   type: string
+                  nullable: true
                 Region:
                   type: string
+                  nullable: true
                 MetroCode:
                   type: string
+                  nullable: true
                 IsExclude:
                   type: boolean
                   nullable: true
@@ -76,10 +79,13 @@ paths:
               properties:
                 CountryCode:
                   type: string
+                  nullable: true
                 Region:
                   type: string
+                  nullable: true
                 MetroCode:
                   type: string
+                  nullable: true
                 IsExclude:
                   type: boolean
                   nullable: true
