@@ -39,7 +39,7 @@ paths:
                   type: integer
                   format: int32
                   nullable: true
-                IsExcluded:
+                IsExclude:
                   type: boolean
                   default: false
                   nullable: true
@@ -86,7 +86,7 @@ paths:
                   type: integer
                   format: int32
                   nullable: true
-                IsExcluded:
+                IsExclude:
                   type: boolean
                   default: false
                   nullable: true
