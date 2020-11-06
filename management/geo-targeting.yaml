@@ -37,7 +37,8 @@ paths:
                   type: string
                   nullable: true
                 MetroCode:
-                  type: string
+                  type: integer
+                  format: int32
                   nullable: true
                 IsExclude:
                   type: boolean
@@ -84,7 +85,8 @@ paths:
                   type: string
                   nullable: true
                 MetroCode:
-                  type: string
+                  type: integer
+                  format: int32
                   nullable: true
                 IsExclude:
                   type: boolean
