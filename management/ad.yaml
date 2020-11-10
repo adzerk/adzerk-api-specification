@@ -329,6 +329,7 @@ paths:
         - name: siteId
           in: query
           description: The site in your network where the impression and/or click should be tracked. The site must be eligible to serve the ad (i.e. the ad's flight belongs to a channel the site is associated with).
+          required: true
           schema:
             type: integer
             format: int32
