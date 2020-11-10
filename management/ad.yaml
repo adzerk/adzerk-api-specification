@@ -113,7 +113,7 @@ paths:
       tags:
         - ad
       description: List Ads for a Flight
-      operationId: listByFlight
+      operationId: listForFlight
       security:
         - ApiKeyAuth: []
       parameters:
