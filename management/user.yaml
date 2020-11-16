@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Scheduled Reporting
+  description: Scheduled Reporting related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: user
+    description: User Management
+paths:
+  /v1/login:
+    get:
+      tags:
+        - user
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Scheduled Reports
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/user.yaml#/schemas/UserList'
+    post:
+      tags:
+        - user
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Email
+                - Password
+              properties:
+                Email:
+                  type: string
+                Password:
+                  type: string
+                Name:
+                  type: string
+                  nullable: true
+      responses:
+        200:
+          description: The user
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/user.yaml#/schemas/User'
+  '/v1/login/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Id of the User to update
+        required: true
+        schema:
+          type: integer
+    put:
+      tags:
+        - user
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - Email
+                - Name
+              properties:
+                id:
+                  type: integer
+                  format: int32
+                Email:
+                  type: string
+                Name:
+                  type: string
+      responses:
+        200:
+          description: Updated User
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/user.yaml#/schemas/User'
+    get:
+      tags:
+        - user
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The User
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/user.yaml#/schemas/User'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

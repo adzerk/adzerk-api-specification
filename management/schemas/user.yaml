@@ -1,0 +1,14 @@
+schemas:
+
+  User:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Email:
+        type: string
+      Password:
+        type: string
+      Name:
+        type: string
