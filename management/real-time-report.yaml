@@ -172,6 +172,7 @@ paths:
         - name: days
           in: query
           description: The number of days since the current days
+          required: true
           schema:
             type: integer
             format: int32
