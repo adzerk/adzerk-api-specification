@@ -57,7 +57,9 @@ paths:
                       - regionCode
                       - city
                 Parameters:
-                  type: object
+                  type: array
+                  items:
+                    type: object
                 TimeZone:
                   type: string
                   nullable: true
