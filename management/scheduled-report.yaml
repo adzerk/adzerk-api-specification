@@ -125,7 +125,7 @@ paths:
                 ShowEvents:
                   type: boolean
                   nullable: true
-                ShowClickBuckets:
+                ShowClickBucketing:
                   type: boolean
                   nullable: true
                 ShowRevenue:
