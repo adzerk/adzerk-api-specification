@@ -144,9 +144,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
-  '/v1/report/schedule/{ScheduledReportID}':
+  '/v1/report/schedule/{id}':
     parameters:
-      - name: ScheduledReportID
+      - name: id
         in: path
         description: The Report Id
         required: true
@@ -166,9 +166,9 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
-  '/v1/report/schedule/{ScheduledReportID}/delete':
+  '/v1/report/schedule/{id}/delete':
     parameters:
-      - name: ScheduledReportID
+      - name: id
         in: path
         description: The Report Id
         required: true
