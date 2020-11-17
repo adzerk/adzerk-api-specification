@@ -90,8 +90,6 @@ paths:
               type: object
               required:
                 - id
-                - Email
-                - Name
               properties:
                 id:
                   type: integer
