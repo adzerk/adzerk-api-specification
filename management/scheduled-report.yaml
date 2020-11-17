@@ -178,7 +178,7 @@ paths:
     get:
       tags:
         - scheduled-report
-      operationId: get
+      operationId: delete
       security:
         - ApiKeyAuth: []
       responses:
