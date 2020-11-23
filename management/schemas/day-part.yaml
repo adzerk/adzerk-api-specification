@@ -1,0 +1,28 @@
+schemas:
+
+  DayPart:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+
+  DayPartList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/DayPart'

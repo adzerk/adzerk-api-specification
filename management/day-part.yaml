@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Scheduled Reporting
+  description: Scheduled Reporting related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: day-part
+    description: Day Parting
+paths:
+  '/v1/flight/{flightId}/dayparting':
+    parameters:
+      - name: flightId
+        in: path
+        description: Id of the Flight to Day Part
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - day-part
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Day Parts
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/day-part.yaml#/schemas/DayPartList'
+    post:
+      tags:
+        - day-part
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - StartTime
+                - EndTime
+                - WeekDays
+              properties:
+                StartTime:
+                  type: string
+                  format: date|HH:MM:SS
+                EndTime:
+                  type: string
+                  format: date|HH:MM:SS
+                WeekDays:
+                  type: array
+                  items:
+                    type: string
+                    enum: ['SU','MO','TU','WE','TH','FR','SA']
+      responses:
+        200:
+          description: The Day Part
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/day-part.yaml#/schemas/DayPart'
