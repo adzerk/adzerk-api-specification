@@ -81,7 +81,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/day-part.yaml#/schemas/DayPart'
+                type: object
+                properties:
+                  TimepartId:
+                    type: integer
+                    format: int32
   '/v1/flight/{flightId}/dayparting/{id}':
     parameters:
       - name: flightId
