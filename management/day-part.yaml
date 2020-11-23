@@ -82,3 +82,60 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/day-part.yaml#/schemas/DayPart'
+  '/v1/flight/{flightId}/dayparting/{id}':
+    parameters:
+      - name: flightId
+        in: path
+        description: Id of the Flight to Day Part
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: Id of the Day Part
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - day-part
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Day Part
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/day-part.yaml#/schemas/DayPart'
+  '/v1/flight/{flightId}/dayparting/{id}/delete':
+    parameters:
+      - name: flightId
+        in: path
+        description: Id of the Flight to Day Part
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: Id of the Day Part
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - day-part
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: Successfully Deleted
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
