@@ -66,10 +66,10 @@ paths:
               properties:
                 StartTime:
                   type: string
-                  format: date|HH:MM:SS
+                  format: time|HH:MM:SS
                 EndTime:
                   type: string
-                  format: date|HH:MM:SS
+                  format: time|HH:MM:SS
                 WeekDays:
                   type: array
                   items:
