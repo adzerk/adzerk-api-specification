@@ -76,7 +76,7 @@ paths:
                     type: string
                     enum: ['SU','MO','TU','WE','TH','FR','SA']
       responses:
-        200:
+        201:
           description: The Day Part
           content:
             application/json:
@@ -138,7 +138,7 @@ paths:
       security:
         - ApiKeyAuth: []
       responses:
-        200:
+        204:
           description: Successfully Deleted
 components:
   securitySchemes:
