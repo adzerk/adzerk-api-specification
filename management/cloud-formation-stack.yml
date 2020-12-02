@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 Hosting Bucket for the Management API Specification
+Resources:
+  PublicHostingBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      AccessControl: PublicRead
+      BucketName: management-api-specification
+Outputs:
+  WebsiteURL:
+    Value:
+      'Fn::GetAtt':
+        - PublicHostingBucket
+        - WebsiteURL
+    Description: URL for website hosted on S3
