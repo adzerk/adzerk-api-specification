@@ -28,4 +28,4 @@ jobs:
       - name: Push specifications to S3
         run: |
           cd management
-          aws s3 cp . s3://developer-exp-management-api-specification --recursive --include "*.yaml"
+          aws s3 cp . s3://developer-exp-management-api-specification --recursive --exclude "*" --include "*.yaml"
