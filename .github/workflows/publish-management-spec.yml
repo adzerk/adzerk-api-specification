@@ -22,6 +22,4 @@ jobs:
         with:
           name: developer-exp-management-api-spec-hosting
           template: management/cloud-formation-stack.yml
-          tags:
-            - Key: BillingGroup
-              Value: DeveloperExperience
+          tags: '[{"Key": "BillingGroup", "Value", "DeveloperExperience"}]'
