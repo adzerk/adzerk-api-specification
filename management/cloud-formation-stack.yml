@@ -1,16 +1,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: S3 Hosting Bucket for the Management API Specification
 Resources:
-  DeveloperExpManagementApiHosting:
+  ManagementApiSpecHostingBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     Properties:
       AccessControl: PublicRead
-      BucketName: management-api-specification
+      BucketName: developer-exp-management-api-specification
 Outputs:
   WebsiteURL:
     Value:
       'Fn::GetAtt':
-        - DeveloperExpManagementApiHosting
+        - ManagementApiSpecHostingBucket
         - WebsiteURL
     Description: URL for website hosted on S3
