@@ -4,7 +4,7 @@ on:
     branches: [master]
 jobs:
   deploy:
-    name: Deploy CloudFormation Stack
+    name: Deploy OpenAPI Specifications to S3
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,10 +22,16 @@ jobs:
         with:
           name: developer-exp-management-api-spec-hosting
           template: management/cloud-formation-stack.yml
-          tags: '[{"Key": "BillingGroup", "Value": "DeveloperExperience"}]'
+          tags: '[{"Key": "BillingGroup", "Value": "Developer Experience"}]'
           no-fail-on-empty-changeset: 1
 
-      - name: Push specifications to S3
+      - name: Publish latest specifications to S3
         run: |
           cd management
           aws s3 cp . s3://developer-exp-management-api-specification --recursive --exclude "*" --include "*.yaml" --acl "public-read"
+
+      - name: Publish tagged version to S3
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          cd management
+          aws s3 cp . s3://developer-exp-management-api-specification/${GITHUB_REF##*/}/ --recursive --exclude "*" --include "*.yaml" --acl "public-read"
