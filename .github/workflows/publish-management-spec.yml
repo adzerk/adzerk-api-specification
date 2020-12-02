@@ -22,10 +22,10 @@ jobs:
         with:
           name: developer-exp-management-api-spec-hosting
           template: management/cloud-formation-stack.yml
-          tags: '[{"Key": "BillingGroup", "Value", "DeveloperExperience"}]'
+          tags: '[{"Key": "BillingGroup", "Value": "DeveloperExperience"}]'
           no-fail-on-empty-changeset: 1
 
       - name: Push specifications to S3
         run: |
           cd management
-          aws s3 cp . s3://developer-exp-management-api-specification --recursive --exclude "*" --include "*.yaml"
+          aws s3 cp . s3://developer-exp-management-api-specification --recursive --exclude "*" --include "*.yaml" --acl "public-read"
