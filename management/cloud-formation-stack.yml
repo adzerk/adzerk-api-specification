@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: S3 Hosting Bucket for the Management API Specification
 Resources:
-  developer-exp-management-api-hosting:
+  DeveloperExpManagementApiHosting:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     Properties:
