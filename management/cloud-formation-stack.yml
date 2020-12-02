@@ -7,6 +7,8 @@ Resources:
     Properties:
       AccessControl: PublicRead
       BucketName: developer-exp-management-api-specification
+      WebsiteConfiguration:
+        RoutingRules: []
 Outputs:
   WebsiteURL:
     Value:
