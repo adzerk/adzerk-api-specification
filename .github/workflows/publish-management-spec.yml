@@ -23,6 +23,7 @@ jobs:
           name: developer-exp-management-api-spec-hosting
           template: management/cloud-formation-stack.yml
           tags: '[{"Key": "BillingGroup", "Value", "DeveloperExperience"}]'
+          no-fail-on-empty-changeset: 1
 
       - name: Push specifications to S3
         run: |
