@@ -11,6 +11,6 @@ Outputs:
   WebsiteURL:
     Value:
       'Fn::GetAtt':
-        - developer-exp-management-api-hosting
+        - DeveloperExpManagementApiHosting
         - WebsiteURL
     Description: URL for website hosted on S3
