@@ -68,6 +68,7 @@ paths:
             type: integer
             format: int32
             nullable: true
+            default: 500
         - name: page
           in: query
           description: The page number to be returned
@@ -99,6 +100,7 @@ paths:
             type: integer
             format: int32
             nullable: true
+            default: 500
         - name: page
           in: query
           description: The page number to be returned
