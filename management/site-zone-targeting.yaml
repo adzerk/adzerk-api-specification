@@ -29,12 +29,11 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - SiteId
               properties:
                 SiteId:
                   type: integer
                   format: int32
+                  nullable: true
                 ZoneId:
                   type: integer
                   format: int32
