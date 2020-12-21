@@ -63,6 +63,9 @@ paths:
                 Name:
                   type: string
                   nullable: true
+                DefaultTimeZone:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: The user
@@ -101,6 +104,9 @@ paths:
                   type: string
                 Name:
                   type: string
+                DefaultTimeZone:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: Updated User

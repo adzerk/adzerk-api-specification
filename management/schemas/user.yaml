@@ -12,6 +12,8 @@ schemas:
         type: string
       Name:
         type: string
+      DefaultTimeZone:
+        type: string
 
   UserList:
     type: object
