@@ -189,7 +189,7 @@ paths:
                 Keywords:
                   type: string
                   nullable: true
-                CustomTarget:
+                CustomTargeting:
                   type: string
                   nullable: true
                 CustomFieldsJSON:
@@ -444,7 +444,7 @@ paths:
                 Keywords:
                   type: string
                   nullable: true
-                CustomTarget:
+                CustomTargeting:
                   type: string
                   nullable: true
                 CustomFieldsJSON:
