@@ -509,6 +509,13 @@ components:
           description: (BETA) The name of the eCPM Partition that should be used to source eCPM data for auctions
           type: string
           nullable: true
+          deprecated: true
+        ecpmPartitions:
+          description: (BETA) The names of the eCPM Partitions that should be used to source eCPM data for auctions
+          nullable: true
+          type: array
+          items:
+            type: string
         eventMultiplier:
           type: integer
           format: int32
@@ -517,6 +524,9 @@ components:
           nullable: true
         skipSelection:
           type: boolean
+          nullable: true
+        adQuery:
+          type: object
           nullable: true
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
