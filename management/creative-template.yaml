@@ -99,6 +99,9 @@ paths:
                       Default:
                         type: object
                         nullable: true
+                      AdType:
+                        type: boolean
+                        default: false
                 Contents:
                   type: array
                   items:
