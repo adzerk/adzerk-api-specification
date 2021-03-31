@@ -101,7 +101,7 @@ paths:
                         nullable: true
                       AdQuery:
                         type: boolean
-                        default: false
+                        nullable: true
                 Contents:
                   type: array
                   items:
