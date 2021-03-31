@@ -99,7 +99,7 @@ paths:
                       Default:
                         type: object
                         nullable: true
-                      AdType:
+                      AdQuery:
                         type: boolean
                         default: false
                 Contents:
