@@ -2013,4 +2013,5 @@ components:
     CreativeTemplateUpdate:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
   securitySchemes:
-    $ref: './components/security-schemes.yaml#/components/securitySchemes'
+    ApiKeyAuth:
+      $ref: './components/security-schemes.yaml#/components/securitySchemes/ApiKeyAuth'
