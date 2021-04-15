@@ -12,6 +12,8 @@ schemas:
         type: string
       Name:
         type: string
+      AccessLevel:
+        $ref: '#/schemas/AccessLevel'
       DefaultTimeZone:
         type: string
 
@@ -34,3 +36,10 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/User'
+
+  AccessLevel:
+    type: string
+    enum:
+      - read-only
+      - editor
+      - admin
