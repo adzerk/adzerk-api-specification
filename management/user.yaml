@@ -63,6 +63,9 @@ paths:
                 Name:
                   type: string
                   nullable: true
+                AccessLevel:
+                  $ref: './schemas/user.yaml#/schemas/AccessLevel'
+                  nullable: true
                 DefaultTimeZone:
                   type: string
                   nullable: true
@@ -104,6 +107,9 @@ paths:
                   type: string
                 Name:
                   type: string
+                AccessLevel:
+                  $ref: './schemas/user.yaml#/schemas/AccessLevel'
+                  nullable: true
                 DefaultTimeZone:
                   type: string
                   nullable: true
