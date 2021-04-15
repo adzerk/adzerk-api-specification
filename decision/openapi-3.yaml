@@ -422,10 +422,16 @@ components:
           type: boolean
           nullable: true
         intendedLatitude:
-          type: string
+          type: number
+          format: float
           nullable: true
         intendedLongitude:
-          type: string
+          type: number
+          format: float
+          nullable: true
+        radius:
+          type: number
+          format: float
           nullable: true
         includeMatchedPoints:
           type: boolean
