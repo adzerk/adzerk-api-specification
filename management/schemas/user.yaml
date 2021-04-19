@@ -40,6 +40,6 @@ schemas:
   AccessLevel:
     type: string
     enum:
-      - read-only
-      - editor
-      - admin
+      - read
+      - edit
+      - admn
