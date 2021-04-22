@@ -32,11 +32,6 @@ paths:
                   format: int32
                 Name:
                   type: string
-                StartDateISO:
-                  type: string
-                  format: date
-                  deprecated: true
-                  default: '2017-01-01T00:00:00.0000000'
                 IsActive:
                   type: boolean
                   nullable: true
@@ -151,10 +146,6 @@ paths:
                   format: int32
                 Name:
                   type: string
-                StartDateISO:
-                  type: string
-                  format: date
-                  nullable: true
                 IsActive:
                   type: boolean
                 IsDeleted:
