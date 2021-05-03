@@ -1,0 +1,74 @@
+schemas:
+
+  DistanceTarget:
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int32
+      FlightId:
+        type: integer
+        format: int32
+      Distance:
+        type: number
+        format: float
+        nullable: true
+      Latitude:
+        type: number
+        format: float
+        nullable: true
+      Longitude:
+        type: number
+        format: float
+        nullable: true
+      StreetAddress:
+        type: string
+        nullable: true
+
+  BatchUpload:
+    type: object
+    properties:
+      Distance:
+        type: number
+        format: float
+      Latitude:
+        type: number
+        format: float
+      Longitude:
+        type: number
+        format: float
+
+  BadRequest:
+    type: object
+    properties:
+      Errors:
+        type: array
+        items:
+          type: object
+          properties:
+            Message:
+              type: string
+            Values:
+              type: object
+              items:
+                type: object
+                properties:
+                  Distance:
+                    type: integer
+                    format: float
+                  StreetAddress:
+                    type: string
+                  FlightId:
+                    type: integer
+                    format: int32
+
+  ServiceUnavailable:
+    type: object
+    properties:
+      Errors:
+        type: array
+        items:
+          type: object
+          properties:
+            Message:
+              type: string
