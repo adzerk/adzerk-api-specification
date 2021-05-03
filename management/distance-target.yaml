@@ -1,0 +1,261 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Distance Targeting
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: distance-target
+    description: Manage Distance Targeting
+paths:
+  '/v1/flight/{flightId}/distance':
+    post:
+      tags:
+        - distance-targeting
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Distance:
+                  type: integer
+                  format: float
+                  nullable: true
+                Latitude:
+                  type: integer
+                  format: float
+                  nullable: true
+                Longitude:
+                  type: integer
+                  format: float
+                  nullable: true
+                StreetAddress:
+                  type: string
+                  nullable: true
+      responses:
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/BadRequest'
+        503:
+          description: Geocoding service unavanilable
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/ServiceUnavailable'
+        200:
+          description: The newly created Distance Target
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
+  '/v1/flight/{flightId}/distance/batch':
+    post:
+      tags:
+        - distance-targeting
+      operationId: batchUpload
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ReplaceExisting:
+                  type: boolean
+                  nullable: true
+                Geometries:
+                  type: array
+                  items: 
+                    $ref: './schemas/distance-target.yaml#/schemas/BatchUpload'
+      responses:
+        200:
+          description: The newly uploaded Distance Target(s)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  InsertedGeometries: 
+                    type: integer
+                    format: int32
+  '/v1/flight/{flightId}/distance/{geometryId}':
+    put:
+      tags:
+        - distance-targeting
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: geometryId
+          description: The Id of the Distance Targeting geometry
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Distance:
+                  type: integer
+                  format: float
+                  nullable: true
+                Latitude:
+                  type: integer
+                  format: float
+                  nullable: true
+                Longitude:
+                  type: integer
+                  format: float
+                  nullable: true
+                StreetAddress:
+                  type: string
+                  nullable: true
+      responses:
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/BadRequest'
+        503:
+          description: Geocoding service unavanilable
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/ServiceUnavailable'
+        200:
+          description: The updated Distance Target geometry
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
+  '/v1/flight/{flightId}/distance/{geometryId}':
+    get:
+      tags:
+        - distance-targeting
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: geometryId
+          description: The Id of the Distance Targeting geometry
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message: string
+        200:
+          description: The successful get Distance Target geometry
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
+  '/v1/flight/{flightId}/distance/':
+    get:
+      tags:
+        - distance-targeting
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The successful list of Distance Target geometries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
+  '/v1/flight/{flightId}/distance/{geometryId}':
+    delete:
+      tags:
+        - distance-targeting
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: geometryId
+          description: The Id of the Distance Targeting geometry
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message: string
+        200:
+          description: Successfully deleted
