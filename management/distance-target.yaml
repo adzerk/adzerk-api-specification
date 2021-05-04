@@ -47,17 +47,17 @@ paths:
                   nullable: true
       responses:
         400:
-          description: Bad Request
+          description: Bad Request Response
           content:
             application/json:
               schema:
-                $ref: './schemas/distance-target.yaml#/schemas/BadRequest'
+                type: object
         503:
           description: Geocoding service unavanilable
           content:
             application/json:
               schema:
-                $ref: './schemas/distance-target.yaml#/schemas/ServiceUnavailable'
+                type: object
         200:
           description: The newly created Distance Target
           content:
@@ -91,7 +91,15 @@ paths:
                 Geometries:
                   type: array
                   items: 
-                    $ref: './schemas/distance-target.yaml#/schemas/BatchUpload'
+                    Distance:
+                      type: number
+                      format: float
+                    Latitude:
+                      type: number
+                      format: float
+                    Longitude:
+                      type: number
+                      format: float
       responses:
         200:
           description: The newly uploaded Distance Target(s)
@@ -148,17 +156,17 @@ paths:
                   nullable: true
       responses:
         400:
-          description: Bad Request
+          description: Bad Request Response
           content:
             application/json:
               schema:
-                $ref: './schemas/distance-target.yaml#/schemas/BadRequest'
+                type: object
         503:
           description: Geocoding service unavanilable
           content:
             application/json:
               schema:
-                $ref: './schemas/distance-target.yaml#/schemas/ServiceUnavailable'
+                type: object
         200:
           description: The updated Distance Target geometry
           content:
@@ -189,13 +197,11 @@ paths:
             format: int32
       responses:
         400:
-          description: Bad Request
+          description: Bad Request Response
           content:
             application/json:
               schema:
                 type: object
-                properties:
-                  Message: string
         200:
           description: The successful get Distance Target geometry
           content:
@@ -250,12 +256,10 @@ paths:
             format: int32
       responses:
         400:
-          description: Bad Request
+          description: Bad Request Response
           content:
             application/json:
               schema:
                 type: object
-                properties:
-                  Message: string
         200:
           description: Successfully deleted
