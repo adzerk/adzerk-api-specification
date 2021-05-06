@@ -64,6 +64,29 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
+    get:
+      tags:
+        - distance-targeting
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          description: The Flight Id to associate with the Distance Targeting geometry object
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The successful list of Distance Target geometries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
   '/v1/flight/{flightId}/distance/batch':
     post:
       tags:
@@ -173,7 +196,6 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
-  '/v1/flight/{flightId}/distance/{geometryId}':
     get:
       tags:
         - distance-targeting
@@ -208,31 +230,6 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
-  '/v1/flight/{flightId}/distance/':
-    get:
-      tags:
-        - distance-targeting
-      operationId: list
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - name: flightId
-          description: The Flight Id to associate with the Distance Targeting geometry object
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        200:
-          description: The successful list of Distance Target geometries
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: './schemas/distance-target.yaml#/schemas/DistanceTarget'
-  '/v1/flight/{flightId}/distance/{geometryId}':
     delete:
       tags:
         - distance-targeting
