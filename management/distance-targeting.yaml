@@ -53,7 +53,7 @@ paths:
               schema:
                 type: object
         503:
-          description: Geocoding service unavanilable
+          description: Geocoding service unavailable
           content:
             application/json:
               schema:
@@ -185,7 +185,7 @@ paths:
               schema:
                 type: object
         503:
-          description: Geocoding service unavanilable
+          description: Geocoding service unavailable
           content:
             application/json:
               schema:
