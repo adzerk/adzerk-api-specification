@@ -534,6 +534,14 @@ components:
         adQuery:
           type: object
           nullable: true
+        floorPrice:
+          type: integer
+          format: float
+          nullable: true
+        floorCpc:
+          type: integer
+          format: float
+          nullable: true
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
