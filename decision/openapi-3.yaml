@@ -535,11 +535,11 @@ components:
           type: object
           nullable: true
         floorPrice:
-          type: integer
+          type: number
           format: float
           nullable: true
         floorCpc:
-          type: integer
+          type: number
           format: float
           nullable: true
     User:
