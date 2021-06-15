@@ -61,9 +61,17 @@ schemas:
         type: integer
         format: int32
         nullable: true
+      DailyCapAmountDecimal:
+        type: number
+        format: float
+        nullable: true
       LifetimeCapAmount:
         type: integer
         format: int32
+        nullable: true
+      LifetimeCapAmountDecimal:
+        type: number
+        format: float
         nullable: true
       Keywords:
         type: string
