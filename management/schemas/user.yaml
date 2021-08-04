@@ -16,6 +16,8 @@ schemas:
         $ref: '#/schemas/AccessLevel'
       DefaultTimeZone:
         type: string
+      CanAccessStudio:
+        type: boolean
 
   UserList:
     type: object
