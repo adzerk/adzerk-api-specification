@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Adzerk Management API - Scheduled Reporting
-  description: Scheduled Reporting related Adzerk Management API
+  title: Adzerk Management API - User Management
+  description: Manage access to Kevel, create new Kevel users, or update the names or emails of Kevel users in your account
   version: '1.0'
 servers:
   - url: 'https://api.adzerk.net'
@@ -69,6 +69,8 @@ paths:
                 DefaultTimeZone:
                   type: string
                   nullable: true
+                CanAccessStudio:
+                  type: boolean
       responses:
         200:
           description: The user
@@ -113,6 +115,8 @@ paths:
                 DefaultTimeZone:
                   type: string
                   nullable: true
+                CanAccessStudio:
+                  type: boolean
       responses:
         200:
           description: Updated User
