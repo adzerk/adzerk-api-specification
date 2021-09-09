@@ -554,6 +554,8 @@ components:
       properties:
         adId:
           type: integer
+        advertiserId:
+          type: integer
         creativeId:
           type: integer
         flightId:
