@@ -179,6 +179,8 @@ paths:
                     properties:
                       Path:
                         type: array
+                        items:
+                          type: string
                       Op:
                         type: string
                         default: Update
