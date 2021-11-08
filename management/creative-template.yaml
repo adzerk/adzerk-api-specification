@@ -57,7 +57,6 @@ paths:
               required:
                 - Name
                 - Description
-              x-property-casing: pascal
               properties:
                 Name:
                   type: string
@@ -188,6 +187,7 @@ paths:
                         enum: [Update, Delete, InsertAfter]
                       Value:
                         type: object
+                        x-property-casing: pascal
       responses:
         200:
           description: The updated Creative Template
