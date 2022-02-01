@@ -86,7 +86,7 @@ paths:
                         pattern: '^ct[a-zA-Z0-9]+'
                       Type:
                         type: string
-                        enum: [String, File, ExternalFile, Array]
+                        enum: [String, File, ExternalFile, Array, Object]
                       Required:
                         type: boolean
                         default: false
