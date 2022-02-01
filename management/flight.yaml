@@ -92,6 +92,33 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/flight.yaml#/schemas/FlightList'
+  '/v1/advertiser/{advertiserId}/flight':
+    get:
+      tags:
+        - flight
+      description: List Flights For an Advertiser
+      operationId: listForAdvertiser
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: advertiserId
+          in: path
+          description: Id of the Advertiser to get lists
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: isActive
+          in: query
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Paged list of Flights
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/flight.yaml#/schemas/FlightList'
   /v1/flight/{id}:
     parameters:
       - name: id
