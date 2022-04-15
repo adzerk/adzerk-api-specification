@@ -179,6 +179,39 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/ad.yaml#/schemas/AdList'
+  '/v1/ad':
+    get:
+      tags:
+        - ad
+      description: List Ads for a Network
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+            default: 500
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Ads
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/AdList'
   '/v1/flight/{flightId}/creative/{id}':
     put:
       tags:
