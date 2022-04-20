@@ -184,7 +184,7 @@ paths:
       tags:
         - ad
       description: List Ads for a Network
-      operationId: list
+      operationId: listForNetwork
       security:
         - ApiKeyAuth: []
       parameters:
