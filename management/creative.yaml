@@ -94,7 +94,7 @@ paths:
       tags:
         - creative
       description: List Creatives for a Network
-      operationId: list
+      operationId: listForNetwork
       security:
         - ApiKeyAuth: []
       parameters:
