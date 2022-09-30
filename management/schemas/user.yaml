@@ -43,5 +43,6 @@ schemas:
     type: string
     enum:
       - read
+      - amgr
       - edit
       - admn
