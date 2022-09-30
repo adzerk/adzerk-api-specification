@@ -54,7 +54,6 @@ paths:
               type: object
               required:
                 - Email
-                - Password
               properties:
                 Email:
                   type: string
