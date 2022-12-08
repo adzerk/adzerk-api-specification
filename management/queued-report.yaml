@@ -32,7 +32,7 @@ paths:
                   format: date-time
                 EndDateISO:
                   type: string
-                  format: date-timme
+                  format: date-time
                 GroupBy:
                   type: array
                   items:
