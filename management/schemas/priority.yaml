@@ -53,6 +53,13 @@ schemas:
       RelevancyScoreConfigJSON:
         type: string
         nullable: true
+      FloorCPC:
+        type: number
+        format: float
+        nullable: true
+      SecondPriceGroupBy:
+        type: string
+        nullable: true
 
   PriorityList:
     type: object
