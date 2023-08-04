@@ -83,6 +83,22 @@ schemas:
         type: string
         nullable: true
         deprecated: true
+      Created:
+        type: string
+        format: date-time
+        nullable: true
+      LastModified:
+        type: string
+        format: date-time
+        nullable: true
+      Version:
+        type: integer
+        format: int32
+        nullable: true
+      SalespersonId:
+        type: integer
+        format: int32
+        nullable: true
 
   CampaignList:
     type: object
