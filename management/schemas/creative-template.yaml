@@ -50,6 +50,10 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/CreativeTemplateContents'
+      MaxBytes:
+        type: integer
+        format: int32
+        nullable: true
 
   CreativeTemplateUpdateOperation:
     type: object
