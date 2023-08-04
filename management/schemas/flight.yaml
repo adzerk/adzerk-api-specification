@@ -235,6 +235,46 @@ schemas:
         type: boolean
         nullable: true
         deprecated: true
+      AttributionClick:
+        type: object
+        nullable: true
+        properties:
+          MatchType:
+            type: string
+            nullable: false
+          LookbackWindow:
+            type: integer
+            format: int32
+            nullable: false
+      AttributionView:
+        type: object
+        nullable: true
+        properties:
+          MatchType:
+            type: string
+            nullable: false
+          LookbackWindow:
+            type: integer
+            format: int32
+            nullable: false
+      TargetROAS:
+        type: number
+        format: float
+        nullable: true
+      Created:
+        type: string
+        format: date-time
+        nullable: true
+      LastModified:
+        type: string
+        format: date-time
+        nullable: true
+      Version:
+        type: integer
+        format: int32
+        nullable: true
+
+
   BehavioralTarget:
     type: object
     properties:
