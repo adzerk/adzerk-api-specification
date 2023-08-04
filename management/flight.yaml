@@ -181,7 +181,7 @@ paths:
                 GoalType:
                   type: integer
                   format: int32
-                  enum: [1, 2, 3, 8, 9]
+                  enum: [1, 2, 3, 7, 8, 9, 10]
                 Impressions:
                   type: integer
                   format: int32
@@ -198,7 +198,7 @@ paths:
                 RateType:
                   type: integer
                   format: int32
-                  enum: [1, 2, 3, 4, 5]
+                  enum: [1, 2, 3, 4, 5, 6]
                   nullable: true
                 Price:
                   type: number
@@ -378,6 +378,36 @@ paths:
                   type: boolean
                   nullable: true
                   deprecated: true
+                AttributionClick:
+                  type: object
+                  nullable: true
+                  properties:
+                    MatchType:
+                      type: string
+                      nullable: false
+                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
+                    LookbackWindow:
+                      type: integer
+                      format: int32
+                      nullable: false
+                      enum: [1, 7, 14, 30]
+                AttributionView:
+                  type: object
+                  nullable: true
+                  properties:
+                    MatchType:
+                      type: string
+                      nullable: false
+                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
+                    LookbackWindow:
+                      type: integer
+                      format: int32
+                      nullable: false
+                      enum: [1, 7, 14, 30]
+                TargetROAS:
+                  type: number
+                  format: float
+                  nullable: true
       responses:
         200:
           description: Flight Updated
@@ -444,7 +474,7 @@ paths:
                 GoalType:
                   type: integer
                   format: int32
-                  enum: [1, 2, 3, 8, 9]
+                  enum: [1, 2, 3, 7, 8, 9, 10]
                 Impressions:
                   type: integer
                   format: int32
@@ -461,7 +491,7 @@ paths:
                 RateType:
                   type: integer
                   format: int32
-                  enum: [1, 2, 3, 4, 5]
+                  enum: [1, 2, 3, 4, 5, 6]
                   nullable: true
                 Price:
                   type: number
@@ -641,6 +671,36 @@ paths:
                   type: boolean
                   nullable: true
                   deprecated: true
+                AttributionClick:
+                  type: object
+                  nullable: true
+                  properties:
+                    MatchType:
+                      type: string
+                      nullable: false
+                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
+                    LookbackWindow:
+                      type: integer
+                      format: int32
+                      nullable: false
+                      enum: [1, 7, 14, 30]
+                AttributionView:
+                  type: object
+                  nullable: true
+                  properties:
+                    MatchType:
+                      type: string
+                      nullable: false
+                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
+                    LookbackWindow:
+                      type: integer
+                      format: int32
+                      nullable: false
+                      enum: [1, 7, 14, 30]
+                TargetROAS:
+                  type: number
+                  format: float
+                  nullable: true
       responses:
         200:
           description: Flight Created
