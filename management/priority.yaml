@@ -57,6 +57,13 @@ paths:
                   type: integer
                   format: int32
                   nullable: true
+                FloorCPC:
+                  type: number
+                  format: float
+                  nullable: true
+                SecondPriceGroupBy:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: The newly created priority
@@ -158,6 +165,13 @@ paths:
                   nullable: true
                 PassbackTimeout:
                   type: boolean
+                  nullable: true
+                FloorCPC:
+                  type: number
+                  format: float
+                  nullable: true
+                SecondPriceGroupBy:
+                  type: string
                   nullable: true
       responses:
         200:
