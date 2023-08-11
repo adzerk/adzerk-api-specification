@@ -1,5 +1,26 @@
 {
+  "name": "@adzerk/api-specification",
+  "version": "0.0.1",
+  "description": "Kevel API Specification",
+  "main": "index.js",
+  "scripts": {
+    "build-all": "npm run clean && npm run build-java && npm run build-javascript && npm run build-python && npm run build-ruby",
+    "build-java": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g java -o ./build/decision-java -c ./decision/codegen-config/java.json",
+    "build-javascript": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g typescript-fetch -o ./build/decision-javascript -c ./decision/codegen-config/typescript-fetch.json",
+    "build-python": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g python -o ./build/decision-python -c ./decision/codegen-config/python.json",
+    "build-ruby": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g ruby -o ./build/decision-ruby -c ./decision/codegen-config/ruby.json",
+    "clean": "rm -rf build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adzerk/adzerk-api-specification.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/adzerk/adzerk-api-specification/issues"
+  },
+  "homepage": "https://github.com/adzerk/adzerk-api-specification#readme",
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.6.0"
+    "@openapitools/openapi-generator-cli": "^2.7.0"
   }
 }

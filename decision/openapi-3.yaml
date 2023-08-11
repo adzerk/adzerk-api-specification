@@ -542,6 +542,8 @@ components:
           type: number
           format: float
           nullable: true
+        skipFilters:
+          $ref: '#/components/schemas/SkipFilters'
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
@@ -646,6 +648,12 @@ components:
           type: string
         lon:
           type: string
+    SkipFilters:
+      type: object
+      properties:
+        geolocation:
+          description: Geolocation skip filter.
+          type: boolean
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
