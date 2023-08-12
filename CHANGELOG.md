@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SkipFilters` parameter to Placement object in non-breaking, optional manner. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 - Base information to project `package.json`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 - Build scripts to `package.json`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+- CI/CD workflow that allows for Typescript implementation of the api spec to be deployed as a package to a npm registry (currently a dry-run). By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).

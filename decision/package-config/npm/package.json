@@ -1,0 +1,14 @@
+{
+  "name": "@adzerk/adzerk-api-specification-decision-typescript",
+  "description": "Decision API specification.",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
