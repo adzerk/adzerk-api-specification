@@ -4,11 +4,11 @@
   "description": "Kevel API Specification",
   "main": "index.js",
   "scripts": {
-    "build-all": "npm run clean && npm run build-java && npm run build-javascript && npm run build-python && npm run build-ruby",
-    "build-java": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g java -o ./build/decision-java -c ./decision/codegen-config/java.json",
-    "build-javascript": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g typescript-fetch -o ./build/decision-javascript -c ./decision/codegen-config/typescript-fetch.json",
-    "build-python": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g python -o ./build/decision-python -c ./decision/codegen-config/python.json",
-    "build-ruby": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g ruby -o ./build/decision-ruby -c ./decision/codegen-config/ruby.json",
+    "build-decision-all": "npm run clean && npm run build-decision-java && npm run build-decision-python && npm run build-decision-ruby && npm run build-decision-typescript",
+    "build-decision-java": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g java -o ./build/java/decision -c ./decision/codegen-config/java.json",
+    "build-decision-typescript": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g typescript-fetch -o ./build/ts/decision -c ./decision/codegen-config/typescript-fetch.json",
+    "build-decision-python": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g python -o ./build/py/decision -c ./decision/codegen-config/python.json",
+    "build-decision-ruby": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g ruby -o ./build/rb/decision -c ./decision/codegen-config/ruby.json",
     "clean": "rm -rf build"
   },
   "repository": {
