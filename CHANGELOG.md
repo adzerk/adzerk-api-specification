@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- GitHub Actions working directory references `publish-decision-spec-packages.yml`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.3] - 2023-08-14
+
+### Fixed
+
 - `package-lock.json` file as prior one didn't work with `npm clean-install`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
 ### Changed
