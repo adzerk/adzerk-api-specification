@@ -43,14 +43,32 @@ jobs:
         name: Copy Package Files into Working Directory
         run: cp decision/package-config/npm/* ${WORKINGDIRECTORY_DECISION}
 
+      - id: edd89b5d-54fa-4951-8206-54b1cef91968
+        name: Configure Project-Level .npmrc File
+        working-directory: ${WORKINGDIRECTORY_DECISION}
+        run: npm config set --location=project @adzerk:registry=https://'${NPM_REGISTRY}' //'${NPM_REGISTRY}'/:_authToken='${NPM_SECRET}'
+
       - id: c8734e87-1bb8-4340-9ab2-fd5cabb1ac6b
         name: Update Version package.json to Released Version
         working-directory: ${WORKINGDIRECTORY_DECISION}
         run: npm pkg set "version"="${GITHUB_REF_NAME}"
 
       - id: b5abe142-c11f-4951-8809-4bc118b4027d
-        name: Publish NPM Package
+        name: Publish Package to NPM
+        env:
+          NPM_REGISTRY: registry.npmjs.org
+          NPM_SECRET: ${{ secrets.NPM_TOKEN }}
         working-directory: ${WORKINGDIRECTORY_DECISION}
         run: |
-          echo "Publishing tag ${GITHUB_REF_NAME}."
+          echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
+          npm publish --dry-run
+
+      - id: c3c47fb3-2620-4dd1-898b-e867303278ea
+        name: Publish Package to GitHub Packages
+        env:
+          NPM_REGISTRY: npm.pkg.github.com
+          NPM_SECRET: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${WORKINGDIRECTORY_DECISION}
+        run: |
+          echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
           npm publish --dry-run

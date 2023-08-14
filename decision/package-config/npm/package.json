@@ -2,6 +2,10 @@
   "name": "@adzerk/api-decision-js",
   "description": "Decision API specification.",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adzerk/adzerk-api-specification.git"
+  },
   "files": [
     "dist"
   ],
