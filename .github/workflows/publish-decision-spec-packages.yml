@@ -46,9 +46,11 @@ jobs:
       - id: c8734e87-1bb8-4340-9ab2-fd5cabb1ac6b
         name: Update Version package.json to Released Version
         working-directory: ${WORKINGDIRECTORY_DECISION}
-        run: npm pkg set "version"="${VERSION_VERSION_VERSION_VERSION_VERSION_VERSION_VERSION_VERSION}"
+        run: npm pkg set "version"="${GITHUB_REF_NAME}"
 
       - id: b5abe142-c11f-4951-8809-4bc118b4027d
         name: Publish NPM Package
         working-directory: ${WORKINGDIRECTORY_DECISION}
-        run: npm publish --dry-run
+        run: |
+          echo "Publishing tag ${GITHUB_REF_NAME}."
+          npm publish --dry-run
