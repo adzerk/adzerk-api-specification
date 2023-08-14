@@ -56,6 +56,14 @@ schemas:
       Id:
         type: integer
         nullable: true
+      LastModified:
+        type: string
+        format: date-time
+        nullable: true
+      Version:
+        type: integer
+        format: int32
+        nullable: true
 
   AdvertiserList:
     type: object

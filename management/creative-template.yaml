@@ -69,6 +69,10 @@ paths:
                 IsArchived:
                   type: boolean
                   default: false
+                MaxBytes:
+                  type: integer
+                  format: int32
+                  nullable: true
                 Fields:
                   type: array
                   items:
@@ -170,6 +174,10 @@ paths:
               required:
                 - Updates
               properties:
+                MaxBytes:
+                  type: integer
+                  format: int32
+                  nullable: true
                 Updates:
                   type: array
                   items:
