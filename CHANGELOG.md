@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `package-lock.json` file as prior one didn't work with `npm clean-install`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+### Changed
+
+- `package.json` file version to latest released. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+[1.0.2] - 2023-08-14
+
 ### Changed
 
 - Updated `@openapitools/openapi-generator-cli` to latest. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
