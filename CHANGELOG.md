@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Debug statement to workflow. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.5] - 2023-08-14
+
 ### Fixed
 
 - Typescript compiler error by fixing to version `5.x` on install. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
