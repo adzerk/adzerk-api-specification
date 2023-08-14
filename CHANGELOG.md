@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Typescript compiler error by fixing to version `5.x` on install. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.4] - 2023-08-14
+
+### Fixed
+
 - GitHub Actions working directory references `publish-decision-spec-packages.yml`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
 ## [1.0.3] - 2023-08-14
