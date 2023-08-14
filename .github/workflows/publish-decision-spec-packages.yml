@@ -36,7 +36,9 @@ jobs:
 
       - id: db6068b8-f5ed-4968-847e-b642595243fd
         name: Install Typescript Compiler Globally
-        run: npm install --global typescript
+        run: |
+          npm install --global typescript@5.x
+          tsc --version
 
       - id: e842d27d-141c-47f2-b64c-2c5702984edf
         name: Compile Package
