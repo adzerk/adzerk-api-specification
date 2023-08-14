@@ -43,7 +43,9 @@ jobs:
       - id: e842d27d-141c-47f2-b64c-2c5702984edf
         name: Compile Package
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
-        run: tsc --outDir dist --declaration *.ts
+        run: |
+          tsc --outDir dist --declaration --showConfig *.ts
+          tsc --outDir dist --declaration *.ts
 
       - id: edd89b5d-54fa-4951-8206-54b1cef91968
         name: Configure Project-Level .npmrc File
