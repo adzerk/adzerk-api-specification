@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated `@openapitools/openapi-generator-cli` to latest. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+- Updated `generator-cli` version. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
 ### Added
 
