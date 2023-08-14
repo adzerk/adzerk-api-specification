@@ -4,11 +4,17 @@
   "description": "Kevel API Specification",
   "main": "index.js",
   "scripts": {
-    "build-decision-all": "npm run clean && npm run build-decision-java && npm run build-decision-python && npm run build-decision-ruby && npm run build-decision-typescript",
-    "build-decision-java": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g java -o ./build/java/decision -c ./decision/codegen-config/java.json",
-    "build-decision-typescript": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g typescript-fetch -o ./build/ts/decision -c ./decision/codegen-config/typescript-fetch.json",
-    "build-decision-python": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g python -o ./build/py/decision -c ./decision/codegen-config/python.json",
-    "build-decision-ruby": "npx @openapitools/openapi-generator-cli generate -i ./decision/openapi-3.yaml -g ruby -o ./build/rb/decision -c ./decision/codegen-config/ruby.json",
+    "build-all": "npm run build-decision-all && npm run build-management-all",
+    "build-decision-all": "npm run build-decision-csharp && npm run build-decision-java && npm run build-decision-python && npm run build-decision-ruby && npm run build-decision-typescript",
+    "build-decision-csharp": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name csharp --output ./build/cs/decision --config ./decision/codegen-config/csharp-netcore.json",
+    "build-decision-java": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name java --output ./build/java/decision --config ./decision/codegen-config/java.json",
+    "build-decision-python": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name python --output ./build/py/decision --config ./decision/codegen-config/python.json",
+    "build-decision-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name ruby --output ./build/rb/decision --config ./decision/codegen-config/ruby.json",
+    "build-decision-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name typescript-fetch --output ./build/ts/decision --config ./decision/codegen-config/typescript-fetch.json",
+    "build-management-all": "npm run build-management-csharp && npm run build-management-ruby && npm run build-management-typescript",
+    "build-management-csharp": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name csharp --output ./build/cs/management --config ./management/codegen-config/csharp-netcore.json --skip-validate-spec",
+    "build-management-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name ruby --output ./build/rb/management --config ./management/codegen-config/ruby.json --skip-validate-spec",
+    "build-management-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name typescript-fetch --output ./build/ts/management --config ./management/codegen-config/typescript-fetch.json --skip-validate-spec",
     "clean": "rm -rf build"
   },
   "repository": {
