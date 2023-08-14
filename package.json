@@ -1,6 +1,7 @@
 {
   "name": "@adzerk/api-specification",
   "version": "0.0.1",
+  "license": "Apache-2.0",
   "description": "Kevel API Specification",
   "main": "index.js",
   "scripts": {
