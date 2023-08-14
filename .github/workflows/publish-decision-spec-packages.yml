@@ -40,7 +40,7 @@ jobs:
         run: tsc --outDir dist --declaration *.ts
 
       - id: db7f8f85-c695-48a1-acfc-a2898987dfa3
-        name: Create package.json File
+        name: Copy Package Files into Working Directory
         run: cp decision/package-config/npm/* ${WORKINGDIRECTORY_DECISION}
 
       - id: c8734e87-1bb8-4340-9ab2-fd5cabb1ac6b
