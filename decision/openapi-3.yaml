@@ -542,6 +542,8 @@ components:
           type: number
           format: float
           nullable: true
+        skipFilters:
+          $ref: '#/components/schemas/SkipFilters'
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
@@ -646,6 +648,35 @@ components:
           type: string
         lon:
           type: string
+    GeoDistanceSkipFilter:
+      type: boolean
+      description: Geodistance filter, which skips geodistance targeting if true.
+    GeoLocationSkipFilter:
+      type: boolean
+      description: Geolocation filter, which skips location targeting if true.
+    SkipFilters:
+      type: object
+      properties:
+        distance:
+          $ref: '#/components/schemas/GeoDistanceSkipFilter'
+        facet:
+          type: boolean
+          description: Facet targeting filter, which skips facet targeting if true.
+        geodistance:
+          $ref: '#/components/schemas/GeoDistanceSkipFilter'
+        geolocation:
+          $ref: '#/components/schemas/GeoLocationSkipFilter'
+        keyword:
+          type: boolean
+          description: Keyword limit filter, which skips all (ad and/or flight) keyword targeting if true.
+        location:
+          $ref: '#/components/schemas/GeoLocationSkipFilter'
+        placementLimit:
+          type: boolean
+          description: Placement limit filter, where no advertiser placement limit if true.
+        siteZone:
+          type: boolean
+          description: Site/zone limit filter, which skips site/zone targeting if true.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
