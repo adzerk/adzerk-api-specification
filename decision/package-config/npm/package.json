@@ -1,5 +1,5 @@
 {
-  "name": "@adzerk/adzerk-api-specification-decision-typescript",
+  "name": "@adzerk/api-decision-js",
   "description": "Decision API specification.",
   "main": "dist/index.js",
   "files": [
