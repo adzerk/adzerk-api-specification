@@ -72,14 +72,14 @@ jobs:
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
           echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
-          npm publish
+          npm publish --access=public
 
       - id: c3c47fb3-2620-4dd1-898b-e867303278ea
         name: Publish Package to GitHub Packages
         env:
           NPM_REGISTRY: npm.pkg.github.com
-          NPM_SECRET: ${{ secrets.GITHUB_TOKEN }}
+          NPM_SECRET: ${{ secrets.GITHUB_T }}
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
           echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
-          npm publish
+          npm publish --access=public
