@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Typescript stage in publish workflow to target the correct version of Javascript. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+### Added
+
+- Setup of Java stage as it is needed by generator when testing. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.6] - 2023-08-14
+
 ### Added
 
 - Debug statement to workflow. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
