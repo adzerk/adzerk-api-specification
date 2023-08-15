@@ -16,7 +16,7 @@
     "build-management-csharp": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name csharp --output ./.build/cs/management --config ./management/codegen-config/csharp-netcore.json --skip-validate-spec",
     "build-management-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name ruby --output ./.build/rb/management --config ./management/codegen-config/ruby.json --skip-validate-spec",
     "build-management-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name typescript-fetch --output ./.build/ts/management --config ./management/codegen-config/typescript-fetch.json --skip-validate-spec",
-    "clean": "rm -rf build"
+    "clean": "rm -rf .build"
   },
   "repository": {
     "type": "git",
