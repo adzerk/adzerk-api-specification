@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  WORKINGDIRECTORY_DECISION: build/ts/decision
+  WORKINGDIRECTORY_DECISION: .build/ts/decision
 
 jobs:
   typescript:
@@ -21,6 +21,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - id: f7414109-3255-4132-a3c9-6e38a68e54fe
+        name: Setup Java (Needed by Generator)
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
 
       - id: e75378b3-35d5-4f84-a871-d47e518f2d04
         name: Install Dependencies
@@ -44,8 +51,8 @@ jobs:
         name: Compile Package
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
-          tsc --outDir dist --declaration --showConfig *.ts
-          tsc --outDir dist --declaration *.ts
+          tsc --outDir dist --declaration --target es6 --moduleResolution nodenext --showConfig *.ts
+          tsc --outDir dist --declaration --target es6 --moduleResolution nodenext *.ts
 
       - id: edd89b5d-54fa-4951-8206-54b1cef91968
         name: Configure Project-Level .npmrc File
@@ -65,7 +72,7 @@ jobs:
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
           echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
-          npm publish --dry-run
+          npm publish
 
       - id: c3c47fb3-2620-4dd1-898b-e867303278ea
         name: Publish Package to GitHub Packages
@@ -75,4 +82,4 @@ jobs:
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
           echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
-          npm publish --dry-run
+          npm publish
