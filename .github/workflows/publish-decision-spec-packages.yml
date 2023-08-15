@@ -51,8 +51,8 @@ jobs:
         name: Compile Package
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
-          tsc --outDir dist --declaration --target es5 --moduleResolution nodenext --showConfig *.ts
-          tsc --outDir dist --declaration --target es5 --moduleResolution nodenext *.ts
+          tsc --outDir dist --declaration --target es5 --moduleResolution nodenext --lib es6,dom --showConfig *.ts
+          tsc --outDir dist --declaration --target es5 --moduleResolution nodenext --lib es6,dom *.ts
 
       - id: edd89b5d-54fa-4951-8206-54b1cef91968
         name: Configure Project-Level .npmrc File
