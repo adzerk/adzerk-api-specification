@@ -11,15 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Typescript stage in publish workflow to target the correct version of Javascript. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
+### Changed
+
+- Updated build directory for generated assets. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+- Removed `--dry-run` option from `npm publish` so that package is uploaded to registries. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
 ### Added
 
 - Setup of Java stage as it is needed by generator when testing. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+- Entries to `.gitignore` to assist testing of workflows. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
 ## [1.0.6] - 2023-08-14
-
-### Changed
-
-- Removed `--dry-run` option from `npm publish` so that package is uploaded to registries. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
 ### Added
 

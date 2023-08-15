@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  WORKINGDIRECTORY_DECISION: build/ts/decision
+  WORKINGDIRECTORY_DECISION: .build/ts/decision
 
 jobs:
   typescript:
