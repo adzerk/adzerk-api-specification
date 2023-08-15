@@ -78,7 +78,7 @@ jobs:
         name: Publish Package to GitHub Packages
         env:
           NPM_REGISTRY: npm.pkg.github.com
-          NPM_SECRET: ${{ secrets.GITHUB_T }}
+          NPM_SECRET: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
           echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
