@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- [sc-48140] Targeting Javascript `ES5` instead of `ES6` for compatability. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+- [sc-48140] Fixed clean script. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.9] - [sc-48140] 2023-08-15
+
+### Nothing
+
+- Problem with deploy due to GITHUB_REF_NAME, so republished. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.8] - [sc-48140] 2023-08-15
+
+### Fixed
+
 - [sc-48140] Added `npm publish` option `--access=public` to permit publish to public npm registry and not receive `You must sign up for private packages` due to scoped packages [being `restricted` by default](https://docs.npmjs.com/cli/v8/commands/npm-publish#access). By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
 ## [1.0.7] - [sc-48140] 2023-08-15
