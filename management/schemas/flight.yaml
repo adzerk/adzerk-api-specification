@@ -241,24 +241,12 @@ schemas:
         required:
           - MatchType
           - LookbackWindow
-        properties:
-          MatchType:
-            type: string
-          LookbackWindow:
-            type: integer
-            format: int32
       AttributionView:
         type: object
         nullable: true
         required:
           - MatchType
           - LookbackWindow
-        properties:
-          MatchType:
-            type: string
-          LookbackWindow:
-            type: integer
-            format: int32
       TargetROAS:
         type: number
         format: float

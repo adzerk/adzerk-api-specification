@@ -384,28 +384,12 @@ paths:
                   required:
                     - MatchType
                     - LookbackWindow
-                  properties:
-                    MatchType:
-                      type: string
-                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
-                    LookbackWindow:
-                      type: integer
-                      format: int32
-                      enum: [1, 7, 14, 30]
                 AttributionView:
                   type: object
                   nullable: true
                   required:
                     - MatchType
                     - LookbackWindow
-                  properties:
-                    MatchType:
-                      type: string
-                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
-                    LookbackWindow:
-                      type: integer
-                      format: int32
-                      enum: [1, 7, 14, 30]
                 TargetROAS:
                   type: number
                   format: float
@@ -679,28 +663,12 @@ paths:
                   required:
                     - MatchType
                     - LookbackWindow
-                  properties:
-                    MatchType:
-                      type: string
-                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
-                    LookbackWindow:
-                      type: integer
-                      format: int32
-                      enum: [1, 7, 14, 30]
                 AttributionView:
                   type: object
                   nullable: true
                   required:
                     - MatchType
                     - LookbackWindow
-                  properties:
-                    MatchType:
-                      type: string
-                      enum: ["SameProduct", "SameCategoryBrand", "SameBrand"]
-                    LookbackWindow:
-                      type: integer
-                      format: int32
-                      enum: [1, 7, 14, 30]
                 TargetROAS:
                   type: number
                   format: float
