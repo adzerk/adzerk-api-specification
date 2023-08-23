@@ -238,25 +238,27 @@ schemas:
       AttributionClick:
         type: object
         nullable: true
+        required:
+          - MatchType
+          - LookbackWindow
         properties:
           MatchType:
             type: string
-            nullable: false
           LookbackWindow:
             type: integer
             format: int32
-            nullable: false
       AttributionView:
         type: object
         nullable: true
+        required:
+          - MatchType
+          - LookbackWindow
         properties:
           MatchType:
             type: string
-            nullable: false
           LookbackWindow:
             type: integer
             format: int32
-            nullable: false
       TargetROAS:
         type: number
         format: float
