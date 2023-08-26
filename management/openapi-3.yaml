@@ -651,7 +651,7 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/ad.yaml#/schemas/Ad'
-  '/v1/flight/{flightId}/creatives':                
+  '/v1/flight/{flightId}/creatives':
     get:
       tags:
         - ads
@@ -831,6 +831,13 @@ paths:
           schema:
             type: integer
             format: int32
+            nullable: true
+        - name: includeArchived
+          in: query
+          description: Set to `true` if you want to include archived templates
+          required: false
+          schema:
+            type: boolean
             nullable: true
       responses:
         200:
