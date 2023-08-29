@@ -7,24 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.12] - 2023-08-29
+
+### Fixed
+
+- [sc-49448] Updated Typescript compiler options to fix [breaking change](https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-rc/#module-and-moduleresolution-must-match-under-recent-node-js-settings) between `v5.1.x` to `v5.2.x`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+- [sc-49448] Removed unnecessary instances of `[sc-48140]` from `CHANGELOG.md`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+### Changed
+
+- [sc-49448] Fixed Typescript compiler version to `v5.2.x`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
+
+## [1.0.11] - 2023-08-29
+
+### Added
+
+- [sc-33985] Added an `includeArchived` option to the List Creative Templates endpoint for listing archived creative templates. By [@ryuichis](https://github.com/ryuichis).
+
+## [1.0.10] - 2023-08-15
+
 ### Fixed
 
 - [sc-48140] Targeting Javascript `ES5` instead of `ES6` for compatability. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 - [sc-48140] Fixed clean script. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.9] - [sc-48140] 2023-08-15
+## [1.0.9] - 2023-08-15
 
 ### Nothing
 
 - Problem with deploy due to GITHUB_REF_NAME, so republished. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.8] - [sc-48140] 2023-08-15
+## [1.0.8] - 2023-08-15
 
 ### Fixed
 
 - [sc-48140] Added `npm publish` option `--access=public` to permit publish to public npm registry and not receive `You must sign up for private packages` due to scoped packages [being `restricted` by default](https://docs.npmjs.com/cli/v8/commands/npm-publish#access). By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.7] - [sc-48140] 2023-08-15
+## [1.0.7] - 2023-08-15
 
 ### Fixed
 
@@ -41,25 +60,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [sc-48140] Entries to `.gitignore` to assist testing of workflows. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 - [sc-48140] Added work card ids to changelog for tracking. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.6] - [sc-48140] 2023-08-14
+## [1.0.6] - 2023-08-14
 
 ### Added
 
 - [sc-48140] Debug statement to workflow. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.5] - [sc-48140] 2023-08-14
+## [1.0.5] - 2023-08-14
 
 ### Fixed
 
 - [sc-48140] Typescript compiler error by fixing to version `5.x` on install. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.4] - [sc-48140] 2023-08-14
+## [1.0.4] - 2023-08-14
 
 ### Fixed
 
 - [sc-48140] GitHub Actions working directory references `publish-decision-spec-packages.yml`. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-## [1.0.3] - [sc-48140] 2023-08-14
+## [1.0.3] - 2023-08-14
 
 ### Fixed
 
@@ -69,7 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [sc-48140] `package.json` file version to latest released. By [@honeycomb-cheesecake](https://github.com/honeycomb-cheesecake).
 
-[1.0.2] - [sc-48140] 2023-08-14
+## [1.0.2] - 2023-08-14
 
 ### Changed
 
