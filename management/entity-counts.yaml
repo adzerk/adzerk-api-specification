@@ -1,0 +1,56 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Entity Counts
+  description: Entity Counts related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: entity-counts
+    description: Entity Counts
+paths:
+  /v1/entitycounts:
+    get:
+      tags:
+        - entity-counts
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: date
+          in: query
+          description: The date for the entity counts
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: The entity counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  NetworkId:
+                    type: integer
+                    format: int32
+                  EffectiveAt:
+                    type: string
+                    format: date-time
+                  BillableAdvertisers:
+                    type: string
+                  BillableCampaigns:
+                    type: string
+                  BillableFlights:
+                    type: string
+                  BillableAds:
+                    type: string
+                  BillableCreatives:
+                    type: string
+                  BillableChannels:
+                    type: string
+                  BillableSites:
+                    type: string
+                  BillableZones:
+                    type: string
