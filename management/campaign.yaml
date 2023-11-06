@@ -9,6 +9,26 @@ tags:
   - name: campaign
     description: Manage Campaigns
 paths:
+  /v2/campaign:
+    post:
+      tags:
+        - campaign
+      description: Create Nested Campaign
+      operationId: createNested
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/campaign.yaml#/schemas/NestedCampaignInput'
+      responses:
+        200:
+          description: Nested Campaign Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/NestedCampaignOutput'
   /v1/campaign:
     post:
       tags:

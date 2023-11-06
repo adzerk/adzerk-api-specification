@@ -125,3 +125,74 @@ schemas:
     properties:
       campaignName:
         type: string
+
+  NestedCampaignInput:
+    type: object
+    required:
+      - AdvertiserId
+      - Name
+    properties:
+      AdvertiserId:
+        type: integer
+        format: int32
+      Name:
+        type: string
+        minLength: 1
+        maxLength: 200
+      IsActive:
+        type: boolean
+        default: false
+      CapType:
+        type: integer
+        format: int32
+        enum: [4]
+        nullable: true
+      DailyCapAmount:
+        type: integer
+        format: int32
+        minimum: 0
+        nullable: true
+      LifetimeCapAmount:
+        type: integer
+        format: int32
+        minimum: 0
+        nullable: true
+      FreqCapType:
+        type: integer
+        format: int32
+        enum: [1, 2, 3]
+        nullable: true
+      FreqCap:
+        type: integer
+        format: int32
+        minimum: 1
+        nullable: true
+      FreqCapDuration:
+        type: integer
+        format: int32
+        minimum: 1
+        nullable: true
+      DontAffectParentFreqCap:
+        type: boolean
+        nullable: true
+      CustomFieldsJSON:
+        type: string
+        nullable: true
+      Flights:
+        type: array
+        nullable: true
+        items:
+          $ref: './flight.yaml#/schemas/NestedFlightInput'
+
+  NestedCampaignOutput:
+    type: object
+    required:
+      - Id
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Flights:
+        type: array
+        items:
+          $ref: './flight.yaml#/schemas/NestedFlightOutput'
