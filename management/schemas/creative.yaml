@@ -1,27 +1,20 @@
 schemas:
-
-  Creative:
+  CreativeBase:
     type: object
     required:
-      - AdvertiserId
       - AdTypeId
       - IsActive
     properties:
-      AdvertiserId:
-        type: integer
-        format: int32
-        nullable: true
-      AdTypeId:
-        type: integer
-        format: int32
-        nullable: true
-      IsActive:
-        type: boolean
-        nullable: true
       Id:
         type: integer
         format: int32
-        nullable: true
+        readOnly: true
+      AdTypeId:
+        type: integer
+        format: int32
+      IsActive:
+        type: boolean
+        default: false
       Title:
         type: string
         nullable: true
@@ -31,22 +24,18 @@ schemas:
       Body:
         type: string
         nullable: true
-        default: ""
       Url:
         type: string
-        format: uri
-        maxLength: 2000
         nullable: true
+        format: url
       Alt:
         type: string
         nullable: true
       IsDeleted:
         type: boolean
-        default: false
         nullable: true
       IsHTMLJS:
         type: boolean
-        default: false
         nullable: true
       ScriptBody:
         type: string
@@ -59,7 +48,6 @@ schemas:
         nullable: true
       SaveEmptyCreative:
         type: boolean
-        default: false
         nullable: true
       IsNoTrack:
         type: boolean
@@ -74,6 +62,17 @@ schemas:
       TemplateValues:
         type: string
         nullable: true
+
+  Creative:
+    allOf:
+      - $ref: '#/schemas/CreativeBase'
+      - type: object
+        required:
+          - AdvertiserId
+        properties:
+          AdvertiserId:
+            type: integer
+            format: int32
 
   CreativeList:
     type: object
@@ -95,129 +94,9 @@ schemas:
         items:
           $ref: '#/schemas/Creative'
 
-  CreativeInput:
-    type: object
-    required:
-      - AdvertiserId
-      - AdTypeId
-      - IsActive
-    properties:
-      AdvertiserId:
-        type: integer
-        format: int32
-      AdTypeId:
-        type: integer
-        format: int32
-      IsActive:
-        type: boolean
-        default: false
-      Title:
-        type: string
-        nullable: true
-      ImageName:
-        type: string
-        nullable: true
-      Body:
-        type: string
-        nullable: true
-      Url:
-        type: string
-        nullable: true
-        format: url
-      Alt:
-        type: string
-        nullable: true
-      IsDeleted:
-        type: boolean
-        nullable: true
-      IsHTMLJS:
-        type: boolean
-        nullable: true
-      ScriptBody:
-        type: string
-        nullable: true
-      Metadata:
-        type: string
-        nullable: true
-      ImageLink:
-        type: string
-        nullable: true
-      SaveEmptyCreative:
-        type: boolean
-        nullable: true
-      IsNoTrack:
-        type: boolean
-        nullable: true
-      IsNetworkAd:
-        type: boolean
-        nullable: true
-      TemplateId:
-        type: integer
-        format: int32
-        nullable: true
-      TemplateValues:
-        type: string
-        nullable: true
-
   NestedCreativeInput:
-    type: object
-    required:
-      - AdTypeId
-      - IsActive
-    properties:
-      AdTypeId:
-        type: integer
-        format: int32
-      IsActive:
-        type: boolean
-        default: false
-      Title:
-        type: string
-        nullable: true
-      ImageName:
-        type: string
-        nullable: true
-      Body:
-        type: string
-        nullable: true
-      Url:
-        type: string
-        nullable: true
-        format: url
-      Alt:
-        type: string
-        nullable: true
-      IsDeleted:
-        type: boolean
-        nullable: true
-      IsHTMLJS:
-        type: boolean
-        nullable: true
-      ScriptBody:
-        type: string
-        nullable: true
-      Metadata:
-        type: string
-        nullable: true
-      ImageLink:
-        type: string
-        nullable: true
-      SaveEmptyCreative:
-        type: boolean
-        nullable: true
-      IsNoTrack:
-        type: boolean
-        nullable: true
-      IsNetworkAd:
-        type: boolean
-        nullable: true
-      TemplateId:
-        type: integer
-        format: int32
-        nullable: true
-      TemplateValues:
-        type: string
-        nullable: true
+    allOf:
+      - $ref: '#/schemas/CreativeBase'
 
   NestedCreativeOutput:
     type: object

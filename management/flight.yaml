@@ -436,7 +436,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/flight.yaml#/schemas/FlightInput'
+              $ref: './schemas/flight.yaml#/schemas/Flight'
       responses:
         200:
           description: Flight Created

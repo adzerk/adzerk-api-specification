@@ -41,57 +41,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - AdvertiserId
-                - Name
-                - StartDateISO
-              properties:
-                AdvertiserId:
-                  type: integer
-                  format: int32
-                Name:
-                  type: string
-                IsActive:
-                  type: boolean
-                  nullable: true
-                IsDeleted:
-                  type: boolean
-                  default: false
-                  nullable: true
-                IsArchived:
-                  type: boolean
-                  default: false
-                  nullable: true
-                FreqCap:
-                  type: integer
-                  format: int32
-                  nullable: true
-                FreqCapDuration:
-                  type: integer
-                  format: int32
-                  nullable: true
-                FreqCapType:
-                  type: integer
-                  format: int32
-                  enum: [1, 2, 3]
-                  nullable: true
-                DontAffectParentFreqCap:
-                  type: boolean
-                  nullable: true
-                CapType:
-                  type: integer
-                  format: int32
-                  nullable: true
-                  default: 4
-                DailyCapAmount:
-                  type: integer
-                  format: int32
-                  nullable: true
-                LifetimeCapAmount:
-                  type: integer
-                  format: int32
-                  nullable: true
+              $ref: './schemas/campaign.yaml#/schemas/Campaign'
       responses:
         200:
           description: Campaign Created

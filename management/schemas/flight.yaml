@@ -1,10 +1,9 @@
 schemas:
-  Flight:
+  FlightBase:
     type: object
     required:
       - Name
       - StartDateISO
-      - CampaignId
       - PriorityId
       - GoalType
       - Impressions
@@ -15,32 +14,22 @@ schemas:
       StartDateISO:
         type: string
         format: date-time
-      CampaignId:
-        type: integer
-        format: int32
       PriorityId:
         type: integer
         format: int32
       GoalType:
         type: integer
         format: int32
+        enum: [1, 2, 3, 7, 8, 9, 10]
       Impressions:
         type: integer
         format: int32
       IsActive:
         type: boolean
         default: false
-      Id:
-        type: integer
-        format: int32
-        nullable: true
       EndDateISO:
         type: string
         format: date-time
-        nullable: true
-      NoEndDate:
-        type: boolean
-        default: false
         nullable: true
       IsDeleted:
         type: boolean
@@ -48,6 +37,7 @@ schemas:
       RateType:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4, 5, 6]
         nullable: true
       Price:
         type: number
@@ -56,6 +46,7 @@ schemas:
       CapType:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4]
         nullable: true
       DailyCapAmount:
         type: integer
@@ -96,6 +87,7 @@ schemas:
       FreqCapType:
         type: integer
         format: int32
+        enum: [1, 2, 3]
         nullable: true
       DontAffectParentFreqCap:
         type: boolean
@@ -109,10 +101,12 @@ schemas:
       DuplicateMode:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4]
         nullable: true
       DeliveryStatus:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4, 5]
         nullable: true
       IsTrackingConversions:
         type: boolean
@@ -130,6 +124,8 @@ schemas:
       ECPMOptimizePeriod:
         type: integer
         format: int32
+        minimum: 1
+        maximum: 90
         nullable: true
       ECPMMultiplier:
         type: number
@@ -187,26 +183,9 @@ schemas:
       IsArchived:
         type: boolean
         nullable: true
-      BehavioralTargeting:
-        $ref: '#/schemas/BehavioralTarget'
-      GeoTargeting:
-        type: array
-        nullable: true
-        items:
-          $ref: './geo-target.yaml#/schemas/GeoTarget'
-      SiteZoneTargeting:
-        type: array
-        nullable: true
-        items:
-          $ref: './site-zone.yaml#/schemas/SiteZone'
       RequireStrictLocation:
         type: boolean
         nullable: true
-      CreativeMaps:
-        type: array
-        nullable: true
-        items:
-          $ref: './ad.yaml#/schemas/Ad'
       IsTargetingOptimization:
         type: boolean
         nullable: true
@@ -251,496 +230,57 @@ schemas:
         type: number
         format: float
         nullable: true
-      Created:
-        type: string
-        format: date-time
-        nullable: true
-      LastModified:
-        type: string
-        format: date-time
-        nullable: true
-      Version:
-        type: integer
-        format: int32
-        nullable: true
-
-  FlightInput:
-    type: object
-    required:
-      - Name
-      - StartDateISO
-      - CampaignId
-      - PriorityId
-      - GoalType
-      - Impressions
-      - IsActive
-    properties:
-      Name:
-        type: string
-      StartDateISO:
-        type: string
-        format: date-time
-      CampaignId:
-        type: integer
-        format: int32
-      PriorityId:
-        type: integer
-        format: int32
-      GoalType:
-        type: integer
-        format: int32
-        enum: [1, 2, 3, 7, 8, 9, 10]
-      Impressions:
-        type: integer
-        format: int32
-      IsActive:
-        type: boolean
-        default: false
-      EndDateISO:
-        type: string
-        format: date-time
-        nullable: true
-      IsDeleted:
-        type: boolean
-        nullable: true
-      RateType:
-        type: integer
-        format: int32
-        enum: [1, 2, 3, 4, 5, 6]
-        nullable: true
-      Price:
-        type: number
-        format: float
-        nullable: true
-      CapType:
-        type: integer
-        format: int32
-        enum: [1, 2, 3, 4]
-        nullable: true
-      DailyCapAmount:
-        type: integer
-        format: int32
-        nullable: true
-      DailyCapAmountDecimal:
-        type: number
-        format: float
-        nullable: true
-      LifetimeCapAmount:
-        type: integer
-        format: int32
-        nullable: true
-      LifetimeCapAmountDecimal:
-        type: number
-        format: float
-        nullable: true
-      Keywords:
-        type: string
-        nullable: true
-      CustomTargeting:
-        type: string
-        nullable: true
-      CustomFieldsJSON:
-        type: string
-        nullable: true
-      IsFreqCap:
-        type: boolean
-        nullable: true
-      FreqCap:
-        type: integer
-        format: int32
-        nullable: true
-      FreqCapDuration:
-        type: integer
-        format: int32
-        nullable: true
-      FreqCapType:
-        type: integer
-        format: int32
-        nullable: true
-        enum: [1, 2, 3]
-      DontAffectParentFreqCap:
-        type: boolean
-        nullable: true
-      IsCompanion:
-        type: boolean
-        nullable: true
-      IsNoDuplicates:
-        type: boolean
-        nullable: true
-      DuplicateMode:
-        type: integer
-        format: int32
-        nullable: true
-        enum: [1, 2, 3, 4]
-      DeliveryStatus:
-        type: integer
-        format: int32
-        nullable: true
-        enum: [1, 2, 3, 4, 5]
-      IsTrackingConversions:
-        type: boolean
-        nullable: true
-      CanPassback:
-        type: boolean
-        nullable: true
-      PassbackSortOrder:
-        type: integer
-        format: int32
-        nullable: true
-      IsECPMOptimized:
-        type: boolean
-        nullable: true
-      ECPMOptimizePeriod:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 90
-        nullable: true
-      ECPMMultiplier:
-        type: number
-        format: float
-        nullable: true
-      FloorECPM:
-        type: number
-        format: float
-        nullable: true
-      CeilingECPM:
-        type: number
-        format: float
-        nullable: true
-      DefaultECPM:
-        type: number
-        format: float
-        nullable: true
-      ECPMBurnInImpressions:
-        type: integer
-        format: int32
-        nullable: true
-      EffectiveCPMOverride:
-        type: number
-        format: float
-        nullable: true
-      DatePartingStartTimeISO:
-        type: string
-        format: date-time
-        nullable: true
-      DatePartingEndTimeISO:
-        type: string
-        format: date-time
-        nullable: true
-      IsSunday:
-        type: boolean
-        nullable: true
-      IsMonday:
-        type: boolean
-        nullable: true
-      IsTuesday:
-        type: boolean
-        nullable: true
-      IsWednesday:
-        type: boolean
-        nullable: true
-      IsThursday:
-        type: boolean
-        nullable: true
-      IsFriday:
-        type: boolean
-        nullable: true
-      IsSaturday:
-        type: boolean
-        nullable: true
-      IsArchived:
-        type: boolean
-        nullable: true
-      RequireStrictLocation:
-        type: boolean
-        nullable: true
       TimeZone:
         type: string
         nullable: true
-      IsTargetingOptimization:
-        type: boolean
-        nullable: true
-        deprecated: true
-      TargetingOptimizationType:
-        type: integer
-        format: int32
-        nullable: true
-        deprecated: true
-      TargetingOptimizationTargetType:
-        type: integer
-        format: int32
-        nullable: true
-        deprecated: true
-      TargetingOptimizationTarget:
-        type: number
-        format: float
-        nullable: true
-        deprecated: true
-      TargetOptimizationBurnIn:
-        type: integer
-        format: int32
-        nullable: true
-        deprecated: true
-      TargetingOptimizationCanMiss:
-        type: boolean
-        nullable: true
-        deprecated: true
-      AttributionClick:
-        type: object
-        nullable: true
-        required:
-          - MatchType
-          - LookbackWindow
-      AttributionView:
-        type: object
-        nullable: true
-        required:
-          - MatchType
-          - LookbackWindow
-      TargetROAS:
-        type: number
-        format: float
-        nullable: true
 
-  NestedFlightInput:
-    type: object
-    required:
-      - Name
-      - StartDateISO
-      - PriorityId
-      - GoalType
-      - Impressions
-      - IsActive
-    properties:
-      Name:
-        type: string
-      StartDateISO:
-        type: string
-        format: date-time
-      PriorityId:
-        type: integer
-        format: int32
-      GoalType:
-        type: integer
-        format: int32
-        enum: [1, 2, 3, 7, 8, 9, 10]
-      Impressions:
-        type: integer
-        format: int32
-      IsActive:
-        type: boolean
-        default: false
-      Ads:
-        type: array
-        items:
-          $ref: './ad.yaml#/schemas/NestedAdInput'
-      EndDateISO:
-        type: string
-        format: date-time
-        nullable: true
-      IsDeleted:
-        type: boolean
-        nullable: true
-      RateType:
-        type: integer
-        format: int32
-        enum: [1, 2, 3, 4, 5, 6]
-        nullable: true
-      Price:
-        type: number
-        format: float
-        nullable: true
-      CapType:
-        type: integer
-        format: int32
-        enum: [1, 2, 3, 4]
-        nullable: true
-      DailyCapAmount:
-        type: integer
-        format: int32
-        nullable: true
-      DailyCapAmountDecimal:
-        type: number
-        format: float
-        nullable: true
-      LifetimeCapAmount:
-        type: integer
-        format: int32
-        nullable: true
-      LifetimeCapAmountDecimal:
-        type: number
-        format: float
-        nullable: true
-      Keywords:
-        type: string
-        nullable: true
-      CustomTargeting:
-        type: string
-        nullable: true
-      CustomFieldsJSON:
-        type: string
-        nullable: true
-      IsFreqCap:
-        type: boolean
-        nullable: true
-      FreqCap:
-        type: integer
-        format: int32
-        nullable: true
-      FreqCapDuration:
-        type: integer
-        format: int32
-        nullable: true
-      FreqCapType:
-        type: integer
-        format: int32
-        nullable: true
-        enum: [1, 2, 3]
-      DontAffectParentFreqCap:
-        type: boolean
-        nullable: true
-      IsCompanion:
-        type: boolean
-        nullable: true
-      IsNoDuplicates:
-        type: boolean
-        nullable: true
-      DuplicateMode:
-        type: integer
-        format: int32
-        nullable: true
-        enum: [1, 2, 3, 4]
-      DeliveryStatus:
-        type: integer
-        format: int32
-        nullable: true
-        enum: [1, 2, 3, 4, 5]
-      IsTrackingConversions:
-        type: boolean
-        nullable: true
-      CanPassback:
-        type: boolean
-        nullable: true
-      PassbackSortOrder:
-        type: integer
-        format: int32
-        nullable: true
-      IsECPMOptimized:
-        type: boolean
-        nullable: true
-      ECPMOptimizePeriod:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 90
-        nullable: true
-      ECPMMultiplier:
-        type: number
-        format: float
-        nullable: true
-      FloorECPM:
-        type: number
-        format: float
-        nullable: true
-      CeilingECPM:
-        type: number
-        format: float
-        nullable: true
-      DefaultECPM:
-        type: number
-        format: float
-        nullable: true
-      ECPMBurnInImpressions:
-        type: integer
-        format: int32
-        nullable: true
-      EffectiveCPMOverride:
-        type: number
-        format: float
-        nullable: true
-      DatePartingStartTimeISO:
-        type: string
-        format: date-time
-        nullable: true
-      DatePartingEndTimeISO:
-        type: string
-        format: date-time
-        nullable: true
-      IsSunday:
-        type: boolean
-        nullable: true
-      IsMonday:
-        type: boolean
-        nullable: true
-      IsTuesday:
-        type: boolean
-        nullable: true
-      IsWednesday:
-        type: boolean
-        nullable: true
-      IsThursday:
-        type: boolean
-        nullable: true
-      IsFriday:
-        type: boolean
-        nullable: true
-      IsSaturday:
-        type: boolean
-        nullable: true
-      IsArchived:
-        type: boolean
-        nullable: true
-      RequireStrictLocation:
-        type: boolean
-        nullable: true
-      TimeZone:
-        type: string
-        nullable: true
-      IsTargetingOptimization:
-        type: boolean
-        nullable: true
-        deprecated: true
-      TargetingOptimizationType:
-        type: integer
-        format: int32
-        nullable: true
-        deprecated: true
-      TargetingOptimizationTargetType:
-        type: integer
-        format: int32
-        nullable: true
-        deprecated: true
-      TargetingOptimizationTarget:
-        type: number
-        format: float
-        nullable: true
-        deprecated: true
-      TargetOptimizationBurnIn:
-        type: integer
-        format: int32
-        nullable: true
-        deprecated: true
-      TargetingOptimizationCanMiss:
-        type: boolean
-        nullable: true
-        deprecated: true
-      AttributionClick:
-        type: object
-        nullable: true
+  Flight:
+    allOf:
+      - $ref: '#/schemas/FlightBase'
+      - type: object
         required:
-          - MatchType
-          - LookbackWindow
-      AttributionView:
-        type: object
-        nullable: true
-        required:
-          - MatchType
-          - LookbackWindow
-      TargetROAS:
-        type: number
-        format: float
-        nullable: true
+          - CampaignId
+        properties:
+          Id:
+            type: integer
+            format: int32
+            readOnly: true
+          CampaignId:
+            type: integer
+            format: int32
+          NoEndDate:
+            type: boolean
+            default: false
+            nullable: true
+          BehavioralTargeting:
+            $ref: '#/schemas/BehavioralTarget'
+          GeoTargeting:
+            type: array
+            nullable: true
+            items:
+              $ref: './geo-target.yaml#/schemas/GeoTarget'
+          SiteZoneTargeting:
+            type: array
+            nullable: true
+            items:
+              $ref: './site-zone.yaml#/schemas/SiteZone'
+          CreativeMaps:
+            type: array
+            nullable: true
+            items:
+              $ref: './ad.yaml#/schemas/Ad'
+          Created:
+            type: string
+            format: date-time
+            nullable: true
+          LastModified:
+            type: string
+            format: date-time
+            nullable: true
+          Version:
+            type: integer
+            format: int32
+            nullable: true
 
   BehavioralTarget:
     type: object
@@ -795,6 +335,16 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/Flight'
+
+  NestedFlightInput:
+    allOf:
+      - $ref: '#/schemas/FlightBase'
+      - type: object
+        properties:
+          Ads:
+            type: array
+            items:
+              $ref: './ad.yaml#/schemas/NestedAdInput'
 
   NestedFlightOutput:
     type: object
