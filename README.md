@@ -64,6 +64,12 @@ $ openapi-generator generate \
 
 ### Management SDK
 
+Note to maintainers: The openapi-3.yaml file doesn't fully reference all of the
+endpoints and schemas in the individual entity YAML files. For this reason, please make
+sure to update both the individual entity YAML file AND the openapi-3.yaml file when
+making changes. Bonus points for linking the 2 with `$ref` so that there is only one
+place to make changes.
+
 #### JavaScript
 
 ```sh
