@@ -169,3 +169,28 @@ schemas:
       ImpressionPixelUrl:
         type: string
         format: uri
+
+  NestedAdInput:
+    type: object
+    required:
+      - Creative
+    properties:
+      Creative:
+        $ref: './creative.yaml#/schemas/NestedCreativeInput'
+      IsActive:
+        type: boolean
+        default: false
+      ExternalMetadata:
+        type: string
+        nullable: true
+
+  NestedAdOutput:
+    type: object
+    required:
+      - Id
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Creative:
+        $ref: './creative.yaml#/schemas/NestedCreativeOutput'

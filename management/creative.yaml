@@ -21,68 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - AdvertiserId
-                - AdTypeId
-                - IsActive
-              properties:
-                AdvertiserId:
-                  type: integer
-                  format: int32
-                AdTypeId:
-                  type: integer
-                  format: int32
-                IsActive:
-                  type: boolean
-                  default: false
-                Title:
-                  type: string
-                  nullable: true
-                ImageName:
-                  type: string
-                  nullable: true
-                Body:
-                  type: string
-                  nullable: true
-                Url:
-                  type: string
-                  nullable: true
-                  format: url
-                Alt:
-                  type: string
-                  nullable: true
-                IsDeleted:
-                  type: boolean
-                  nullable: true
-                IsHTMLJS:
-                  type: boolean
-                  nullable: true
-                ScriptBody:
-                  type: string
-                  nullable: true
-                Metadata:
-                  type: string
-                  nullable: true
-                ImageLink:
-                  type: string
-                  nullable: true
-                SaveEmptyCreative:
-                  type: boolean
-                  nullable: true
-                IsNoTrack:
-                  type: boolean
-                  nullable: true
-                IsNetworkAd:
-                  type: boolean
-                  nullable: true
-                TemplateId:
-                  type: integer
-                  format: int32
-                  nullable: true
-                TemplateValues:
-                  type: string
-                  nullable: true
+              $ref: './schemas/creative.yaml#/schemas/Creative'
       responses:
         200:
           description: Creative Created

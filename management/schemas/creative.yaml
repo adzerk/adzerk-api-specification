@@ -1,27 +1,20 @@
 schemas:
-
-  Creative:
+  CreativeBase:
     type: object
     required:
-      - AdvertiserId
       - AdTypeId
       - IsActive
     properties:
-      AdvertiserId:
-        type: integer
-        format: int32
-        nullable: true
-      AdTypeId:
-        type: integer
-        format: int32
-        nullable: true
-      IsActive:
-        type: boolean
-        nullable: true
       Id:
         type: integer
         format: int32
-        nullable: true
+        readOnly: true
+      AdTypeId:
+        type: integer
+        format: int32
+      IsActive:
+        type: boolean
+        default: false
       Title:
         type: string
         nullable: true
@@ -31,22 +24,18 @@ schemas:
       Body:
         type: string
         nullable: true
-        default: ""
       Url:
         type: string
-        format: uri
-        maxLength: 2000
         nullable: true
+        format: url
       Alt:
         type: string
         nullable: true
       IsDeleted:
         type: boolean
-        default: false
         nullable: true
       IsHTMLJS:
         type: boolean
-        default: false
         nullable: true
       ScriptBody:
         type: string
@@ -59,7 +48,6 @@ schemas:
         nullable: true
       SaveEmptyCreative:
         type: boolean
-        default: false
         nullable: true
       IsNoTrack:
         type: boolean
@@ -74,6 +62,17 @@ schemas:
       TemplateValues:
         type: string
         nullable: true
+
+  Creative:
+    allOf:
+      - $ref: '#/schemas/CreativeBase'
+      - type: object
+        required:
+          - AdvertiserId
+        properties:
+          AdvertiserId:
+            type: integer
+            format: int32
 
   CreativeList:
     type: object
@@ -94,3 +93,16 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/Creative'
+
+  NestedCreativeInput:
+    allOf:
+      - $ref: '#/schemas/CreativeBase'
+
+  NestedCreativeOutput:
+    type: object
+    required:
+      - Id
+    properties:
+      Id:
+        type: integer
+        format: int32

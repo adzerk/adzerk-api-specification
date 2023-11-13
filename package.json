@@ -13,9 +13,9 @@
     "build-decision-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name ruby --output ./.build/rb/decision --config ./decision/codegen-config/ruby.json",
     "build-decision-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./decision/openapi-3.yaml --generator-name typescript-fetch --output ./.build/ts/decision --config ./decision/codegen-config/typescript-fetch.json",
     "build-management-all": "npm run build-management-csharp && npm run build-management-ruby && npm run build-management-typescript",
-    "build-management-csharp": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name csharp --output ./.build/cs/management --config ./management/codegen-config/csharp-netcore.json --skip-validate-spec",
-    "build-management-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name ruby --output ./.build/rb/management --config ./management/codegen-config/ruby.json --skip-validate-spec",
-    "build-management-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name typescript-fetch --output ./.build/ts/management --config ./management/codegen-config/typescript-fetch.json --skip-validate-spec",
+    "build-management-csharp": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name csharp --output ./.build/cs/management --config ./management/codegen-config/csharp-netcore.json",
+    "build-management-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name ruby --output ./.build/rb/management --config ./management/codegen-config/ruby.json",
+    "build-management-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name typescript-fetch --output ./.build/ts/management --config ./management/codegen-config/typescript-fetch.json",
     "clean": "rm -rf .build"
   },
   "repository": {

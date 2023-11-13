@@ -1,26 +1,18 @@
 schemas:
 
-  Campaign:
+  CampaignBase:
     type: object
     required:
       - AdvertiserId
       - Name
-      - StartDate
     properties:
       AdvertiserId:
         type: integer
         format: int32
       Name:
         type: string
-      StartDate:
-        type: string
-        default: 1/1/2018
-        deprecated: true
-      Flights:
-        type: array
-        items:
-          type: object
-        nullable: true
+        minLength: 1
+        maxLength: 200
       IsActive:
         type: boolean
         default: false
@@ -34,14 +26,17 @@ schemas:
       FreqCap:
         type: integer
         format: int32
+        minimum: 1
         nullable: true
       FreqCapDuration:
         type: integer
         format: int32
+        minimum: 1
         nullable: true
       FreqCapType:
         type: integer
         format: int32
+        enum: [1, 2, 3]
         nullable: true
       DontAffectParentFreqCap:
         type: boolean
@@ -49,14 +44,17 @@ schemas:
       CapType:
         type: integer
         format: int32
+        enum: [4]
         nullable: true
       DailyCapAmount:
         type: integer
         format: int32
+        minimum: 0
         nullable: true
       LifetimeCapAmount:
         type: integer
         format: int32
+        minimum: 0
         nullable: true
       Id:
         type: integer
@@ -71,34 +69,55 @@ schemas:
       IsFreqCap:
         type: boolean
         nullable: true
-      EndDateISO:
-        type: string
-        deprecated: true
-        nullable: true
-      Price:
-        type: number
-        deprecated: true
-        nullable: true
-      StartDateISO:
-        type: string
-        nullable: true
-        deprecated: true
-      Created:
-        type: string
-        format: date-time
-        nullable: true
-      LastModified:
-        type: string
-        format: date-time
-        nullable: true
-      Version:
-        type: integer
-        format: int32
-        nullable: true
-      SalespersonId:
-        type: integer
-        format: int32
-        nullable: true
+
+  Campaign:
+    allOf:
+      - $ref: '#/schemas/CampaignBase'
+      - type: object
+        required:
+          - CampaignId
+          - StartDate
+        properties:
+          SalespersonId:
+            type: integer
+            format: int32
+            nullable: true
+          StartDate:
+            type: string
+            default: 1/1/2018
+            deprecated: true
+          Flights:
+            type: array
+            items:
+              type: object
+            nullable: true
+          EndDateISO:
+            type: string
+            deprecated: true
+            nullable: true
+          Price:
+            type: number
+            deprecated: true
+            nullable: true
+          StartDateISO:
+            type: string
+            nullable: true
+            deprecated: true
+          Created:
+            type: string
+            format: date-time
+            nullable: true
+            readOnly: true
+          LastModified:
+            type: string
+            format: date-time
+            nullable: true
+            readOnly: true
+          Version:
+            type: integer
+            format: int32
+            nullable: true
+            readOnly: true
 
   CampaignList:
     type: object
@@ -125,3 +144,27 @@ schemas:
     properties:
       campaignName:
         type: string
+
+  NestedCampaignInput:
+    allOf:
+      - $ref: '#/schemas/CampaignBase'
+      - type: object
+        properties:
+          Flights:
+            type: array
+            nullable: true
+            items:
+              $ref: './flight.yaml#/schemas/NestedFlightInput'
+
+  NestedCampaignOutput:
+    type: object
+    required:
+      - Id
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Flights:
+        type: array
+        items:
+          $ref: './flight.yaml#/schemas/NestedFlightOutput'

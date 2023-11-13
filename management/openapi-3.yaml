@@ -171,6 +171,26 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
+  /v2/campaign:
+    post:
+      tags:
+        - campaigns
+      description: Create Nested Campaign
+      operationId: createNestedCampaign
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/campaign.yaml#/schemas/NestedCampaignInput'
+      responses:
+        200:
+          description: Nested Campaign Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/campaign.yaml#/schemas/NestedCampaignOutput'
   /v1/campaign:
     post:
       tags:

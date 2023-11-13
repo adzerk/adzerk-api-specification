@@ -1,10 +1,9 @@
 schemas:
-  Flight:
+  FlightBase:
     type: object
     required:
       - Name
       - StartDateISO
-      - CampaignId
       - PriorityId
       - GoalType
       - Impressions
@@ -15,32 +14,22 @@ schemas:
       StartDateISO:
         type: string
         format: date-time
-      CampaignId:
-        type: integer
-        format: int32
       PriorityId:
         type: integer
         format: int32
       GoalType:
         type: integer
         format: int32
+        enum: [1, 2, 3, 7, 8, 9, 10]
       Impressions:
         type: integer
         format: int32
       IsActive:
         type: boolean
         default: false
-      Id:
-        type: integer
-        format: int32
-        nullable: true
       EndDateISO:
         type: string
         format: date-time
-        nullable: true
-      NoEndDate:
-        type: boolean
-        default: false
         nullable: true
       IsDeleted:
         type: boolean
@@ -48,6 +37,7 @@ schemas:
       RateType:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4, 5, 6]
         nullable: true
       Price:
         type: number
@@ -56,6 +46,7 @@ schemas:
       CapType:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4]
         nullable: true
       DailyCapAmount:
         type: integer
@@ -96,6 +87,7 @@ schemas:
       FreqCapType:
         type: integer
         format: int32
+        enum: [1, 2, 3]
         nullable: true
       DontAffectParentFreqCap:
         type: boolean
@@ -109,10 +101,12 @@ schemas:
       DuplicateMode:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4]
         nullable: true
       DeliveryStatus:
         type: integer
         format: int32
+        enum: [1, 2, 3, 4, 5]
         nullable: true
       IsTrackingConversions:
         type: boolean
@@ -130,6 +124,8 @@ schemas:
       ECPMOptimizePeriod:
         type: integer
         format: int32
+        minimum: 1
+        maximum: 90
         nullable: true
       ECPMMultiplier:
         type: number
@@ -187,26 +183,9 @@ schemas:
       IsArchived:
         type: boolean
         nullable: true
-      BehavioralTargeting:
-        $ref: '#/schemas/BehavioralTarget'
-      GeoTargeting:
-        type: array
-        nullable: true
-        items:
-          $ref: './geo-target.yaml#/schemas/GeoTarget'
-      SiteZoneTargeting:
-        type: array
-        nullable: true
-        items:
-          $ref: './site-zone.yaml#/schemas/SiteZone'
       RequireStrictLocation:
         type: boolean
         nullable: true
-      CreativeMaps:
-        type: array
-        nullable: true
-        items:
-          $ref: './ad.yaml#/schemas/Ad'
       IsTargetingOptimization:
         type: boolean
         nullable: true
@@ -251,19 +230,57 @@ schemas:
         type: number
         format: float
         nullable: true
-      Created:
+      TimeZone:
         type: string
-        format: date-time
-        nullable: true
-      LastModified:
-        type: string
-        format: date-time
-        nullable: true
-      Version:
-        type: integer
-        format: int32
         nullable: true
 
+  Flight:
+    allOf:
+      - $ref: '#/schemas/FlightBase'
+      - type: object
+        required:
+          - CampaignId
+        properties:
+          Id:
+            type: integer
+            format: int32
+            readOnly: true
+          CampaignId:
+            type: integer
+            format: int32
+          NoEndDate:
+            type: boolean
+            default: false
+            nullable: true
+          BehavioralTargeting:
+            $ref: '#/schemas/BehavioralTarget'
+          GeoTargeting:
+            type: array
+            nullable: true
+            items:
+              $ref: './geo-target.yaml#/schemas/GeoTarget'
+          SiteZoneTargeting:
+            type: array
+            nullable: true
+            items:
+              $ref: './site-zone.yaml#/schemas/SiteZone'
+          CreativeMaps:
+            type: array
+            nullable: true
+            items:
+              $ref: './ad.yaml#/schemas/Ad'
+          Created:
+            type: string
+            format: date-time
+            nullable: true
+          LastModified:
+            type: string
+            format: date-time
+            nullable: true
+          Version:
+            type: integer
+            format: int32
+            nullable: true
 
   BehavioralTarget:
     type: object
@@ -318,3 +335,26 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/Flight'
+
+  NestedFlightInput:
+    allOf:
+      - $ref: '#/schemas/FlightBase'
+      - type: object
+        properties:
+          Ads:
+            type: array
+            items:
+              $ref: './ad.yaml#/schemas/NestedAdInput'
+
+  NestedFlightOutput:
+    type: object
+    required:
+      - Id
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Ads:
+        type: array
+        items:
+          $ref: './ad.yaml#/schemas/NestedAdOutput'
