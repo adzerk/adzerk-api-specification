@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.13] - 2023-11-13
+
+### Added
+
+- [sc-48713] Added specs for Entity Counts. By [@ryuichis](https://github.com/ryuichis).
+- [sc-49435] Added specs for Create Nested Campaign. By [@vkurup](https://github.com/vkurup).
+
 ## [1.0.12] - 2023-08-29
 
 ### Fixed
