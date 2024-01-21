@@ -17,6 +17,17 @@ schemas:
         type: boolean
       Default:
         type: object
+      MaxBytes:
+        type: integer
+        format: int32
+        nullable: true
+      AllowedValues:
+        type: array
+        items:
+          type: string
+      Regex:
+        type: string
+        nullable: true
 
   CreativeTemplateContents:
     type: object
@@ -50,10 +61,6 @@ schemas:
         type: array
         items:
           $ref: '#/schemas/CreativeTemplateContents'
-      MaxBytes:
-        type: integer
-        format: int32
-        nullable: true
 
   CreativeTemplateUpdateOperation:
     type: object
