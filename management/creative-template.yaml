@@ -69,10 +69,6 @@ paths:
                 IsArchived:
                   type: boolean
                   default: false
-                MaxBytes:
-                  type: integer
-                  format: int32
-                  nullable: true
                 Fields:
                   type: array
                   items:
@@ -105,6 +101,17 @@ paths:
                         nullable: true
                       AdQuery:
                         type: boolean
+                        nullable: true
+                      MaxBytes:
+                        type: integer
+                        format: int32
+                        nullable: true
+                      AllowedValues:
+                        type: array
+                        items:
+                          type: string
+                      Regex:
+                        type: string
                         nullable: true
                 Contents:
                   type: array
@@ -174,10 +181,6 @@ paths:
               required:
                 - Updates
               properties:
-                MaxBytes:
-                  type: integer
-                  format: int32
-                  nullable: true
                 Updates:
                   type: array
                   items:
