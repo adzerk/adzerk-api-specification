@@ -23,6 +23,7 @@ schemas:
         nullable: true
       AllowedValues:
         type: array
+        nullable: true
         items:
           type: string
       Regex:
