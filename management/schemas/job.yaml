@@ -1,0 +1,23 @@
+schemas:
+
+  JobInput:
+    type: object
+    required:
+      - TaskId
+    properties:
+      TaskId:
+        type: string
+        maxLength: 100
+      TaskArgs:
+        type: object
+      PartitionId:
+        type: string
+
+  JobOutput:
+    type: object
+    required:
+      - Id
+    properties:
+      Id:
+        type: integer
+        format: int32
