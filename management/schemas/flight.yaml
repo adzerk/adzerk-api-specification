@@ -344,6 +344,10 @@ schemas:
             type: array
             items:
               $ref: './ad.yaml#/schemas/NestedAdInput'
+          Jobs:
+            type: array
+            items:
+              $ref: './job.yaml#/schemas/JobInput'
 
   NestedFlightOutput:
     type: object
@@ -357,3 +361,7 @@ schemas:
         type: array
         items:
           $ref: './ad.yaml#/schemas/NestedAdOutput'
+      Jobs:
+        type: array
+        items:
+          $ref: './job.yaml#/schemas/JobOutput'
