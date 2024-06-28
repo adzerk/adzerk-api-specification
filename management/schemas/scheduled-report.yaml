@@ -1,29 +1,168 @@
 schemas:
 
+  Id:
+    type: integer
+    format: int32
+
+  Parameters:
+    oneOf:
+      - type: object
+        properties:
+          advertiserId:
+            $ref: '#/schemas/Id'
+          brandId:
+            $ref: '#/schemas/Id'
+        required:
+          - advertiserId
+          - brandId
+      - type: object
+        properties:
+          adTypeId:
+            $ref: '#/schemas/Id'
+        required:
+          - adTypeId
+      - type: object
+        properties:
+          campaignId:
+            $ref: '#/schemas/Id'
+        required:
+          - campaignId
+      - type: object
+        properties:
+          channelId:
+            $ref: '#/schemas/Id'
+        required:
+          - channelId
+      - type: object
+        properties:
+          city:
+            type: string
+        required:
+          - city
+      - type: object
+        properties:
+          countryCode:
+            type: string
+        required:
+          - countryCode
+      - type: object
+        properties:
+          creativeId:
+            $ref: '#/schemas/Id'
+        required:
+          - creativeId
+      - type: object
+        properties:
+          flightId:
+            $ref: '#/schemas/Id'
+          optionId:
+            $ref: '#/schemas/Id'
+        required:
+          - flightId
+          - optionId
+      - type: object
+        properties:
+          keyword:
+            type: string
+        required:
+          - keyword
+      - type: object
+        properties:
+          metroCode:
+            type: integer
+            format: int32
+        required:
+          - metroCode
+      - type: object
+        properties:
+          priorityId:
+            $ref: '#/schemas/Id'
+        required:
+          - priorityId
+      - type: object
+        properties:
+          publisherAccountId:
+            $ref: '#/schemas/Id'
+        required:
+          - publisherAccountId
+      - type: object
+        properties:
+          regionCode:
+            type: string
+        required:
+          - regionCode
+      - type: object
+        properties:
+          siteId:
+            $ref: '#/schemas/Id'
+        required:
+          - siteId
+      - type: object
+        properties:
+          zoneId:
+            $ref: '#/schemas/Id'
+        required:
+          - zoneId
+
+  Criteria:
+    type: object
+    properties:
+      EndDate:
+        type: string
+        format: date
+      EndDateISO:
+        type: string
+        format: date
+      Exclude3rdParty:
+        type: boolean
+      ExcludeParameters:
+        $ref: '#/schemas/Parameters'
+      GroupBy:
+        type: array
+        items:
+          type: string
+      IsTotal:
+        type: boolean
+      Parameters:
+        $ref: '#/schemas/Parameters'
+      StartDate:
+        type: string
+        format: date
+      StartDateISO:
+        type: string
+        format: date
+      ToDate:
+        type: integer
+        format: int32
+      Top30countries:
+        type: boolean
+
   ScheduledReport:
     type: object
     properties:
       Id:
-        type: integer
-        format: int32
-      Name:
-        type: string
-      LoginId:
-        type: integer
-        format: int32
+        $ref: '#/schemas/Id'
+      Criteria:
+        $ref: '#/schemas/Criteria'
+      FixedDate:
+        type: boolean
+      IsDeleted:
+        type: boolean
       KickoffDate:
         type: string
         format: date
-      SchedulingWindow:
-        type: integer
-        format: int32
-        enum: [0, 1, 2, 3]
+      LoginId:
+        $ref: '#/schemas/Id'
+      Name:
+        type: string
       RecurrenceType:
         type: integer
         format: int32
         enum: [0, 1, 2, 3]
-      Criteria:
-        type: object
+      SchedulingWindow:
+        type: integer
+        format: int32
+        enum: [0, 1, 2, 3]
 
   ScheduledReportList:
     type: object
