@@ -95,6 +95,9 @@ paths:
                 IsDeleted:
                   type: boolean
                   default: false
+                CustomFieldsJson:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: Advertiser Created
@@ -190,6 +193,9 @@ paths:
                   nullable: true
                 Id:
                   type: integer
+                CustomFieldsJson:
+                  type: string
+                  nullable: true
       responses:
         200:
           description: Updated Advertiser
