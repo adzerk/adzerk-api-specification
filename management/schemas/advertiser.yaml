@@ -64,6 +64,9 @@ schemas:
         type: integer
         format: int32
         nullable: true
+      CustomFieldsJson:
+        type: string
+        nullable: true
 
   AdvertiserList:
     type: object
