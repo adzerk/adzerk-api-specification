@@ -36,6 +36,8 @@ tags:
     description: Ad Types
   - name: priorities
     description: Priorities
+  - name: jobs
+    description: Create Jobs
 paths:
   /v1/advertiser:
     post:
@@ -2034,7 +2036,26 @@ paths:
       responses:
         200:
           description: Successfully Deleted
-
+  /v1/job:
+    post:
+      tags:
+        - jobs
+      description: Create Jobs
+      operationId: createJob
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/job.yaml#/schemas/JobInput'
+      responses:
+        200:
+          description: Advertiser Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/JobOutput'
 components:
   schemas:
     CreativeTemplateUpdate:

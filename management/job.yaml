@@ -1,0 +1,34 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Advertisers
+  description: Advertiser related Adzerk Management API
+  version: "1.0"
+servers:
+  - url: "https://api.adzerk.net"
+tags:
+  - name: jobs
+    description: Create Jobs
+paths:
+  /v1/job:
+    post:
+      tags:
+        - jobs
+      description: Create Jobs
+      operationId: createJob
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/job.yaml#/schemas/JobInput"
+      responses:
+        200:
+          description: Advertiser Created
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/job.yaml#/schemas/JobOutput"
+components:
+  securitySchemes:
+    $ref: "./components/security-schemes.yaml#/components/securitySchemes"
