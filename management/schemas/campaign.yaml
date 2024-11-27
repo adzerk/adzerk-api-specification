@@ -1,5 +1,4 @@
 schemas:
-
   CampaignBase:
     type: object
     required:
@@ -56,12 +55,13 @@ schemas:
         format: int32
         minimum: 0
         nullable: true
-      Id:
-        type: integer
-        nullable: true
       CustomFieldsJson:
         type: string
         nullable: true
+      StartDate:
+        type: string
+        default: 1/1/2018
+        deprecated: true
       EndDate:
         type: string
         nullable: true
@@ -75,17 +75,17 @@ schemas:
       - $ref: '#/schemas/CampaignBase'
       - type: object
         required:
-          - CampaignId
+          - Id
           - StartDate
         properties:
+          Id:
+            type: integer
+            format: int32
+            nullable: true
           SalespersonId:
             type: integer
             format: int32
             nullable: true
-          StartDate:
-            type: string
-            default: 1/1/2018
-            deprecated: true
           Flights:
             type: array
             items:
