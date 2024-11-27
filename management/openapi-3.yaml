@@ -1039,7 +1039,7 @@ paths:
             format: int32
       responses:
         200:
-          description: "Successfully Deleted"
+          description: 'Successfully Deleted'
   '/v1/flight/{flightId}/sitezonetargeting':
     post:
       tags:
