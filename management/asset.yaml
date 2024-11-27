@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Entity Counts
+  description: Entity Counts related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: entity-counts
+    description: Entity Counts
+paths:
+  '/v1/advertiser/{advertiserId}/asset':
+    parameters:
+      - name: advertiserId
+        in: path
+        description: Id of the Advertiser to update
+        required: true
+        schema:
+          type: integer
+    post:
+      tags:
+        - assets
+      description: Create Assets
+      operationId: createAsset
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/asset.yaml#/schemas/AssetInput'
+      responses:
+        200:
+          description: Asset Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/Asset'
+
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'

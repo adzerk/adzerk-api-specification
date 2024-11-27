@@ -1,0 +1,87 @@
+schemas:
+  BaseAsset:
+    type: object
+    required:
+      - Name
+      - Type
+    properties:
+      Name:
+        type: string
+      Type:
+        type: string
+        enum: ['video', 'image']
+      ContentURL:
+        type: string
+        format: uri
+        nullable: true
+
+  AssetInput:
+    $ref: '#/schemas/AssetBase'
+
+  Asset:
+    allOf:
+      - $ref: '#/schemas/AssetBase'
+      - type: object
+        required:
+          - Id
+          - Status
+          - AdvertiserId
+        properties:
+          AdvertiserId:
+            type: integer
+            format: int32
+            nullable: true
+          Id:
+            type: integer
+            format: int32
+            nullable: true
+          Status:
+            type: string
+          UploadURL:
+            type: string
+            format: uri
+            nullable: true
+          IsDeleted:
+            type: boolean
+            nullable: true
+
+  AssetDetails:
+    allOf:
+      - $ref: '#/schemas/Asset'
+      - type: object
+        properties:
+          Metadata:
+            type: object
+            properties:
+              Height:
+                type: integer
+              Width:
+                type: integer
+              FileExtension:
+                type: string
+              AspectRatio:
+                type: string
+              Duration:
+                type: number
+              PlaybackId:
+                type: string
+
+  AssetList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Asset'
