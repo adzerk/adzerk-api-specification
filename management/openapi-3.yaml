@@ -2058,15 +2058,101 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/job.yaml#/schemas/JobOutput'
-
+  /v1/asset:
+    get:
+      tags:
+        - assets
+      description: list Assets
+      operationId: listAssets
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Assets
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/AssetList'
+  '/v1/asset/{assetId}':
+    parameters:
+      - name: assetId
+        in: path
+        description: Id of the Asset to get
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - assets
+      description: Get an existing Asset
+      operationId: getAsset
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The existing Asset
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/AssetDetails'
   '/v1/advertiser/{advertiserId}/asset':
     parameters:
       - name: advertiserId
         in: path
-        description: Id of the Advertiser to update
+        description: Id of the Advertiser
         required: true
         schema:
           type: integer
+          format: int32
+    get:
+      tags:
+        - assets
+      description: List Assets for Advertiser
+      operationId: listAdvertiserAssets
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Assets for Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/AssetList'
     post:
       tags:
         - assets
@@ -2086,6 +2172,70 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/asset.yaml#/schemas/Asset'
+  '/v1/asset/{assetId}/delete':
+    parameters:
+      - name: assetId
+        in: path
+        description: Id of the Asset to delete
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - assets
+      description: Delete an existing Asset
+      operationId: deleteAsset
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: Successfully Deleted
+  'v1/asset/{assetId}/upload':
+    parameters:
+      - name: assetId
+        in: path
+        description: Id of the Asset to delete
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - assets
+      description: Upload an existing Asset Content
+      operationId: uploadAssetContent
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          image/*:
+            schema:
+              type: string
+              format: binary
+              description: Binary data for image files.
+          video/*:
+            schema:
+              type: string
+              format: base64
+              description: Binary data for video files.
+          application/octet-stream:
+            schema:
+              type: string
+              format: base64
+              description: Binary data for video or image files.
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Successfully Uploaded
+
 components:
   schemas:
     CreativeTemplateUpdate:
