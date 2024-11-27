@@ -665,7 +665,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: './schemas/ad.yaml#/schemas/AdInput'
       responses:
         200:
           description: The newly created Ad
