@@ -2257,7 +2257,7 @@ paths:
       responses:
         200:
           description: Successfully Deleted
-  'v1/asset/{assetId}/upload':
+  '/v1/asset/{assetId}/upload':
     parameters:
       - name: assetId
         in: path
