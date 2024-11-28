@@ -2276,21 +2276,6 @@ paths:
       requestBody:
         required: true
         content:
-          image/*:
-            schema:
-              type: string
-              format: binary
-              description: Binary data for image files.
-          video/*:
-            schema:
-              type: string
-              format: base64
-              description: Binary data for video files.
-          application/octet-stream:
-            schema:
-              type: string
-              format: base64
-              description: Binary data for video or image files.
           multipart/form-data:
             schema:
               type: object
