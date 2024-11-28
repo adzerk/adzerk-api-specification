@@ -10,21 +10,23 @@ schemas:
       Type:
         type: string
         enum: ['video', 'image']
-      ContentURL:
-        type: string
-        format: uri
-        nullable: true
 
   AssetInput:
-    $ref: '#/schemas/AssetBase'
-
-  Asset:
     allOf:
       - $ref: '#/schemas/AssetBase'
       - type: object
+        properties:
+          ContentURL:
+            type: string
+            nullable: true
+            optional: true
+
+  Asset:
+    allOf:
+      - $ref: '#/schemas/AdBase'
+      - type: object
         required:
           - Id
-          - Status
           - AdvertiserId
         properties:
           AdvertiserId:
@@ -35,15 +37,34 @@ schemas:
             type: integer
             format: int32
             nullable: true
-          Status:
-            type: string
-          UploadURL:
-            type: string
-            format: uri
-            nullable: true
           IsDeleted:
             type: boolean
             nullable: true
+      - oneOf:
+          - type: object
+            required:
+              - Status
+              - UploadURL
+            properties:
+              Status:
+                type: string
+                enum: ['pending']
+              UploadURL:
+                type: string
+                format: uri
+                nullable: true
+          - type: object
+            required:
+              - Status
+              - ContentURL
+            properties:
+              Status:
+                type: string
+                enum: ['ready']
+              ContentURL:
+                type: string
+                format: uri
+                nullable: true
 
   AssetDetails:
     allOf:
