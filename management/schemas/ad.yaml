@@ -126,7 +126,10 @@ schemas:
         nullable: true
 
   AdInput:
-    $ref: '#/schemas/AdBase'
+    allOf:
+      - $ref: '#/schemas/AdBase'
+      - type: object
+        additionalProperties: true
 
   Ad:
     allOf:
