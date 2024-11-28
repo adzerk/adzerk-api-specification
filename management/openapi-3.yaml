@@ -2283,6 +2283,7 @@ paths:
                 file:
                   type: string
                   format: binary
+                  description: This must be an image file
       responses:
         200:
           description: Successfully Uploaded
