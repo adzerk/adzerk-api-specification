@@ -2038,7 +2038,73 @@ paths:
       responses:
         200:
           description: Successfully Deleted
+  /v1/job/{jobId}:
+    get:
+      tags:
+        - jobs
+      description: List Jobs
+      operationId: listJobs
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: jobId
+          in: path
+          description: The Job Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: verbose
+          in: query
+          description: Whether to return TaskArgs and Output attributes in returned jobs
+          required: false
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: The existing Job
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/Job'
   /v1/job:
+    get:
+      tags:
+        - jobs
+      description: List Jobs
+      operationId: listJobs
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: verbose
+          in: query
+          description: Whether to return TaskArgs and Output attributes in returned jobs
+          required: false
+          schema:
+            type: boolean
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Jobs
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/JobList'
     post:
       tags:
         - jobs
@@ -2057,7 +2123,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/job.yaml#/schemas/JobOutput'
+                $ref: './schemas/job.yaml#/schemas/Job'
   /v1/asset:
     get:
       tags:
