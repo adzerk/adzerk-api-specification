@@ -12,38 +12,42 @@ schemas:
         type: string
         enum: ['op', 'literal', 'stringify', 'stringify-array']
 
-  Task:
+  CreateAdsFromProductsTask:
     type: object
-    properties:
-      ProductUris:
-        type: array
-        items:
-          type: string
-          format: uri
-      AdTemplateUri:
-        type: string
-        format: uri
-      FlightId:
-        type: integer
-        format: int32
-      Overrides:
-        type: object
-        description: 'A map or ProductUri keys with Override values'
-        additionalProperties:
-          $ref: '#/schemas/Override'
-
-  JobInput:
-    type: object
-    required:
-      - TaskId
     properties:
       TaskId:
         type: string
-        maxLength: 100
+        enum: ['create-ads-from-products']
       TaskArgs:
-        $ref: '#/schemas/Task'
-      PartitionId:
-        type: string
+        type: object
+        properties:
+          ProductUris:
+            type: array
+            items:
+              type: string
+              format: uri
+          AdTemplateUri:
+            type: string
+            format: uri
+          FlightId:
+            type: integer
+            format: int32
+          Overrides:
+            type: object
+            description: 'A map or ProductUri keys with Override values'
+            additionalProperties:
+              $ref: '#/schemas/Override'
+
+  JobInput:
+    allOf:
+      - oneOf:
+          - $ref: '#/schemas/CreateAdsFromProductsTask'
+      - type: object
+        required:
+          - TaskId
+        properties:
+          PartitionId:
+            type: string
 
   SuccessfulOutput:
     type: object
@@ -85,29 +89,30 @@ schemas:
               type: string
 
   Job:
-    type: object
-    required:
-      - TaskId
-    properties:
-      CompletedTime:
-        type: string
-      NetworkId:
-        type: integer
-      Status:
-        type: string
-      TaskArgs:
-        $ref: '#/schemas/Task'
-      AvailableTime:
-        type: string
-      Output:
-        type: object
-        anyOf:
-          - $ref: '#/schemas/CompletedOutput'
-          - $ref: '#/schemas/FailedOutput'
-      Id:
-        type: integer
-      PartitionId:
-        type: string
+    allOf:
+      - oneOf:
+          - $ref: '#/schemas/CreateAdsFromProductsTask'
+      - type: object
+        required:
+          - TaskId
+        properties:
+          CompletedTime:
+            type: string
+          NetworkId:
+            type: integer
+          Status:
+            type: string
+          AvailableTime:
+            type: string
+          Output:
+            type: object
+            anyOf:
+              - $ref: '#/schemas/CompletedOutput'
+              - $ref: '#/schemas/FailedOutput'
+          Id:
+            type: integer
+          PartitionId:
+            type: string
 
   JobList:
     type: object
