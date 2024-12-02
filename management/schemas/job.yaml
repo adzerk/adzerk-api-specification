@@ -1,6 +1,6 @@
 schemas:
   Override:
-    type: Object
+    type: object
     properties:
       source:
         type: string
@@ -10,7 +10,7 @@ schemas:
           type: string
       op:
         type: string
-        enum: ['op', 'literal', 'stringify', 'stringify-array']
+        enum: ['constant', 'literal', 'stringify', 'stringify-array']
 
   CreateAdsFromProductsTask:
     type: object
@@ -34,7 +34,7 @@ schemas:
             format: int32
           Overrides:
             type: object
-            description: 'A map or ProductUri keys with Override values'
+            description: 'A map of ProductUri keys with Override values'
             additionalProperties:
               $ref: '#/schemas/Override'
 
