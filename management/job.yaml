@@ -13,8 +13,8 @@ paths:
     get:
       tags:
         - jobs
-      description: List Jobs
-      operationId: listJobs
+      description: Get Job
+      operationId: getJob
       security:
         - ApiKeyAuth: []
       parameters:
