@@ -2222,7 +2222,7 @@ paths:
     post:
       tags:
         - assets
-      description: Create Assets
+      description: Create Asset
       operationId: createAsset
       security:
         - ApiKeyAuth: []
