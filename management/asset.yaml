@@ -154,7 +154,7 @@ paths:
     post:
       tags:
         - assets
-      description: Upload an existing Asset Content
+      description: Upload content to an existing Asset
       operationId: uploadAssetContent
       security:
         - ApiKeyAuth: []
