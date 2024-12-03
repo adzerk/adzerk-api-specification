@@ -158,6 +158,20 @@ paths:
       operationId: uploadAssetContent
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: timestamp
+          in: query
+          description: Milliseconds since epoch from asset creation
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: signature
+          in: query
+          description: Signing hash from asset creation
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
