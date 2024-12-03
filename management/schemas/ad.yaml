@@ -1,5 +1,5 @@
 schemas:
-  BaseAd:
+  AdBase:
     type: object
     required:
       - Creative

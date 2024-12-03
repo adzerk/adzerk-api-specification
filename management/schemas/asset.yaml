@@ -1,5 +1,5 @@
 schemas:
-  BaseAsset:
+  AssetBase:
     type: object
     required:
       - Name
@@ -23,7 +23,7 @@ schemas:
 
   Asset:
     allOf:
-      - $ref: '#/schemas/AdBase'
+      - $ref: '#/schemas/AssetBase'
       - type: object
         required:
           - Id
