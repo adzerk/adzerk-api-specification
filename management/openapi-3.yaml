@@ -2160,7 +2160,7 @@ paths:
     parameters:
       - name: assetId
         in: path
-        description: Id of the Asset to get
+        description: Id of the Asset
         required: true
         schema:
           type: integer
@@ -2242,7 +2242,7 @@ paths:
     parameters:
       - name: assetId
         in: path
-        description: Id of the Asset to delete
+        description: Id of the Asset
         required: true
         schema:
           type: integer
@@ -2261,7 +2261,7 @@ paths:
     parameters:
       - name: assetId
         in: path
-        description: Id of the Asset to delete
+        description: Id of the Asset
         required: true
         schema:
           type: integer
