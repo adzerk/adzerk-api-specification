@@ -90,7 +90,7 @@ paths:
               $ref: './schemas/job.yaml#/schemas/JobInput'
       responses:
         200:
-          description: Advertiser Created
+          description: Job Created
           content:
             application/json:
               schema:
