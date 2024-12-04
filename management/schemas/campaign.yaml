@@ -78,9 +78,9 @@ schemas:
     allOf:
       - $ref: '#/schemas/CampaignBase'
       - type: object
+        required:
+          - Id
         properties:
-          required:
-            - Id
           Id:
             type: integer
             format: int32
