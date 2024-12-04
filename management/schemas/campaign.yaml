@@ -101,14 +101,14 @@ schemas:
             readOnly: true
           EndDate:
             type: string
+            deprecated: true
             nullable: true
             readOnly: true
-            deprecated: true
           EndDateISO:
             type: string
-            readOnly: true
             deprecated: true
             nullable: true
+            readOnly: true
           Price:
             type: number
             deprecated: true
