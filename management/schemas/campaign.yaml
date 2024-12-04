@@ -63,6 +63,17 @@ schemas:
         nullable: true
         readOnly: true
 
+  CampaignInput:
+    allOf:
+      - $ref: '#/schemas/CampaignBase'
+      - type: object
+        properties:
+          Flights:
+            type: array
+            items:
+              type: object
+            nullable: true
+
   Campaign:
     allOf:
       - $ref: '#/schemas/CampaignBase'
