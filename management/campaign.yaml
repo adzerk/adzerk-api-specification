@@ -41,7 +41,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/campaign.yaml#/schemas/Campaign'
+              $ref: './schemas/campaign.yaml#/schemas/CampaignInput'
       responses:
         200:
           description: Campaign Created
