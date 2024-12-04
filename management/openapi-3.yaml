@@ -36,6 +36,10 @@ tags:
     description: Ad Types
   - name: priorities
     description: Priorities
+  - name: jobs
+    description: Create Jobs
+  - name: assets
+    description: Manage Assets
 paths:
   /v1/advertiser:
     post:
@@ -203,7 +207,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/campaign.yaml#/schemas/Campaign'
+              $ref: './schemas/campaign.yaml#/schemas/CampaignInput'
       responses:
         200:
           description: Campaign Created
@@ -663,7 +667,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: './schemas/ad.yaml#/schemas/AdInput'
       responses:
         200:
           description: The newly created Ad
@@ -1037,7 +1041,7 @@ paths:
             format: int32
       responses:
         200:
-          description: "Successfully Deleted"
+          description: 'Successfully Deleted'
   '/v1/flight/{flightId}/sitezonetargeting':
     post:
       tags:
@@ -2034,13 +2038,273 @@ paths:
       responses:
         200:
           description: Successfully Deleted
+  /v1/job/{jobId}:
+    get:
+      tags:
+        - jobs
+      description: Get Job
+      operationId: getJob
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: jobId
+          in: path
+          description: The Job Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: verbose
+          in: query
+          description: Whether to return TaskArgs and Output attributes in returned jobs
+          required: false
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: The specified Job
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/Job'
+  /v1/job:
+    get:
+      tags:
+        - jobs
+      description: List Jobs
+      operationId: listJobs
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: verbose
+          in: query
+          description: Whether to return TaskArgs and Output attributes in returned jobs
+          required: false
+          schema:
+            type: boolean
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Jobs
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/JobList'
+    post:
+      tags:
+        - jobs
+      description: Create Jobs
+      operationId: createJob
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/job.yaml#/schemas/JobInput'
+      responses:
+        200:
+          description: Job Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/Job'
+  /v1/asset:
+    get:
+      tags:
+        - assets
+      description: list Assets
+      operationId: listAssets
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Assets
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/AssetList'
+  '/v1/asset/{assetId}':
+    parameters:
+      - name: assetId
+        in: path
+        description: Id of the Asset
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - assets
+      description: Get an existing Asset
+      operationId: getAsset
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The existing Asset
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/AssetDetails'
+  '/v1/advertiser/{advertiserId}/asset':
+    parameters:
+      - name: advertiserId
+        in: path
+        description: Id of the Advertiser
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - assets
+      description: List Assets for Advertiser
+      operationId: listAdvertiserAssets
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: Paged list of Assets for Advertiser
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/AssetList'
+    post:
+      tags:
+        - assets
+      description: Create Asset
+      operationId: createAsset
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/asset.yaml#/schemas/AssetInput'
+      responses:
+        200:
+          description: Asset Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/asset.yaml#/schemas/Asset'
+  '/v1/asset/{assetId}/delete':
+    parameters:
+      - name: assetId
+        in: path
+        description: Id of the Asset
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - assets
+      description: Delete an existing Asset
+      operationId: deleteAsset
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: Successfully Deleted
+  '/v1/asset/{assetId}/upload':
+    parameters:
+      - name: assetId
+        in: path
+        description: Id of the Asset
+        required: true
+        schema:
+          type: integer
+          format: int32
+    post:
+      tags:
+        - assets
+      description: Upload content to an existing Asset
+      operationId: uploadAssetContent
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: timestamp
+          in: query
+          description: Milliseconds since epoch from asset creation
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: signature
+          in: query
+          description: Signing hash from asset creation
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: This must be an image file
+      responses:
+        200:
+          description: Successfully Uploaded
 
 components:
   schemas:
     CreativeTemplateUpdate:
       $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-Adzerk-ApiKey
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
