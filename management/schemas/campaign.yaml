@@ -79,6 +79,8 @@ schemas:
       - $ref: '#/schemas/CampaignBase'
       - type: object
         properties:
+          required:
+            - Id
           Id:
             type: integer
             format: int32
