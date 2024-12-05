@@ -1,4 +1,5 @@
 schemas:
+
   CampaignBase:
     type: object
     required:
@@ -55,6 +56,9 @@ schemas:
         format: int32
         minimum: 0
         nullable: true
+      Id:
+        type: integer
+        nullable: true
       CustomFieldsJson:
         type: string
         nullable: true
@@ -63,52 +67,35 @@ schemas:
         nullable: true
         readOnly: true
 
-  CampaignInput:
-    allOf:
-      - $ref: '#/schemas/CampaignBase'
-      - type: object
-        properties:
-          Flights:
-            type: array
-            items:
-              type: object
-            nullable: true
-
   Campaign:
     allOf:
       - $ref: '#/schemas/CampaignBase'
       - type: object
-        required:
-          - Id
         properties:
-          Id:
-            type: integer
-            format: int32
-            nullable: true
           SalespersonId:
             type: integer
             format: int32
-            nullable: true
-          Flights:
-            type: array
-            items:
-              type: object
             nullable: true
           StartDate:
             type: string
             default: 1/1/2018
             deprecated: true
             readOnly: true
+          Flights:
+            type: array
+            items:
+              type: object
+            nullable: true
           EndDate:
             type: string
-            deprecated: true
             nullable: true
             readOnly: true
+            deprecated: true
           EndDateISO:
             type: string
+            readOnly: true
             deprecated: true
             nullable: true
-            readOnly: true
           Price:
             type: number
             deprecated: true

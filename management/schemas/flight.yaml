@@ -364,4 +364,4 @@ schemas:
       Jobs:
         type: array
         items:
-          $ref: './job.yaml#/schemas/Job'
+          $ref: './job.yaml#/schemas/JobOutput'
