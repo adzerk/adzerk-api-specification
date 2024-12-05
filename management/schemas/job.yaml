@@ -1,23 +1,135 @@
 schemas:
-
-  JobInput:
+  Override:
     type: object
-    required:
-      - TaskId
+    properties:
+      source:
+        type: string
+      target:
+        type: array
+        items:
+          type: string
+      op:
+        type: string
+        enum: ['constant', 'literal', 'stringify', 'stringify-array']
+
+  CreateAdsFromProductsTask:
+    type: object
     properties:
       TaskId:
         type: string
-        maxLength: 100
+        enum: ['create-ads-from-products']
       TaskArgs:
         type: object
-      PartitionId:
-        type: string
+        properties:
+          ProductUris:
+            type: array
+            items:
+              type: string
+              format: uri
+          AdTemplateUri:
+            type: string
+            format: uri
+          FlightId:
+            type: integer
+            format: int32
+          Overrides:
+            type: object
+            description: 'A map of ProductUri keys with Override values'
+            additionalProperties:
+              $ref: '#/schemas/Override'
 
-  JobOutput:
+  JobInput:
+    allOf:
+      - oneOf:
+          - $ref: '#/schemas/CreateAdsFromProductsTask'
+      - type: object
+        required:
+          - TaskId
+        properties:
+          PartitionId:
+            type: string
+
+  SuccessfulOutput:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          type: object
+          properties:
+            required:
+              - message
+            message:
+              type: string
+
+  CompletedOutput:
     type: object
     required:
-      - Id
+      - AdIds
     properties:
-      Id:
+      AdIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+
+  FailedOutput:
+    type: object
+    required:
+      - errors
+    properties:
+      errors:
+        type: array
+        items:
+          type: object
+          properties:
+            required:
+              - message
+            message:
+              type: string
+
+  Job:
+    allOf:
+      - oneOf:
+          - $ref: '#/schemas/CreateAdsFromProductsTask'
+      - type: object
+        required:
+          - TaskId
+        properties:
+          CompletedTime:
+            type: string
+          NetworkId:
+            type: integer
+          Status:
+            type: string
+          AvailableTime:
+            type: string
+          Output:
+            type: object
+            anyOf:
+              - $ref: '#/schemas/CompletedOutput'
+              - $ref: '#/schemas/FailedOutput'
+          Id:
+            type: integer
+          PartitionId:
+            type: string
+
+  JobList:
+    type: object
+    properties:
+      page:
         type: integer
         format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Job'

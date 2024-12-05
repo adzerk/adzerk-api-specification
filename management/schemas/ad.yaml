@@ -1,27 +1,12 @@
 schemas:
-
-  Ad:
+  AdBase:
     type: object
     required:
-      - CampaignId
       - Creative
       - IsActive
-      - FlightId
     properties:
-      CampaignId:
-        type: integer
-        format: int32
-        nullable: true
       Creative:
         $ref: './creative.yaml#/schemas/Creative'
-        nullable: true
-      FlightId:
-        type: integer
-        format: int32
-        nullable: true
-      Id:
-        type: integer
-        format: int32
         nullable: true
       IsActive:
         type: boolean
@@ -41,6 +26,7 @@ schemas:
       DistributionType:
         type: integer
         format: int32
+        enum: [1, 2, 3]
       Percentage:
         type: integer
         format: int32
@@ -84,6 +70,7 @@ schemas:
         type: integer
         format: int32
         nullable: true
+        enum: [1, 2, 3, 7, 8, 9, 10]
       Goal:
         type: integer
         format: int32
@@ -109,6 +96,7 @@ schemas:
         type: integer
         format: int32
         nullable: true
+        enum: [1, 2, 3]
       Price:
         type: number
         format: float
@@ -136,6 +124,34 @@ schemas:
         type: integer
         format: int32
         nullable: true
+
+  AdInput:
+    allOf:
+      - $ref: '#/schemas/AdBase'
+      - type: object
+        additionalProperties: true
+
+  Ad:
+    allOf:
+      - $ref: '#/schemas/AdBase'
+      - type: object
+        required:
+          - Id
+          - FlightId
+          - CampaignId
+        properties:
+          CampaignId:
+            type: integer
+            format: int32
+            nullable: true
+          FlightId:
+            type: integer
+            format: int32
+            nullable: true
+          Id:
+            type: integer
+            format: int32
+            nullable: true
 
   AdList:
     type: object

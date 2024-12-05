@@ -1,0 +1,108 @@
+schemas:
+  AssetBase:
+    type: object
+    required:
+      - Name
+      - Type
+    properties:
+      Name:
+        type: string
+      Type:
+        type: string
+        enum: ['video', 'image']
+
+  AssetInput:
+    allOf:
+      - $ref: '#/schemas/AssetBase'
+      - type: object
+        properties:
+          ContentURL:
+            type: string
+            nullable: true
+            optional: true
+
+  Asset:
+    allOf:
+      - $ref: '#/schemas/AssetBase'
+      - type: object
+        required:
+          - Id
+          - AdvertiserId
+        properties:
+          AdvertiserId:
+            type: integer
+            format: int32
+            nullable: true
+          Id:
+            type: integer
+            format: int32
+            nullable: true
+          IsDeleted:
+            type: boolean
+            nullable: true
+      - oneOf:
+          - type: object
+            required:
+              - Status
+              - UploadURL
+            properties:
+              Status:
+                type: string
+                enum: ['pending']
+              UploadURL:
+                type: string
+                format: uri
+                nullable: true
+          - type: object
+            required:
+              - Status
+              - ContentURL
+            properties:
+              Status:
+                type: string
+                enum: ['ready']
+              ContentURL:
+                type: string
+                format: uri
+                nullable: true
+
+  AssetDetails:
+    allOf:
+      - $ref: '#/schemas/Asset'
+      - type: object
+        properties:
+          Metadata:
+            type: object
+            properties:
+              Height:
+                type: integer
+              Width:
+                type: integer
+              FileExtension:
+                type: string
+              AspectRatio:
+                type: string
+              Duration:
+                type: number
+              PlaybackId:
+                type: string
+
+  AssetList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Asset'

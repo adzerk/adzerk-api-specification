@@ -1,0 +1,100 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Advertisers
+  description: Advertiser related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: jobs
+    description: Create Jobs
+paths:
+  /v1/job/{jobId}:
+    get:
+      tags:
+        - jobs
+      description: Get Job
+      operationId: getJob
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: jobId
+          in: path
+          description: The Job Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: verbose
+          in: query
+          description: Whether to return TaskArgs and Output attributes in returned jobs
+          required: false
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: The specified Job
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/Job'
+  /v1/job:
+    get:
+      tags:
+        - jobs
+      description: List Jobs
+      operationId: listJobs
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: verbose
+          in: query
+          description: Whether to return TaskArgs and Output attributes in returned jobs
+          required: false
+          schema:
+            type: boolean
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Jobs
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/JobList'
+    post:
+      tags:
+        - jobs
+      description: Create Jobs
+      operationId: createJob
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/job.yaml#/schemas/JobInput'
+      responses:
+        200:
+          description: Job Created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/job.yaml#/schemas/Job'
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
