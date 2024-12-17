@@ -68,7 +68,7 @@ jobs:
         name: Publish Package to NPM
         env:
           NPM_REGISTRY: registry.npmjs.org
-          NPM_SECRET: ${{ secrets.NPM_TOKEN }}
+          NPM_SECRET: ${{ secrets.NPM_KEVELTRON_TOKEN }}
         working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
         run: |
           echo "Publishing tag ${GITHUB_REF_NAME} to ${NPM_REGISTRY}."
