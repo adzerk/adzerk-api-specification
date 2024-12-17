@@ -147,6 +147,9 @@ paths:
                   type: integer
                   format: int32
                   nullable: true
+                AttributionSettings:
+                  $ref: './schemas/ad.yaml#/schemas/AttributionSettings'
+                  nullable: true
       responses:
         200:
           description: The newly created Ad
@@ -374,7 +377,9 @@ paths:
                   type: integer
                   format: int32
                   nullable: true
-
+                AttributionSettings:
+                  $ref: './schemas/ad.yaml#/schemas/AttributionSettings'
+                  nullable: true
       responses:
         200:
           description: The updated Ad
