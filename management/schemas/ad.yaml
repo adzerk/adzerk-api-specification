@@ -1,5 +1,4 @@
 schemas:
-
   Ad:
     type: object
     required:
@@ -124,6 +123,9 @@ schemas:
         type: integer
         format: int32
         nullable: true
+      AttributionSettings:
+        $ref: '#/schemas/AttributionSettings'
+        nullable: true
       Created:
         type: string
         format: date-time
@@ -194,3 +196,110 @@ schemas:
         format: int32
       Creative:
         $ref: './creative.yaml#/schemas/NestedCreativeOutput'
+
+  AttributableItemSameProductWithProductId:
+    type: object
+    properties:
+      MatchType:
+        type: string
+        enum: [SameProduct]
+      ProductUri:
+        type: string
+      ProductId:
+        type: string
+      MerchantId:
+        type: string
+      Promoted:
+        type: boolean
+    required:
+      - MatchType
+      - ProductId
+    additionalProperties: false
+
+  AttributableItemSameProductWithProductUri:
+    type: object
+    properties:
+      MatchType:
+        type: string
+        enum: [SameProduct]
+      ProductUri:
+        type: string
+      ProductId:
+        type: string
+      MerchantId:
+        type: string
+      Promoted:
+        type: boolean
+    required:
+      - MatchType
+      - ProductUri
+    additionalProperties: false
+
+  AttributableItemSameCategoryBrand:
+    type: object
+    properties:
+      MatchType:
+        type: string
+        enum: [SameCategoryBrand]
+      CategoryId:
+        type: string
+      BrandId:
+        type: string
+      MerchantId:
+        type: string
+      Promoted:
+        type: boolean
+    required:
+      - MatchType
+      - CategoryId
+      - BrandId
+    additionalProperties: false
+
+  AttributableItemSameBrand:
+    type: object
+    properties:
+      MatchType:
+        type: string
+        enum: [SameBrand]
+      BrandId:
+        type: string
+      MerchantId:
+        type: string
+      Promoted:
+        type: boolean
+    required:
+      - MatchType
+      - BrandId
+    additionalProperties: false
+
+  AttributableItemSameMerchant:
+    type: object
+    properties:
+      MatchType:
+        type: string
+        enum: [SameMerchant]
+      MerchantId:
+        type: string
+      Promoted:
+        type: boolean
+    required:
+      - MatchType
+      - MerchantId
+    additionalProperties: false
+
+  AttributionSettings:
+    type: object
+    properties:
+      AttributableItems:
+        type: array
+        items:
+          oneOf:
+            - $ref: '#/schemas/AttributableItemSameProductWithProductId'
+            - $ref: '#/schemas/AttributableItemSameProductWithProductUri'
+            - $ref: '#/schemas/AttributableItemSameCategoryBrand'
+            - $ref: '#/schemas/AttributableItemSameBrand'
+            - $ref: '#/schemas/AttributableItemSameMerchant'
+          discriminator:
+            propertyName: MatchType
+    required:
+      - AttributableItems
