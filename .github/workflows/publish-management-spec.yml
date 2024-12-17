@@ -1,8 +1,7 @@
 name: Publish Management API OpenAPI Specification
 on:
-  push:
-    branches: [master]
-    tags: [v*]
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -27,10 +26,14 @@ jobs:
           tags: '[{"Key": "BillingGroup", "Value": "Developer Experience"}]'
           no-fail-on-empty-changeset: 1
 
-      - name: Publish latest specifications to S3
-        run: |
-          cd management
-          aws s3 cp . s3://developer-exp-management-api-specification --recursive --exclude "*" --include "*.yaml" --acl "public-read"
+      # [sc-66733] Do not publish to the root until there is an enduring solution to the 
+      # caching issue whereby the CDN can serve a mixture of new and old schema files 
+      # for a period after a release being published.
+      #
+      # - name: Publish latest specifications to S3
+      #   run: |
+      #     cd management
+      #     aws s3 cp . s3://developer-exp-management-api-specification --recursive --exclude "*" --include "*.yaml" --acl "public-read"
 
       - name: Publish tagged version to S3
         if: startsWith(github.ref, 'refs/tags/v')
