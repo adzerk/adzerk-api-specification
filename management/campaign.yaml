@@ -74,6 +74,21 @@ paths:
             type: integer
             format: int32
             nullable: true
+        - name: advertiserId
+          in: query
+          description: Returns only campaigns that belong to that advertiser Id
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: isArchived
+          in: query
+          description: Returns only archived flights if true
+          required: false
+          schema:
+            type: boolean
+            nullable: true
       responses:
         200:
           description: Paged list of Campaigns
