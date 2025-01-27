@@ -2,9 +2,9 @@ openapi: 3.0.1
 info:
   title: Adzerk Management API
   description: Adzerk Management API
-  version: '1.0'
+  version: "1.0"
 servers:
-  - url: 'https://api.adzerk.net'
+  - url: "https://api.adzerk.net"
 tags:
   - name: advertisers
     description: Manage Advertisers
@@ -56,7 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+                $ref: "./schemas/advertiser.yaml#/schemas/Advertiser"
     get:
       tags:
         - advertisers
@@ -87,8 +87,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
-  '/v1/advertiser/{advertiserId}':
+                $ref: "./schemas/advertiser.yaml#/schemas/AdvertiserList"
+  "/v1/advertiser/{advertiserId}":
     parameters:
       - name: advertiserId
         in: path
@@ -114,7 +114,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+                $ref: "./schemas/advertiser.yaml#/schemas/Advertiser"
     get:
       tags:
         - advertisers
@@ -128,7 +128,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/advertiser.yaml#/schemas/Advertiser'
+                $ref: "./schemas/advertiser.yaml#/schemas/Advertiser"
   /v1/advertiser/search:
     post:
       tags:
@@ -141,15 +141,15 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: './schemas/advertiser.yaml#/schemas/AdvertiserSearch'
+              $ref: "./schemas/advertiser.yaml#/schemas/AdvertiserSearch"
       responses:
         200:
           description: Paged list of Advertisers
           content:
             application/json:
               schema:
-                $ref: './schemas/advertiser.yaml#/schemas/AdvertiserList'
-  '/v1/advertiser/{advertiserId}/trackingCode':
+                $ref: "./schemas/advertiser.yaml#/schemas/AdvertiserList"
+  "/v1/advertiser/{advertiserId}/trackingCode":
     get:
       tags:
         - advertisers
@@ -170,7 +170,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/advertiser.yaml#/schemas/TrackingPixel'
+                $ref: "./schemas/advertiser.yaml#/schemas/TrackingPixel"
   /v2/campaign:
     post:
       tags:
@@ -183,14 +183,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/campaign.yaml#/schemas/NestedCampaignInput'
+              $ref: "./schemas/campaign.yaml#/schemas/NestedCampaignInput"
       responses:
         200:
           description: Nested Campaign Created
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/NestedCampaignOutput'
+                $ref: "./schemas/campaign.yaml#/schemas/NestedCampaignOutput"
   /v1/campaign:
     post:
       tags:
@@ -203,14 +203,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/campaign.yaml#/schemas/Campaign'
+              $ref: "./schemas/campaign.yaml#/schemas/Campaign"
       responses:
         200:
           description: Campaign Created
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+                $ref: "./schemas/campaign.yaml#/schemas/Campaign"
     get:
       tags:
         - campaigns
@@ -256,8 +256,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/CampaignList'
-  '/v1/campaign/{campaignId}':
+                $ref: "./schemas/campaign.yaml#/schemas/CampaignList"
+  "/v1/campaign/{campaignId}":
     put:
       tags:
         - campaigns
@@ -283,7 +283,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+                $ref: "./schemas/campaign.yaml#/schemas/Campaign"
     get:
       tags:
         - campaigns
@@ -304,7 +304,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/Campaign'
+                $ref: "./schemas/campaign.yaml#/schemas/Campaign"
   /v1/campaign/search:
     post:
       tags:
@@ -317,15 +317,15 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: './schemas/campaign.yaml#/schemas/CampaignSearch'
+              $ref: "./schemas/campaign.yaml#/schemas/CampaignSearch"
       responses:
         200:
           description: Paged list of Campaigns
           content:
             application/json:
               schema:
-                $ref: './schemas/campaign.yaml#/schemas/CampaignList'
-  '/v1/campaign/{campaignId}/flight':
+                $ref: "./schemas/campaign.yaml#/schemas/CampaignList"
+  "/v1/campaign/{campaignId}/flight":
     get:
       tags:
         - flights
@@ -346,7 +346,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight.yaml#/schemas/FlightList'
+                $ref: "./schemas/flight.yaml#/schemas/FlightList"
   /v1/flight:
     post:
       tags:
@@ -359,14 +359,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: "./schemas/flight.yaml#/schemas/Flight"
       responses:
         200:
           description: Flight Created
           content:
             application/json:
               schema:
-                $ref: './schemas/flight.yaml#/schemas/Flight'
+                $ref: "./schemas/flight.yaml#/schemas/Flight"
     get:
       tags:
         - flights
@@ -411,8 +411,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight.yaml#/schemas/FlightList'
-  '/v1/flight/{flightId}':
+                $ref: "./schemas/flight.yaml#/schemas/FlightList"
+  "/v1/flight/{flightId}":
     parameters:
       - name: flightId
         in: path
@@ -438,7 +438,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight.yaml#/schemas/Flight'
+                $ref: "./schemas/flight.yaml#/schemas/Flight"
     get:
       tags:
         - flights
@@ -458,8 +458,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight.yaml#/schemas/Flight'
-  '/v1/fast/flight':
+                $ref: "./schemas/flight.yaml#/schemas/Flight"
+  "/v1/fast/flight":
     get:
       tags:
         - flights
@@ -534,8 +534,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/creative/{CreativeId}/upload':
+                $ref: "./schemas/creative.yaml#/schemas/Creative"
+  "/v1/creative/{CreativeId}/upload":
     post:
       tags:
         - creatives
@@ -576,8 +576,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/creative/{CreativeId}':
+                $ref: "./schemas/creative.yaml#/schemas/Creative"
+  "/v1/creative/{CreativeId}":
     parameters:
       - name: CreativeId
         in: path
@@ -604,7 +604,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative.yaml#/schemas/Creative'
+                $ref: "./schemas/creative.yaml#/schemas/Creative"
     get:
       tags:
         - creatives
@@ -618,8 +618,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative.yaml#/schemas/Creative'
-  '/v1/advertiser/{AdvertiserId}/creatives':
+                $ref: "./schemas/creative.yaml#/schemas/Creative"
+  "/v1/advertiser/{AdvertiserId}/creatives":
     get:
       tags:
         - creatives
@@ -657,8 +657,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative.yaml#/schemas/CreativeList'
-  '/v1/flight/{flightId}/creative':
+                $ref: "./schemas/creative.yaml#/schemas/CreativeList"
+  "/v1/flight/{flightId}/creative":
     parameters:
       - name: flightId
         in: path
@@ -685,8 +685,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad.yaml#/schemas/Ad'
-  '/v1/flight/{flightId}/creatives':
+                $ref: "./schemas/ad.yaml#/schemas/Ad"
+  "/v1/flight/{flightId}/creatives":
     get:
       tags:
         - ads
@@ -724,8 +724,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad.yaml#/schemas/AdList'
-  '/v1/flight/{flightId}/creative/{adId}':
+                $ref: "./schemas/ad.yaml#/schemas/AdList"
+  "/v1/flight/{flightId}/creative/{adId}":
     put:
       tags:
         - ads
@@ -759,8 +759,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad.yaml#/schemas/Ad'
-  '/v1/ad/{adId}':
+                $ref: "./schemas/ad.yaml#/schemas/Ad"
+  "/v1/ad/{adId}":
     get:
       tags:
         - ads
@@ -782,8 +782,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad.yaml#/schemas/Ad'
-  '/v1/ad/{adId}/tracking-urls':
+                $ref: "./schemas/ad.yaml#/schemas/Ad"
+  "/v1/ad/{adId}/tracking-urls":
     get:
       tags:
         - ads
@@ -822,8 +822,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad.yaml#/schemas/TrackingDetails'
-  '/v2/creative-templates':
+                $ref: "./schemas/ad.yaml#/schemas/TrackingDetails"
+  "/v2/creative-templates":
     post:
       tags:
         - creative templates
@@ -842,7 +842,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
+                $ref: "./schemas/creative-template.yaml#/schemas/CreativeTemplate"
     get:
       tags:
         - creative templates
@@ -880,8 +880,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateList'
-  '/v2/creative-templates/{creativeTemplateId}':
+                $ref: "./schemas/creative-template.yaml#/schemas/CreativeTemplateList"
+  "/v2/creative-templates/{creativeTemplateId}":
     get:
       tags:
         - creative templates
@@ -903,8 +903,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
-  '/v2/creative-templates/{creativeTemplateId}/update':
+                $ref: "./schemas/creative-template.yaml#/schemas/CreativeTemplate"
+  "/v2/creative-templates/{creativeTemplateId}/update":
     post:
       tags:
         - creative templates
@@ -931,8 +931,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplate'
-  '/v1/flight/{flightId}/category':
+                $ref: "./schemas/creative-template.yaml#/schemas/CreativeTemplate"
+  "/v1/flight/{flightId}/category":
     post:
       tags:
         - flight categories
@@ -958,8 +958,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight-category.yaml#/schemas/FlightCategory'
-  '/v1/flight/{flightId}/categories':
+                $ref: "./schemas/flight-category.yaml#/schemas/FlightCategory"
+  "/v1/flight/{flightId}/categories":
     get:
       tags:
         - flight categories
@@ -996,7 +996,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight-category.yaml#/schemas/FlightCategoryList'
+                $ref: "./schemas/flight-category.yaml#/schemas/FlightCategoryList"
   /v1/categories:
     get:
       tags:
@@ -1027,8 +1027,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/flight-category.yaml#/schemas/FlightCategoryList'
-  '/v1/flight/{flightId}/category/{flightCategoryId}/delete':
+                $ref: "./schemas/flight-category.yaml#/schemas/FlightCategoryList"
+  "/v1/flight/{flightId}/category/{flightCategoryId}/delete":
     get:
       tags:
         - flight categories
@@ -1053,7 +1053,7 @@ paths:
       responses:
         200:
           description: "Successfully Deleted"
-  '/v1/flight/{flightId}/sitezonetargeting':
+  "/v1/flight/{flightId}/sitezonetargeting":
     post:
       tags:
         - site zone targeting
@@ -1079,8 +1079,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
-  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}':
+                $ref: "./schemas/site-zone.yaml#/schemas/SiteZone"
+  "/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}":
     parameters:
       - name: flightId
         description: The Flight Id to update the Site Zone Targeting for
@@ -1113,7 +1113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
+                $ref: "./schemas/site-zone.yaml#/schemas/SiteZone"
     get:
       tags:
         - site zone targeting
@@ -1126,8 +1126,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site-zone.yaml#/schemas/SiteZone'
-  '/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}/delete':
+                $ref: "./schemas/site-zone.yaml#/schemas/SiteZone"
+  "/v1/flight/{flightId}/sitezonetargeting/{siteZoneTargetingId}/delete":
     parameters:
       - name: flightId
         description: The Flight Id to update the Site Zone Targeting for
@@ -1152,7 +1152,7 @@ paths:
       responses:
         200:
           description: Successfully Deleted
-  '/v1/flight/{flightId}/geotargeting':
+  "/v1/flight/{flightId}/geotargeting":
     post:
       tags:
         - geo targeting
@@ -1178,8 +1178,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/geo-target.yaml#/schemas/GeoTarget'
-  '/v1/flight/{flightId}/geotargeting/{locationId}':
+                $ref: "./schemas/geo-target.yaml#/schemas/GeoTarget"
+  "/v1/flight/{flightId}/geotargeting/{locationId}":
     parameters:
       - name: flightId
         description: The Flight Id to update the Site Zone Targeting for
@@ -1212,7 +1212,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/geo-target.yaml#/schemas/GeoTarget'
+                $ref: "./schemas/geo-target.yaml#/schemas/GeoTarget"
     get:
       tags:
         - geo targeting
@@ -1225,8 +1225,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/geo-target.yaml#/schemas/GeoTarget'
-  '/v1/flight/{flightId}/geotargeting/{locationId}/delete':
+                $ref: "./schemas/geo-target.yaml#/schemas/GeoTarget"
+  "/v1/flight/{flightId}/geotargeting/{locationId}/delete":
     get:
       tags:
         - geo targeting
@@ -1266,8 +1266,8 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './schemas/geo-target.yaml#/schemas/Country'
-  '/v1/country/{countryCode}/regions?version=2':
+                  $ref: "./schemas/geo-target.yaml#/schemas/Country"
+  "/v1/country/{countryCode}/regions?version=2":
     get:
       tags:
         - geo targeting
@@ -1287,8 +1287,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/geo-target.yaml#/schemas/Country'
-  '/v1/region/{regionCode}':
+                $ref: "./schemas/geo-target.yaml#/schemas/Country"
+  "/v1/region/{regionCode}":
     get:
       tags:
         - geo targeting
@@ -1310,7 +1310,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './schemas/geo-target.yaml#/schemas/Metro'
+                  $ref: "./schemas/geo-target.yaml#/schemas/Metro"
   /v1/channel:
     post:
       tags:
@@ -1329,7 +1329,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel.yaml#/schemas/Channel'
+                $ref: "./schemas/channel.yaml#/schemas/Channel"
     get:
       tags:
         - channels
@@ -1359,9 +1359,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel.yaml#/schemas/ChannelList'
+                $ref: "./schemas/channel.yaml#/schemas/ChannelList"
 
-  '/v1/channel/{channelId}':
+  "/v1/channel/{channelId}":
     parameters:
       - name: channelId
         description: The Channel Id
@@ -1387,7 +1387,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel.yaml#/schemas/Channel'
+                $ref: "./schemas/channel.yaml#/schemas/Channel"
     get:
       tags:
         - channels
@@ -1400,8 +1400,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel.yaml#/schemas/Channel'
-  '/v1/channel/{channelId}/priorities':
+                $ref: "./schemas/channel.yaml#/schemas/Channel"
+  "/v1/channel/{channelId}/priorities":
     get:
       tags:
         - channels
@@ -1424,8 +1424,8 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './schemas/priority.yaml#/schemas/Priority'
-  '/v1/channel/{channelId}/delete':
+                  $ref: "./schemas/priority.yaml#/schemas/Priority"
+  "/v1/channel/{channelId}/delete":
     get:
       tags:
         - channels
@@ -1461,7 +1461,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site.yaml#/schemas/Site'
+                $ref: "./schemas/site.yaml#/schemas/Site"
     get:
       tags:
         - sites
@@ -1491,8 +1491,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site.yaml#/schemas/SiteList'
-  '/v1/site/{siteId}':
+                $ref: "./schemas/site.yaml#/schemas/SiteList"
+  "/v1/site/{siteId}":
     parameters:
       - name: siteId
         in: path
@@ -1518,7 +1518,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site.yaml#/schemas/Site'
+                $ref: "./schemas/site.yaml#/schemas/Site"
     get:
       tags:
         - sites
@@ -1531,7 +1531,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/site.yaml#/schemas/Site'
+                $ref: "./schemas/site.yaml#/schemas/Site"
   /v1/fast/site:
     get:
       tags:
@@ -1579,7 +1579,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
+                $ref: "./schemas/channel-site-map.yaml#/schemas/ChannelSiteMap"
     get:
       tags:
         - channel site maps
@@ -1609,7 +1609,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMapList'
+                $ref: "./schemas/channel-site-map.yaml#/schemas/ChannelSiteMapList"
     put:
       tags:
         - channel site maps
@@ -1627,8 +1627,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
-  '/v1/channel/{channelId}/site/{siteId}':
+                $ref: "./schemas/channel-site-map.yaml#/schemas/ChannelSiteMap"
+  "/v1/channel/{channelId}/site/{siteId}":
     get:
       tags:
         - channel site maps
@@ -1656,8 +1656,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelSiteMap'
-  '/v1/channelsInSite/{siteId}':
+                $ref: "./schemas/channel-site-map.yaml#/schemas/ChannelSiteMap"
+  "/v1/channelsInSite/{siteId}":
     get:
       tags:
         - channel site maps
@@ -1678,8 +1678,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/channel-site-map.yaml#/schemas/ChannelList'
-  '/v1/channel/{channelId}/site/{siteId}/delete':
+                $ref: "./schemas/channel-site-map.yaml#/schemas/ChannelList"
+  "/v1/channel/{channelId}/site/{siteId}/delete":
     get:
       tags:
         - channel site maps
@@ -1722,7 +1722,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/zone.yaml#/schemas/Zone'
+                $ref: "./schemas/zone.yaml#/schemas/Zone"
     get:
       tags:
         - zones
@@ -1752,8 +1752,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/zone.yaml#/schemas/ZoneList'
-  '/v1/zone/{zoneId}':
+                $ref: "./schemas/zone.yaml#/schemas/ZoneList"
+  "/v1/zone/{zoneId}":
     parameters:
       - name: zoneId
         in: path
@@ -1774,7 +1774,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/zone.yaml#/schemas/Zone'
+                $ref: "./schemas/zone.yaml#/schemas/Zone"
     put:
       tags:
         - zones
@@ -1792,7 +1792,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/zone.yaml#/schemas/Zone'
+                $ref: "./schemas/zone.yaml#/schemas/Zone"
   /v1/adtypes:
     post:
       tags:
@@ -1811,7 +1811,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad-type.yaml#/schemas/AdType'
+                $ref: "./schemas/ad-type.yaml#/schemas/AdType"
     get:
       tags:
         - ad types
@@ -1841,8 +1841,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad-type.yaml#/schemas/AdTypeList'
-  '/v1/channel/{channelId}/adtypes':
+                $ref: "./schemas/ad-type.yaml#/schemas/AdTypeList"
+  "/v1/channel/{channelId}/adtypes":
     parameters:
       - name: channelId
         in: path
@@ -1868,7 +1868,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad-type.yaml#/schemas/AdType'
+                $ref: "./schemas/ad-type.yaml#/schemas/AdType"
     get:
       tags:
         - ad types
@@ -1898,8 +1898,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/ad-type.yaml#/schemas/AdTypeList'
-  '/v1/adtypes/{adTypeId}/delete':
+                $ref: "./schemas/ad-type.yaml#/schemas/AdTypeList"
+  "/v1/adtypes/{adTypeId}/delete":
     get:
       tags:
         - ad types
@@ -1917,7 +1917,7 @@ paths:
       responses:
         200:
           description: Successfully Deleted
-  '/v1/channel/{channelId}/adtypes/{adTypeId}/delete':
+  "/v1/channel/{channelId}/adtypes/{adTypeId}/delete":
     get:
       tags:
         - ad types
@@ -1960,7 +1960,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/priority.yaml#/schemas/Priority'
+                $ref: "./schemas/priority.yaml#/schemas/Priority"
     get:
       tags:
         - priorities
@@ -1990,8 +1990,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/priority.yaml#/schemas/PriorityList'
-  '/v1/priority/{priorityId}':
+                $ref: "./schemas/priority.yaml#/schemas/PriorityList"
+  "/v1/priority/{priorityId}":
     parameters:
       - name: priorityId
         in: path
@@ -2012,7 +2012,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/priority.yaml#/schemas/Priority'
+                $ref: "./schemas/priority.yaml#/schemas/Priority"
     put:
       tags:
         - priorities
@@ -2030,8 +2030,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/priority.yaml#/schemas/Priority'
-  '/v1/priority/{priorityId}/delete':
+                $ref: "./schemas/priority.yaml#/schemas/Priority"
+  "/v1/priority/{priorityId}/delete":
     get:
       tags:
         - priorities
@@ -2053,7 +2053,7 @@ paths:
 components:
   schemas:
     CreativeTemplateUpdate:
-      $ref: './schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate'
+      $ref: "./schemas/creative-template.yaml#/schemas/CreativeTemplateUpdate"
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
