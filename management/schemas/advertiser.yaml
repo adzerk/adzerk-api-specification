@@ -1,6 +1,5 @@
 schemas:
-
-  Advertiser:
+  AdvertiserCreate:
     type: object
     required:
       - Title
@@ -40,11 +39,8 @@ schemas:
         type: integer
         format: int32
         nullable: true
-      IsDeleted:
-        type: boolean
-        default: false
-      IsFreqCap:
-        type: boolean
+      CustomFieldsJson:
+        type: string
         nullable: true
       RtbCustomFields:
         type: string
@@ -53,20 +49,83 @@ schemas:
         type: integer
         format: int32
         nullable: true
+      IsDeleted:
+        type: boolean
+        default: false
+
+  AdvertiserUpdate:
+    required:
+      - Title
+      - IsActive
+      - Id
+    properties:
       Id:
         type: integer
-        nullable: true
-      LastModified:
+        format: int32
+        readOnly: true
+      Title:
         type: string
-        format: date-time
+        nullable: false
+      IsActive:
+        type: boolean
+      PlacementLimit:
+        type: integer
+        format: int32
         nullable: true
-      Version:
+      FreqCap:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCapDuration:
+        type: integer
+        format: int32
+        nullable: true
+      FreqCapType:
+        type: integer
+        format: int32
+        nullable: true
+      CapType:
+        type: integer
+        format: int32
+        nullable: true
+      DailyCapAmount:
+        type: integer
+        format: int32
+        nullable: true
+      LifetimeCapAmount:
         type: integer
         format: int32
         nullable: true
       CustomFieldsJson:
         type: string
         nullable: true
+      RtbCustomFields:
+        type: string
+        nullable: true
+      PartnerId:
+        type: integer
+        format: int32
+        nullable: true
+      IsDeleted:
+        type: boolean
+
+  Advertiser:
+    allOf:
+      - $ref: '#/schemas/AdvertiserCreate'
+      - type: object
+        properties:
+          Id:
+            type: integer
+            format: int32
+            readOnly: true
+          IsFreqCap:
+            type: boolean
+          LastModified:
+            type: string
+            format: date-time
+          Version:
+            type: integer
+            format: int32
 
   AdvertiserList:
     type: object
