@@ -98,6 +98,18 @@ paths:
                 CustomFieldsJson:
                   type: string
                   nullable: true
+                CatalogAccess:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      CatalogId:
+                        type: integer
+                        nullable: true
+                      ProductQuery:
+                        type: array
+                        nullable: true
       responses:
         200:
           description: Advertiser Created
