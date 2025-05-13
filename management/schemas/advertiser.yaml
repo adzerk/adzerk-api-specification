@@ -58,6 +58,22 @@ schemas:
       IsDeleted:
         type: boolean
         default: false
+      CatalogAccess:
+        type: array
+        nullable: true
+        items:
+          type: object
+          properties:
+            CatalogId:
+              type: integer
+              format: int32
+              nullable: true
+            ProductQuery:
+              type: array
+              items:
+                type: array
+                items: string
+              nullable: true
 
   AdvertiserUpdate:
     required:
@@ -120,6 +136,22 @@ schemas:
         nullable: true
       IsDeleted:
         type: boolean
+      CatalogAccess:
+        type: array
+        nullable: true
+        items:
+          type: object
+          properties:
+            CatalogId:
+              type: integer
+              format: int32
+              nullable: true
+            ProductQuery:
+              type: array
+              items:
+                type: array
+                items: string
+              nullable: true
 
   Advertiser:
     allOf:
