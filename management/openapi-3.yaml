@@ -92,7 +92,7 @@ paths:
     parameters:
       - name: advertiserId
         in: path
-        description: Id of the Advertiser to update
+        description: Id of the Advertiser to get/update
         required: true
         schema:
           type: integer
@@ -137,6 +137,24 @@ paths:
       operationId: searchAdvertisers
       security:
         - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+            default: 500
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1052,7 +1070,7 @@ paths:
             format: int32
       responses:
         200:
-          description: "Successfully Deleted"
+          description: Successfully Deleted
   '/v1/flight/{flightId}/sitezonetargeting':
     post:
       tags:
