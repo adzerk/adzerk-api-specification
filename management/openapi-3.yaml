@@ -2140,7 +2140,7 @@ paths:
     get:
       tags:
         - scheduled-report
-      operationId: listScheduledReport
+      operationId: listScheduledReports
       security:
         - ApiKeyAuth: []
       parameters:
