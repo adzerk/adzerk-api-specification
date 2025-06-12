@@ -2507,12 +2507,6 @@ paths:
                   items:
                     type: integer
                     format: int32
-                ads:
-                  type: array
-                  nullable: true
-                  items:
-                    type: integer
-                    format: int32
                 days:
                   type: integer
                   format: int32
