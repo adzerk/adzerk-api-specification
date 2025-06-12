@@ -2477,24 +2477,6 @@ paths:
       operationId: bulk
       security:
         - ApiKeyAuth: []
-      parameters:
-        - name: days
-          in: query
-          description: The number of days since the current days
-          schema:
-            type: integer
-            format: int32
-            nullable: true
-        - name: start
-          in: query
-          description: The start date for the counts
-          schema:
-            type: string
-        - name: end
-          in: query
-          description: The end date for the counts
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
@@ -2525,6 +2507,23 @@ paths:
                   items:
                     type: integer
                     format: int32
+                ads:
+                  type: array
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                days:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  description: The number of days since the current days
+                start
+                  type: string
+                  description: The start date for the counts
+                end
+                  type: string
+                  description: The end date for the counts
       responses:
         200:
           description: The counts
