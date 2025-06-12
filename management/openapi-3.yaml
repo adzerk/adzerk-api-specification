@@ -797,7 +797,7 @@ paths:
       parameters:
         - name: flightId
           in: path
-          description: The Id of the Flight for the Ad to be updated
+          description: The Id of the Flight for the Ad to be deleted
           required: true
           schema:
             type: integer
