@@ -202,7 +202,7 @@ paths:
       tags:
         - ad
       description: List Ads for a Network
-      operationId: listForNetwork
+      operationId: listNetworkAds
       security:
         - ApiKeyAuth: []
       parameters:
@@ -398,14 +398,14 @@ paths:
       parameters:
         - name: flightId
           in: path
-          description: The Id of the Flight for the Ad to be updated
+          description: The Id of the Flight for the Ad to be deleted
           required: true
           schema:
             type: integer
             format: int32
         - name: id
           in: path
-          description: The Id of the Ad to be updated
+          description: The Id of the Ad to be deleted
           required: true
           schema:
             type: integer
