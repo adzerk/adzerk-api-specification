@@ -2512,10 +2512,10 @@ paths:
                   format: int32
                   nullable: true
                   description: The number of days since the current days
-                start
+                start:
                   type: string
                   description: The start date for the counts
-                end
+                end:
                   type: string
                   description: The end date for the counts
       responses:
