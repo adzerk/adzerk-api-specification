@@ -14,6 +14,13 @@ $ brew install openapi-generator
 
 If you have issues or need upgrade instructions, please visit https://openapi-generator.tech/docs/installation/.
 
+## Releasing
+
+There are two GHA that will complete publishing both Management SDK and Decision SDK.
+In order to trigger them a new `release` has to be created on GH releases [page](https://github.com/adzerk/adzerk-api-specification/releases).
+`Draft a new release` and enter the new release tag or pick if from the list of existing tags, target to `master` and `Generate release notes` before hitting `Publish release`.
+Validate on the GH actions [page](https://github.com/adzerk/adzerk-api-specification/actions) that the workflows executed successfully.
+
 ## Sample Invocations
 
 ### Decision SDK
