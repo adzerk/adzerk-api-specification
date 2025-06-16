@@ -36,6 +36,13 @@ tags:
     description: Ad Types
   - name: priorities
     description: Priorities
+
+  - name: scheduled-report
+    description: Scheduled Reporting
+  - name: queued-report
+    description: Queued Reporting
+  - name: real-time-report
+    description: Real Time Reporting
 paths:
   /v1/advertiser:
     post:
@@ -778,6 +785,67 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/ad.yaml#/schemas/Ad'
+
+  '/v1/flight/{flightId}/creative/{adId}/delete':
+    get:
+      tags:
+        - ads
+      description: Delete an existing Ad
+      operationId: deleteAd
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          in: path
+          description: The Id of the Flight for the Ad to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: adId
+          in: path
+          description: The Id of the Ad to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+
+  '/v1/ad':
+    get:
+      tags:
+        - ads
+      description: List Ads for a Network
+      operationId: listNetworkAds
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+            default: 500
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Ads
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ad.yaml#/schemas/AdList'
   '/v1/ad/{adId}':
     get:
       tags:
@@ -2067,6 +2135,396 @@ paths:
       responses:
         200:
           description: Successfully Deleted
+
+  '/v1/report/schedule':
+    get:
+      tags:
+        - scheduled-report
+      operationId: listScheduledReports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+            default: 500
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Scheduled Reports
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReportList'
+    post:
+      tags:
+        - scheduled-report
+      operationId: createScheduledReport
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
+      responses:
+        200:
+          description: The scheduled report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
+  '/v1/report/schedule/{id}':
+    get:
+      tags:
+        - scheduled-report
+      operationId: getScheduledReport
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The Report Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: The Report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/scheduled-report.yaml#/schemas/ScheduledReport'
+  '/v1/report/schedule/{id}/delete':
+    get:
+      tags:
+        - scheduled-report
+      operationId: deleteScheduledReport
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The Report Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+
+  '/v1/report/queue':
+    post:
+      tags:
+        - queued-report
+      operationId: createQueuedReport
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - StartDateISO
+                - EndDateISO
+                - GroupBy
+                - Parameters
+      responses:
+        200:
+          description: The queued report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Id:
+                    type: string
+  '/v1/report/queue/{id}':
+    get:
+      tags:
+        - queued-report
+      operationId: pollQueuedReport
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The id of the queued report to poll
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The queued report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Id:
+                    type: string
+                  Status:
+                    type: integer
+                  Message:
+                    type: string
+                  Result:
+                    type: object
+
+  '/v1/instantcounts/advertiser/{advertiserId}':
+    get:
+      tags:
+        - real-time-report
+      operationId: getAdvertiserCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: advertiserId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The advertiser counts
+          content:
+            application/json:
+              schema:
+                type: object
+  '/v1/instantcounts/campaign/{campaignId}':
+    get:
+      tags:
+        - real-time-report
+      operationId: getCampaignCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The campaign counts
+          content:
+            application/json:
+              schema:
+                type: object
+  '/v1/instantcounts/flight/{flightId}':
+    get:
+      tags:
+        - real-time-report
+      operationId: getFlightCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: flightId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The flight counts
+          content:
+            application/json:
+              schema:
+                type: object
+  '/v1/instantcounts/ad/{adId}':
+    get:
+      tags:
+        - real-time-report
+      operationId: getAdCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: adId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: days
+          in: query
+          description: The number of days since the current days
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The ad counts
+          content:
+            application/json:
+              schema:
+                type: object
+  '/v1/instantcounts/network':
+    get:
+      tags:
+        - real-time-report
+      operationId: getNetworkCounts
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: days
+          in: query
+          description: The number of days since the current days
+          required: true
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: start
+          in: query
+          description: The start date for the counts
+          schema:
+            type: string
+        - name: end
+          in: query
+          description: The end date for the counts
+          schema:
+            type: string
+      responses:
+        200:
+          description: The network counts
+          content:
+            application/json:
+              schema:
+                type: object
+  '/v1/instantcounts/bulk':
+    post:
+      tags:
+        - real-time-report
+      operationId: bulk
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advertisers:
+                  type: array
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                campaigns:
+                  type: array
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                flights:
+                  type: array
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                ads:
+                  type: array
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                days:
+                  type: integer
+                  format: int32
+                  nullable: true
+                  description: The number of days since the current days
+                start:
+                  type: string
+                  description: The start date for the counts
+                end:
+                  type: string
+                  description: The end date for the counts
+      responses:
+        200:
+          description: The counts
+          content:
+            application/json:
+              schema:
+                type: object
 
 components:
   schemas:
