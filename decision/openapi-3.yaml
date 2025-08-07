@@ -632,8 +632,6 @@ components:
           $ref: '#/components/schemas/User'
         decisions:
           type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Decision'
         explain:
           type: object
     ConsentRequest:
