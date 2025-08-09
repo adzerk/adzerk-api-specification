@@ -631,25 +631,18 @@ components:
         user:
           $ref: '#/components/schemas/User'
         decisions:
-          oneOf:
-            - type: object
-              description: Single decision format with dynamic string key
-              additionalProperties:
-                $ref: '#/components/schemas/Decision'
-              minProperties: 1
-              maxProperties: 1
-            - type: object
-              description: Multiple decision format
-              properties:
-                multi-winner:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Decision'
-                  minItems: 1
-                  description: Array of decision objects
-              required:
-                - multi-winner
-              additionalProperties: false
+          type: object
+          description: Single decision format with dynamic string key
+          additionalProperties:
+            oneOf:
+              - $ref: '#/components/schemas/Decision'
+              - type: array
+                items:
+                  $ref: '#/components/schemas/Decision'
+                minItems: 1
+                description: Array of decision objects
+          minProperties: 1
+          maxProperties: 1
         explain:
           type: object
     ConsentRequest:
