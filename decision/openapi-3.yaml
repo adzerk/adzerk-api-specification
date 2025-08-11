@@ -634,15 +634,12 @@ components:
           type: object
           description: Single decision format with dynamic string key
           additionalProperties:
-            oneOf:
+            anyOf:
               - $ref: '#/components/schemas/Decision'
               - type: array
                 items:
                   $ref: '#/components/schemas/Decision'
-                minItems: 1
                 description: Array of decision objects
-          minProperties: 1
-          maxProperties: 1
         explain:
           type: object
     ConsentRequest:
