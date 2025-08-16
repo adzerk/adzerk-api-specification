@@ -586,6 +586,10 @@ components:
             $ref: '#/components/schemas/MatchedPoint'
         pricing:
           $ref: '#/components/schemas/PricingData'
+        height:
+          type: integer
+        width:
+          type: integer
     Event:
       type: object
       properties:
@@ -641,6 +645,8 @@ components:
                   $ref: '#/components/schemas/Decision'
                 description: Array of decision objects
         explain:
+          type: object
+        candidateRetrieval:
           type: object
     ConsentRequest:
       type: object
