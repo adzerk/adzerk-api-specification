@@ -436,6 +436,10 @@ components:
         includeMatchedPoints:
           type: boolean
           nullable: true
+        searchTerm:
+          description: A way to target ads based on shopper search terms
+          type: string
+          nullable: true
       required:
         - placements
     Placement:
