@@ -555,6 +555,9 @@ components:
         key:
           description: The UserKey used for UserDB Targeting
           type: string
+        group:
+          description: The assigned cohort for the User
+          type: integer
     Decision:
       type: object
       properties:
