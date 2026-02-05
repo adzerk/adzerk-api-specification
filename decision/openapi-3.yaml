@@ -558,6 +558,7 @@ components:
         group:
           description: The assigned cohort for the User
           type: integer
+          nullable: true
     Decision:
       type: object
       properties:
