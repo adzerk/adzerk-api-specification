@@ -36,7 +36,8 @@ tags:
     description: Ad Types
   - name: priorities
     description: Priorities
-
+  - name: segments
+    description: Segments
   - name: scheduled-report
     description: Scheduled Reporting
   - name: queued-report
@@ -2525,6 +2526,113 @@ paths:
             application/json:
               schema:
                 type: object
+  /v1/segment:
+    post:
+      tags:
+        - segments
+      operationId: createSegment
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The newly created segment
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/Segment'
+    get:
+      tags:
+        - segments
+      operationId: listSegments
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of the Segments
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/SegmentList'
+  '/v1/segment/{segmentId}':
+    parameters:
+      - name: segmentId
+        in: path
+        description: The Segment Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - segments
+      operationId: getSegment
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Segment
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/Segment'
+    put:
+      tags:
+        - segments
+      operationId: updateSegment
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: The updated segment
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/Segment'
+  '/v1/segment/{segmentId}/':
+    get:
+      tags:
+        - segments
+      operationId: deleteSegment
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: segmentId
+          in: path
+          description: The Segment Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
 
 components:
   schemas:

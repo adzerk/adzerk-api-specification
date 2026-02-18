@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Adzerk Management API - Segments
+  description: Segment related Adzerk Management API
+  version: '1.0'
+servers:
+  - url: 'https://api.adzerk.net'
+tags:
+  - name: segment
+    description: Manage Segments
+paths:
+  /v1/segment:
+    post:
+      tags:
+        - segment
+      description: Create new Segment
+      operationId: create
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+              properties:
+                Name:
+                  type: string
+                Source:
+                  type: string
+                  nullable: true
+                Reach:
+                  $ref: './schemas/segment.yaml#/schemas/Reach'
+                  nullable: true
+                Description:
+                  type: string
+                  nullable: true
+                Category:
+                  type: string
+                  nullable: true
+                Advertisers:
+                  $ref: './schemas/segment.yaml#/schemas/Advertisers'
+                  nullable: true
+      responses:
+        200:
+          description: The newly created Segment
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/Segment'
+    get:
+      tags:
+        - segment
+      operationId: list
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+            default: 500
+        - name: page
+          in: query
+          description: The page number to be returned
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        200:
+          description: A paged list of Segments
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/SegmentList'
+  '/v1/segment/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: The Segment Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      tags:
+        - segment
+      operationId: get
+      security:
+        - ApiKeyAuth: []
+      responses:
+        200:
+          description: The Segment
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/Segment'
+    put:
+      tags:
+        - segment
+      operationId: update
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Id
+                - Name
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                Source:
+                  type: string
+                  nullable: true
+                Reach:
+                  $ref: './schemas/segment.yaml#/schemas/Reach'
+                  nullable: true
+                Description:
+                  type: string
+                  nullable: true
+                Category:
+                  type: string
+                  nullable: true
+                Advertisers:
+                  $ref: './schemas/segment.yaml#/schemas/Advertisers'
+                  nullable: true
+      responses:
+        200:
+          description: The updated segment
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/segment.yaml#/schemas/Segment'
+  '/v1/segment/{id}':
+    delete:
+      tags:
+        - segment
+      operationId: delete
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The Segment Id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successfully Deleted
+components:
+  securitySchemes:
+    $ref: './components/security-schemes.yaml#/components/securitySchemes'
