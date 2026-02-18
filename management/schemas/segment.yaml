@@ -1,0 +1,60 @@
+schemas:
+  Segment:
+    type: object
+    required:
+      - Name
+    properties:
+      Name:
+        type: string
+      Source:
+        type: string
+        nullable: true
+      Reach:
+        $ref: $ref: '#/schemas/Reach'
+        nullable: true
+      Description:
+        type: string
+        nullable: true
+      Category:
+        type: string
+        nullable: true
+      Advertisers:
+        $ref: $ref: '#/schemas/Advertisers'
+        nullable: true
+
+  Reach:
+    type: object
+    properties:
+      all_time:
+        type: integer
+        format: int32
+      28d:
+        type: integer
+        format: int32
+
+  Advertisers:
+    type: object
+    properties:
+      AdvertiserId:
+      type: integer
+      format: int32
+  
+  SegmentList:
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalItems:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/schemas/Segment'
