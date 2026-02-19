@@ -21,27 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - Name
-              properties:
-                Name:
-                  type: string
-                Source:
-                  type: string
-                  nullable: true
-                Reach:
-                  $ref: './schemas/segment.yaml#/schemas/Reach'
-                  nullable: true
-                Description:
-                  type: string
-                  nullable: true
-                Category:
-                  type: string
-                  nullable: true
-                Advertisers:
-                  $ref: './schemas/segment.yaml#/schemas/Advertisers'
-                  nullable: true
+              $ref: './schemas/segment.yaml#/schemas/SegmentCreate'
       responses:
         200:
           description: The newly created Segment
@@ -112,31 +92,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - Id
-                - Name
-              properties:
-                Id:
-                  type: integer
-                  format: int32
-                Name:
-                  type: string
-                Source:
-                  type: string
-                  nullable: true
-                Reach:
-                  $ref: './schemas/segment.yaml#/schemas/Reach'
-                  nullable: true
-                Description:
-                  type: string
-                  nullable: true
-                Category:
-                  type: string
-                  nullable: true
-                Advertisers:
-                  $ref: './schemas/segment.yaml#/schemas/Advertisers'
-                  nullable: true
+              $ref: './schemas/segment.yaml#/schemas/SegmentUpdate'
       responses:
         200:
           description: The updated segment

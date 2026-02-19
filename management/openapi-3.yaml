@@ -2544,7 +2544,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/segment.yaml#/schemas/Segment'
+                $ref: './schemas/segment.yaml#/schemas/SegmentCreate'
     get:
       tags:
         - segments
@@ -2559,7 +2559,6 @@ paths:
           schema:
             type: integer
             format: int32
-            nullable: true
         - name: page
           in: query
           description: The page number to be returned
@@ -2567,7 +2566,6 @@ paths:
           schema:
             type: integer
             format: int32
-            nullable: true
       responses:
         200:
           description: A paged list of the Segments
@@ -2614,9 +2612,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/segment.yaml#/schemas/Segment'
+                $ref: './schemas/segment.yaml#/schemas/SegmentUpdate'
   '/v1/segment/{segmentId}/':
-    get:
+    delete:
       tags:
         - segments
       operationId: deleteSegment

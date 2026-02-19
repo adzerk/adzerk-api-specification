@@ -1,9 +1,64 @@
 schemas:
+
   Segment:
+    type: object
+    required:
+      - Id
+      - Name
+    properties:
+      Id:
+        type: integer
+        format: int32
+      Name:
+        type: string
+      Source:
+        type: string
+        nullable: true
+      Reach:
+        $ref: $ref: '#/schemas/Reach'
+        nullable: true
+      Description:
+        type: string
+        nullable: true
+      Category:
+        type: string
+        nullable: true
+      Advertisers:
+        $ref: $ref: '#/schemas/Advertisers'
+        nullable: true
+
+  SegmentCreate:
     type: object
     required:
       - Name
     properties:
+      Name:
+        type: string
+      Source:
+        type: string
+        nullable: true
+      Reach:
+        $ref: $ref: '#/schemas/Reach'
+        nullable: true
+      Description:
+        type: string
+        nullable: true
+      Category:
+        type: string
+        nullable: true
+      Advertisers:
+        $ref: $ref: '#/schemas/Advertisers'
+        nullable: true
+
+  SegmentUpdate:
+    type: object
+    required:
+      - Id
+      - Name
+    properties:
+      Id:
+        type: integer
+        format: int32
       Name:
         type: string
       Source:
@@ -35,9 +90,15 @@ schemas:
   Advertisers:
     type: object
     properties:
+      Id:
+        type: integer
+        format: int32
       AdvertiserId:
-      type: integer
-      format: int32
+        type: integer
+        format: int32
+      SegmentId:
+        type: integer
+        format: int32
   
   SegmentList:
     type: object
