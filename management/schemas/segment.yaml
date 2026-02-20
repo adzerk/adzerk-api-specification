@@ -15,7 +15,7 @@ schemas:
         type: string
         nullable: true
       Reach:
-        $ref: $ref: '#/schemas/Reach'
+        $ref: '#/schemas/Reach'
         nullable: true
       Description:
         type: string
@@ -24,7 +24,7 @@ schemas:
         type: string
         nullable: true
       Advertisers:
-        $ref: $ref: '#/schemas/Advertisers'
+        $ref: '#/schemas/Advertisers'
         nullable: true
 
   SegmentCreate:
@@ -38,7 +38,7 @@ schemas:
         type: string
         nullable: true
       Reach:
-        $ref: $ref: '#/schemas/Reach'
+        $ref: '#/schemas/Reach'
         nullable: true
       Description:
         type: string
@@ -47,7 +47,7 @@ schemas:
         type: string
         nullable: true
       Advertisers:
-        $ref: $ref: '#/schemas/Advertisers'
+        $ref: '#/schemas/Advertisers'
         nullable: true
 
   SegmentUpdate:
@@ -65,7 +65,7 @@ schemas:
         type: string
         nullable: true
       Reach:
-        $ref: $ref: '#/schemas/Reach'
+        $ref: '#/schemas/Reach'
         nullable: true
       Description:
         type: string
@@ -74,7 +74,7 @@ schemas:
         type: string
         nullable: true
       Advertisers:
-        $ref: $ref: '#/schemas/Advertisers'
+        $ref: '#/schemas/Advertisers'
         nullable: true
 
   Reach:
