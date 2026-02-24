@@ -100,7 +100,6 @@ paths:
             application/json:
               schema:
                 $ref: './schemas/segment.yaml#/schemas/Segment'
-  '/v1/segment/{id}':
     delete:
       tags:
         - segment
