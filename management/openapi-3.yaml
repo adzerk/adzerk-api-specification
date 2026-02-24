@@ -2537,7 +2537,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: './schemas/segment.yaml#/schemas/SegmentCreate'
       responses:
         200:
           description: The newly created segment
@@ -2605,7 +2605,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: './schemas/segment.yaml#/schemas/SegmentUpdate'
       responses:
         200:
           description: The updated segment
