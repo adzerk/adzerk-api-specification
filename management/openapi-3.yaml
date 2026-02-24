@@ -2544,7 +2544,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/segment.yaml#/schemas/SegmentCreate'
+                $ref: './schemas/segment.yaml#/schemas/Segment'
     get:
       tags:
         - segments
@@ -2612,7 +2612,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas/segment.yaml#/schemas/SegmentUpdate'
+                $ref: './schemas/segment.yaml#/schemas/Segment'
   '/v1/segment/{segmentId}/':
     delete:
       tags:
