@@ -558,6 +558,12 @@ components:
         group:
           description: The assigned cohort for the User
           type: integer
+        segments:
+          description: Array of Segment Ids that will override any set on the UserDB record for the User
+          type: array
+          items:
+            type: integer
+            format: int32
     Decision:
       type: object
       properties:
