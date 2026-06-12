@@ -687,6 +687,9 @@ components:
         placementLimit:
           type: boolean
           description: Placement limit filter, where no advertiser placement limit if true.
+        searchTerm:
+          type: boolean
+          description: Search term filter, which skips search term targeting if true.
         siteZone:
           type: boolean
           description: Site/zone limit filter, which skips site/zone targeting if true.

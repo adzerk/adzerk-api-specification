@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.27] - 2026-06-12
+
+### Fixed
+
+- [SUPPORT-1475] Added missing `searchTerm` property to the `SkipFilters` schema in the Decision API spec, so generated clients no longer strip `skipFilters.searchTerm` from decision requests. By [@vkurup](https://github.com/vkurup).
+
 ## [1.0.13] - 2023-11-13
 
 ### Added
