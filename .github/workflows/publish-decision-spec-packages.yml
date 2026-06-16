@@ -14,17 +14,17 @@ jobs:
     steps:
       - id: a9c19221-2149-41f2-91d7-e8411bf3ecc5
         name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - id: ba48f425-ccc1-4288-8ff6-4a1812e83224
         name: Setup NodeJS
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
 
       - id: f7414109-3255-4132-a3c9-6e38a68e54fe
         name: Setup Java (Needed by Generator)
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
