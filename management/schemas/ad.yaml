@@ -13,7 +13,6 @@ schemas:
         nullable: true
       Creative:
         $ref: './creative.yaml#/schemas/Creative'
-        nullable: true
       FlightId:
         type: integer
         format: int32
@@ -125,7 +124,6 @@ schemas:
         nullable: true
       AttributionSettings:
         $ref: '#/schemas/AttributionSettings'
-        nullable: true
       Created:
         type: string
         format: date-time

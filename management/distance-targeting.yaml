@@ -113,16 +113,18 @@ paths:
                   nullable: true
                 Geometries:
                   type: array
-                  items: 
-                    Distance:
-                      type: number
-                      format: float
-                    Latitude:
-                      type: number
-                      format: float
-                    Longitude:
-                      type: number
-                      format: float
+                  items:
+                    type: object
+                    properties:
+                      Distance:
+                        type: number
+                        format: float
+                      Latitude:
+                        type: number
+                        format: float
+                      Longitude:
+                        type: number
+                        format: float
       responses:
         200:
           description: The newly uploaded Distance Target(s)

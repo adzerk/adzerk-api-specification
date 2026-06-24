@@ -1,6 +1,0 @@
-components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-Adzerk-ApiKey
