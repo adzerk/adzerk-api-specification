@@ -24,11 +24,8 @@ jobs:
         name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-        - name: Setup NodeJS
-          uses: actions/setup-node@v4
-          with:
-            node-version: 24
-            registry-url: https://registry.npmjs.org  # enables NODE_AUTH_TOKEN for npm publish --provenance
+          node-version: 24
+          registry-url: https://registry.npmjs.org
 
       - id: f7414109-3255-4132-a3c9-6e38a68e54fe
         name: Setup Java (Needed by Generator)
