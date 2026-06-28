@@ -138,4 +138,7 @@ paths:
                 $ref: './schemas/user.yaml#/schemas/User'
 components:
   securitySchemes:
-    $ref: './components/security-schemes.yaml#/components/securitySchemes'
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Adzerk-ApiKey

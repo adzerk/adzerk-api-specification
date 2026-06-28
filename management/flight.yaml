@@ -445,4 +445,7 @@ paths:
                 $ref: './schemas/flight.yaml#/schemas/Flight'
 components:
   securitySchemes:
-    $ref: './components/security-schemes.yaml#/components/securitySchemes'
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Adzerk-ApiKey

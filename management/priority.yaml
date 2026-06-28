@@ -200,4 +200,7 @@ paths:
           description: Successfully Deleted
 components:
   securitySchemes:
-    $ref: './components/security-schemes.yaml#/components/securitySchemes'
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Adzerk-ApiKey

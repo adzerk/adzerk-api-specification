@@ -198,4 +198,7 @@ paths:
                   $ref: './schemas/geo-target.yaml#/schemas/Metro'
 components:
   securitySchemes:
-    $ref: './components/security-schemes.yaml#/components/securitySchemes'
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Adzerk-ApiKey

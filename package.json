@@ -16,6 +16,10 @@
     "build-management-csharp": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name csharp --output ./.build/cs/management --config ./management/codegen-config/csharp-netcore.json",
     "build-management-ruby": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name ruby --output ./.build/rb/management --config ./management/codegen-config/ruby.json",
     "build-management-typescript": "npx @openapitools/openapi-generator-cli generate --input-spec ./management/openapi-3.yaml --generator-name typescript-fetch --output ./.build/ts/management --config ./management/codegen-config/typescript-fetch.json",
+    "validate-all": "npm run validate-decision && npm run validate-management && npm run validate-user-content-db",
+    "validate-decision": "npx @openapitools/openapi-generator-cli validate -i decision/openapi-3.yaml",
+    "validate-management": "for f in management/*.yaml; do echo \"\n== $f ==\"; npx @openapitools/openapi-generator-cli validate -i \"$f\" || status=1; done; exit ${status:-0}",
+    "validate-user-content-db": "npx @openapitools/openapi-generator-cli validate -i user-content-db/openapi-3.yaml",
     "clean": "rm -rf .build"
   },
   "repository": {
