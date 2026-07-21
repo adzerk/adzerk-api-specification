@@ -1,5 +1,6 @@
 {
   "enablePostProcessFile": true,
   "typescriptThreePlus": true,
-  "useSingleRequestParameter": false
+  "useSingleRequestParameter": false,
+  "generateAliasAsModel": true
 }
