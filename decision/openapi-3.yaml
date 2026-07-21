@@ -617,6 +617,10 @@ components:
             $ref: '#/components/schemas/MatchedPoint'
         pricing:
           $ref: '#/components/schemas/PricingData'
+    DecisionArray:
+      type: array
+      items: 
+        $ref: '#/components/schemas/Decision'
     Event:
       type: object
       properties:
@@ -681,7 +685,9 @@ components:
             Decision.
           additionalProperties:
             nullable: true
-            type: object
+            oneOf:
+              - $ref: '#/components/schemas/Decision'
+              - $ref: '#/components/schemas/DecisionArray'
         explain:
           type: object
           description: Only present when the request is in explain/diagnostic mode.
