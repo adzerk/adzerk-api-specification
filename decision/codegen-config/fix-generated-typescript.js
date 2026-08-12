@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 'use strict';
 
-// openapi-generator's typescript-fetch templates build map (de)serializer calls by
+// openapi-generator's typescript-fetch templates build (de)serializer calls by
 // concatenating the property's raw TS type with "FromJSON"/"ToJSON". For a plain
-// $ref that works (e.g. DecisionFromJSON), but DecisionResponse's `decisions` map
-// value is `oneOf: [Decision, DecisionArray]`, so the generator emits the type text
-// itself ("Decision | DecisionArray") glued to the suffix, producing invalid
-// TypeScript: `Decision | DecisionArrayFromJSON`. Rewrite it to a real dispatcher.
+// $ref that works (e.g. DecisionFromJSON), but for a `oneOf` of multiple types the
+// generator emits the type text itself glued to the suffix, producing invalid
+// TypeScript. Two known cases:
+// - DecisionResponse's `decisions` map value is `oneOf: [Decision, DecisionArray]`,
+//   producing `Decision | DecisionArrayFromJSON`. Rewrite it to a real dispatcher.
+// - AdQueryOperator's `eq` is `oneOf: [string, number]`, producing
+//   `string | numberFromJSON(...)`. Primitives need no (de)serialization, so just
+//   pass the raw value through.
 
 const fs = require('fs');
 
@@ -25,6 +29,14 @@ const patched = original
   .replace(
     'mapValues(value.decisions, Decision | DecisionArrayToJSON)',
     'mapValues(value.decisions, (v: any) => Array.isArray(v) ? v.map(DecisionToJSON) : DecisionToJSON(v))'
+  )
+  .replace(
+    "string | numberFromJSON(json['eq'])",
+    "json['eq']"
+  )
+  .replace(
+    'string | numberToJSON(value.eq)',
+    'value.eq'
   );
 
 if (patched !== original) {
