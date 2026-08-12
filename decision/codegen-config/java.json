@@ -8,5 +8,6 @@
   "developerOrganization": "Adzerk, Inc.",
   "developerOrganizationUrl": "https://www.adzerk.com",
   "serializableModel": true,
-  "java8": false
+  "java8": false,
+  "generateAliasAsModel": true
 }

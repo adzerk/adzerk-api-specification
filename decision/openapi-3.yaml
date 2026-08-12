@@ -536,8 +536,10 @@ components:
           type: boolean
           nullable: true
         adQuery:
-          type: object
+          description: A map of adQuery variable names to targeting operators. See [Ad Query](https://dev.adzerk.com/docs/ad-query) for more info
           nullable: true
+          allOf:
+            - $ref: '#/components/schemas/AdQuery'
         floorPrice:
           type: number
           format: float
@@ -548,6 +550,51 @@ components:
           nullable: true
         skipFilters:
           $ref: '#/components/schemas/SkipFilters'
+    AdQuery:
+      description: A map of adQuery variable names to targeting operators. A key's value may be null to clear that variable's targeting
+      type: object
+      additionalProperties:
+        nullable: true
+        allOf:
+          - $ref: '#/components/schemas/AdQueryOperator'
+    AdQueryOperator:
+      description: Targeting operator(s) applied to a single adQuery variable
+      type: object
+      properties:
+        eq:
+          description: Matches variables equal to this value
+          oneOf:
+            - type: string
+            - type: number
+        in:
+          $ref: '#/components/schemas/AdQueryOperatorIn'
+        min:
+          description: Matches variables greater than or equal to this value
+          type: number
+        max:
+          description: Matches variables less than or equal to this value
+          type: number
+        nullValuesMatch:
+          description: Whether ads with no value set for this variable should be considered a match
+          type: boolean
+          default: false
+        phraseMatch:
+          description: Whether to include ads that have a fuzzy or inexact match with the `eq` query
+          type: boolean
+          default: false
+        not:
+          description: Do not match on the query provided. Is used with another operator - currently `in` is supported
+          type: object
+          properties:
+            in:
+              $ref: '#/components/schemas/AdQueryOperatorIn'
+    AdQueryOperatorIn:
+      description: Matches variables whose value is one of the given entries
+      type: array
+      items:
+        oneOf:
+          - type: string
+          - type: number
     User:
       description: Object containing the UserKey used for [UserDB targeting](https://dev.adzerk.com/docs/userdb-1)
       type: object
@@ -617,6 +664,10 @@ components:
             $ref: '#/components/schemas/MatchedPoint'
         pricing:
           $ref: '#/components/schemas/PricingData'
+    DecisionArray:
+      type: array
+      items: 
+        $ref: '#/components/schemas/Decision'
     Event:
       type: object
       properties:
@@ -636,9 +687,40 @@ components:
         customTemplate:
           type: string
         data:
-          type: object
+          $ref: '#/components/schemas/ContentData'
         body:
           type: string
+    ContentData:
+      description: >-
+        Metadata about the served creative. Known fields are listed below, but
+        additional fields may be present depending on the creative's template
+      type: object
+      properties:
+        imageUrl:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          nullable: true
+        height:
+          type: integer
+          nullable: true
+        swfUrl:
+          deprecated: true
+          description: Present for Flash/SWF creatives
+          type: string
+          nullable: true
+        rtb:
+          description: Present for RTB-sourced creatives. Contains what the RTB partner returned
+          type: object
+          nullable: true
+        customData:
+          type: object
+          nullable: true
+      additionalProperties: true
     PricingData:
       type: object
       properties:
@@ -681,7 +763,9 @@ components:
             Decision.
           additionalProperties:
             nullable: true
-            type: object
+            oneOf:
+              - $ref: '#/components/schemas/Decision'
+              - $ref: '#/components/schemas/DecisionArray'
         explain:
           type: object
           description: Only present when the request is in explain/diagnostic mode.

@@ -1,5 +1,6 @@
 {
   "packageName": "Adzerk.Sdk",
   "netCoreProjectFile": true,
-  "targetFramework": "netstandard2.0"
+  "targetFramework": "netstandard2.0",
+  "generateAliasAsModel": true
 }
