@@ -40,25 +40,12 @@ jobs:
         run: npm clean-install
 
       - id: ced9f2a9-8b4a-4082-a0d1-7791c847d632
-        name: Build Typescript Components from Decision Spec
+        name: Build and Compile Typescript Components from Decision Spec
         run: npm run build-decision-typescript
 
       - id: db7f8f85-c695-48a1-acfc-a2898987dfa3
         name: Copy Package Files into Working Directory
         run: cp decision/package-config/npm/* ${WORKINGDIRECTORY_DECISION}
-
-      - id: db6068b8-f5ed-4968-847e-b642595243fd
-        name: Install Typescript Compiler Globally
-        run: |
-          npm install --global typescript@5.2.x
-          tsc --version
-
-      - id: e842d27d-141c-47f2-b64c-2c5702984edf
-        name: Compile Package
-        working-directory: ${{ env.WORKINGDIRECTORY_DECISION }}
-        run: |
-          tsc --outDir dist --declaration --target es5 --module nodenext --moduleResolution nodenext --lib es6,dom --showConfig *.ts
-          tsc --outDir dist --declaration --target es5 --module nodenext --moduleResolution nodenext --lib es6,dom *.ts
 
       - id: c8734e87-1bb8-4340-9ab2-fd5cabb1ac6b
         name: Update Version package.json to Released Version
