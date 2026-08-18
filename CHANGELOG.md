@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [MGMT-358] Bumped `@openapitools/openapi-generator-cli` devDependency (2.39.1 → 2.40.1, within the existing `^2.15.3` range) to resolve transitive DoS/SSRF advisories in `ip-address`, `brace-expansion`, and `shell-quote`. By [@sramzi](https://github.com/sramzi).
+
 ## [1.0.27] - 2026-06-12
 
 ### Fixed
