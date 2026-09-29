@@ -550,6 +550,20 @@ components:
           nullable: true
         skipFilters:
           $ref: '#/components/schemas/SkipFilters'
+        relevancy:
+          $ref: '#/components/schemas/PlacementRelevancy'
+    PlacementRelevancy:
+      description: Relevancy scores for a single placement, used to rank ads in the auction. See [Relevancy Score](https://dev.kevel.com/docs/relevancy-score) for more info
+      type: object
+      properties:
+        idAttribute:
+          description: 'A map of one attribute name to a map of that attribute''s values and their relevancy scores (integers between 1 and 1000). The attribute is a creative template field, such as `ctProductId`, or one of `advertiserId`, `campaignId`, `flightId`, `adId`. Only a single attribute is used for scoring. Such as `"idAttribute": {"ctProductId": {"123": 832, "234": 645}}`.'
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: integer
+              format: int32
     AdQuery:
       description: A map of adQuery variable names to targeting operators. A key's value may be null to clear that variable's targeting
       type: object

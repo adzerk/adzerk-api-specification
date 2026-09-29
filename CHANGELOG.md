@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added the per-placement `relevancy` object (`relevancy.idAttribute`) to the `Placement` schema in the Decision API spec, so generated clients no longer strip [relevancy scores](https://dev.kevel.com/docs/relevancy-score) from decision requests.
+
 ## [1.0.27] - 2026-06-12
 
 ### Fixed
